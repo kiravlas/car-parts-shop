@@ -1,16 +1,55 @@
 @import 'tailwindcss';
 
-@plugin "@tailwindcss/typography";
+/* Preline UI */
+@import "../../node_modules/preline/variants.css";
+
+@source "../../node_modules/preline/dist/*.js";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+
+
+/* Plugins */
+@plugin "@tailwindcss/typography";
+
+
+/* @plugin "@tailwindcss/forms"; */
+
+
+/* DaisyUI */
+@plugin "daisyui" {
+    themes: forest --default;
+}
+
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-@plugin "daisyui" {
-    themes: forest --default;
+
+@keyframes marquee-x {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-50% - 0.5rem));
+    }
 }
 
+@keyframes marquee-y {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(calc(-50% - 0.5rem));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track-x,
+    .marquee-track-y {
+        animation-duration: 1ms;
+        animation-iteration-count: 1;
+    }
+}
