@@ -15,76 +15,198 @@
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 </head>
 <body>
+{{--Announcment marquee--}}
 
-<div class="navbar bg-base-100 shadow-sm">
-    <div class="navbar-start">
-        <div class="dropdown">
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
-                </svg>
-            </div>
-            <ul
-                tabindex="-1"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><a>Item 1</a></li>
-                <li>
-                    <a>Parent</a>
-                    <ul class="p-2">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
-                    </ul>
-                </li>
-                <li><a>Item 3</a></li>
-            </ul>
+<div
+    class="relative overflow-hidden border-y border-secondary/20 bg-base-100 before:pointer-events-none before:absolute before:inset-y-0 before:start-0 before:z-2 before:w-16 before:bg-[linear-gradient(to_right,var(--color-background),transparent)] after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-2 after:w-16 after:bg-[linear-gradient(to_left,var(--color-background),transparent)]">
+    <div
+        class="marquee-track-x [animation:marquee-x_40s_linear_infinite] hover:[animation-play-state:paused] flex w-max gap-4 py-2.5">
+        <div class="flex items-center gap-10 ps-4 text-sm text-gray-800 dark:text-neutral-200">
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🚚</span> Fast delivery on all orders</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔧</span> Quality auto parts you can trust</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔒</span> Secure checkout & safe payments</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">📞</span> Expert support for finding the right part</span>
         </div>
-        <a class="cursor-pointer"> <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts"
-                                        class="h-10 rounded-3xl transition-transform duration-100 active:scale-95">
-        </a>
-    </div>
-    <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-            <li><a>Item 1</a></li>
-            <li>
-                <details>
-                    <summary>Parent</summary>
-                    <ul class="p-2 bg-base-100 w-40 z-1">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
-                    </ul>
-                </details>
-            </li>
-            <li><a>Item 3</a></li>
-        </ul>
-    </div>
-    <div class="navbar-end">
-        <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                <div class="indicator">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-                    </svg>
-                    <span class="badge badge-sm indicator-item">8</span>
-                </div>
-            </div>
-            <div
-                tabindex="0"
-                class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow">
-                <div class="card-body">
-                    <span class="text-lg font-bold">8 Items</span>
-                    <span class="text-info">Subtotal: $999</span>
-                    <div class="card-actions">
-                        <button class="btn btn-primary btn-block">View cart</button>
-                    </div>
-                </div>
-            </div>
+        <div class="flex items-center gap-10 pe-4 text-sm text-gray-800 dark:text-neutral-200" aria-hidden="true">
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🚚</span> Fast delivery on all orders</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔧</span> Quality auto parts you can trust</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔒</span> Secure checkout & safe payments</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">📞</span> Expert support for finding the right part</span>
         </div>
     </div>
 </div>
+</div>
 
+{{--Navigation-1--}}
+
+
+<div class=" navbar bg-base-100 text-neutral-content">
+    hi
+</div>
+{{--Navigation-2--}}
+
+<div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar-start">
+        <a class="cursor-pointer">
+            <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts"
+                 class="h-10 rounded-3xl transition-transform duration-100 active:scale-95">
+        </a>
+    </div>
+
+    <div class="navbar-center">
+        <div class="megamenu max-sm:megamenu-vertical megamenu-full" id="my-megamenu-4" popover>
+
+            <span class="megamenu-active"></span>
+
+            <!-- Shop -->
+            <button popovertarget="d1">Shop</button>
+
+            <div id="d1" popover>
+                <div class="flex max-sm:flex-col items-start">
+                    <ul class="menu w-full md:menu-horizontal">
+
+                        <li>
+                            <a>Engine & Maintenance</a>
+                            <ul>
+                                <li><a>Air Filters</a></li>
+                                <li><a>Oil Filters</a></li>
+                                <li><a>Spark Plugs</a></li>
+                                <li><a>Timing Belts</a></li>
+                                <li><a>Engine Oil</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a>Brakes & Suspension</a>
+                            <ul>
+                                <li><a>Brake Pads</a></li>
+                                <li><a>Brake Discs</a></li>
+                                <li><a>Shock Absorbers</a></li>
+                                <li><a>Control Arms</a></li>
+                                <li><a>Wheel Bearings</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a>Electrical</a>
+                            <ul>
+                                <li><a>Batteries</a></li>
+                                <li><a>Alternators</a></li>
+                                <li><a>Starters</a></li>
+                                <li><a>Sensors</a></li>
+                                <li><a>Headlight Bulbs</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <img
+                        src="{{asset('images/nav-shop.png')}}"
+                        class="md:max-w-sm max-md:hidden"
+                        alt="Automotive Parts">
+                </div>
+            </div>
+
+            <!-- Brands -->
+            <button popovertarget="d2">Brands</button>
+
+            <div id="d2" popover>
+                <div class="flex max-sm:flex-col items-start">
+                    <ul class="menu w-full md:menu-horizontal">
+
+                        <li>
+                            <a>Popular Brands</a>
+                            <ul>
+                                <li><a>Bosch</a></li>
+                                <li><a>MANN-FILTER</a></li>
+                                <li><a>Brembo</a></li>
+                                <li><a>NGK</a></li>
+                                <li><a>Valeo</a></li>
+                                <li><a>Sachs</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a>Shop By</a>
+                            <ul>
+                                <li><a>Vehicle Make</a></li>
+                                <li><a>OEM Number</a></li>
+                                <li><a>VIN Search</a></li>
+                                <li><a>New Arrivals</a></li>
+                                <li><a>Special Offers</a></li>
+                                <li><a>Best Sellers</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <img
+                        src="{{asset('images/nav-brand.png')}}"
+                        class="md:max-w-sm max-md:hidden "
+                        alt="Car Brands">
+                </div>
+            </div>
+
+            <!-- Company -->
+            <button popovertarget="d3">Company</button>
+
+            <div id="d3" popover>
+                <div class="flex max-sm:flex-col items-start">
+
+                    <ul class="menu w-full md:menu-horizontal">
+
+                        <li>
+                            <a>About</a>
+                            <ul>
+                                <li><a>About Us</a></li>
+                                <li><a>Our Mission</a></li>
+                                <li><a>Careers</a></li>
+                                <li><a>Blog</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a>Customer Service</a>
+                            <ul>
+                                <li><a>Contact Us</a></li>
+                                <li><a>Shipping Information</a></li>
+                                <li><a>Returns & Refunds</a></li>
+                                <li><a>Warranty</a></li>
+                                <li><a>FAQ</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a>Legal</a>
+                            <ul>
+                                <li><a>Privacy Policy</a></li>
+                                <li><a>Terms & Conditions</a></li>
+                                <li><a>Cookie Policy</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <img
+                        src="{{asset('images/nav-about-us.png')}}"
+                        class="md:max-w-sm max-md:hidden "
+                        alt="Car Brands">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="navbar-end">
+        <a class="btn">Login</a>
+        <button class="btn sm:hidden" popovertarget="my-megamenu-4">
+            Menu
+        </button>
+    </div>
+</div>
+
+{{--Hero Section --}}
 <div class="hero min-h-screen relative overflow-hidden">
 
     <!-- Video background -->
@@ -119,6 +241,8 @@
 
 </div>
 
+{{--Introduction --}}
+
 <section class="max-w-5xl mx-auto my-20 px-4 text-center">
 
     <h2 class="text-4xl md:text-6xl font-bold text-primary">
@@ -130,6 +254,8 @@
     </p>
 
 </section>
+
+{{--F.A.Q--}}
 
 <section class="max-w-4xl mx-auto my-16 px-4">
     <h2 class="text-3xl md:text-4xl font-semibold italic text-primary text-center mb-8">
@@ -383,13 +509,27 @@
 
 </div>
 
+
+{{--Brand marquee--}}
+
+@php
+    $brands = [
+       'toyota.svg',
+       'bmw.svg',
+       'mercedes.svg',
+       'audi.svg',
+       'volkswagen.svg',
+       'ford.svg',
+       'bosch.svg',
+       'mann.svg'
+   ];
+@endphp
+
 <footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
     <aside>
         <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts" class="h-10 rounded-3xl">
         <p>
-            <strong>Need 4 Parts</strong>
-            <br>
-            Connecting drivers with quality automotive parts.
+            Connecting drivers with quality automotive parts. © {{ date('Y') }}.
         </p>
     </aside>
     <nav>

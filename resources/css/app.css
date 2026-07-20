@@ -26,8 +26,35 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
 }
+/*Reviews marquee*/
+@keyframes marquee-x {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-50% - 0.5rem));
+    }
+}
 
 
+@keyframes marquee-y {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(calc(-50% - 0.5rem));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track-x,
+    .marquee-track-y {
+        animation-duration: 1ms;
+        animation-iteration-count: 1;
+    }
+}
+
+/*Announcement marquee*/
 @keyframes marquee-x {
     from {
         transform: translateX(0);
