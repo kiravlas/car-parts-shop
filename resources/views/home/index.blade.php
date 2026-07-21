@@ -59,6 +59,8 @@
         <button class="btn btn-link">Top Sellers</button>
         <button class="btn btn-link">New Arrivals</button>
         <button class="btn btn-link">Categories</button>
+        <button class="btn btn-link">Delivery</button>
+        <button class="btn btn-link">Promotions</button>
 
     </div>
 
@@ -158,75 +160,16 @@
                 <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-60 p-2 shadow-lg">
                     <li><a>Sales +(373) 61-21-00-21</a></li>
                     <li><a>Support +(373) 61-21-00-22</a></li>
+                    <li class="text-center">
+                        <div class="inline-grid *:[grid-area:1/1]">
+                            Mn-Fr: 9:00 - 18:00
+                            <div class="status status-success animate-ping"></div>
+                            <div class="status status-success"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
-            <!-- Schedule -->
-            <div class="dropdown dropdown-hover z-40">
-                <div tabindex="0" role="button" class="btn m-1">
-                    <i data-lucide="clipboard-clock" class="size-4"></i>
-
-                    Today's hours: 9:00 to 18:00
-
-                    <div class="inline-grid *:[grid-area:1/1]">
-                        <div class="status status-success animate-ping"></div>
-                        <div class="status status-success"></div>
-                    </div>
-                </div>
-
-                <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-64 p-2 shadow-lg">
-
-                    <li>
-                        <a class="justify-between">
-                            Monday
-                            <span class="badge badge-info">09:00 - 18:00</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="justify-between">
-                            Tuesday
-                            <span class="badge badge-success">09:00 - 18:00</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="justify-between">
-                            Wednesday
-                            <span class="badge badge-success">08:00 - 17:00</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="justify-between">
-                            Thursday
-                            <span class="badge badge-success">09:00 - 18:00</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="justify-between">
-                            Friday
-                            <span class="badge badge-success">09:00 - 18:00</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="justify-between">
-                            Saturday
-                            <span class="badge badge-error">Closed</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="justify-between">
-                            Sunday
-                            <span class="badge badge-error">Closed</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
 
         </div>
 
@@ -435,12 +378,69 @@
             </h1>
 
             <p class="mb-5">
-                Find the right parts for your car.
+                Find the right parts for <strong>your</strong> car.
             </p>
 
-            <button class="btn btn-primary">
-                Get Started
+            <!-- Collapse -->
+            <button type="button"
+                    class="hs-collapse-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-neutral border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none"
+                    id="hs-collapse" aria-expanded="false" aria-controls="hs-collapse-heading"
+                    data-hs-collapse="#hs-collapse-heading">
+                Search by Vehicle <i class="size-4" data-lucide="search"></i>
+                <svg class="hs-collapse-open:rotate-180 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                </svg>
             </button>
+            <div id="hs-collapse-heading"
+                 class="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300"
+                 aria-labelledby="hs-collapse" role="region">
+                <div class="mt-5">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+
+                        <select class="select select-bordered w-full">
+                            <option disabled selected>Select Make</option>
+                            <option>Toyota</option>
+                            <option>BMW</option>
+                            <option>Mercedes-Benz</option>
+                            <option>Audi</option>
+                            <option>Volkswagen</option>
+                        </select>
+
+                        <select class="select select-bordered w-full">
+                            <option disabled selected>Select Model</option>
+                            <option>Corolla</option>
+                            <option>Camry</option>
+                            <option>RAV4</option>
+                        </select>
+
+                        <select class="select select-bordered w-full">
+                            <option disabled selected>Select Year</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                        </select>
+
+                        <select class="select select-bordered w-full">
+                            <option disabled selected>Select Engine</option>
+                            <option>1.6 Petrol</option>
+                            <option>2.0 Diesel</option>
+                            <option>1.8 Hybrid</option>
+                        </select>
+
+                    </div>
+
+                    <button class="btn btn-primary w-full mt-6">
+                        Search Compatible Parts
+                    </button>
+
+                </div>
+            </div>
+            <!-- End Collapse -->
+
         </div>
     </div>
 
@@ -459,6 +459,17 @@
     </p>
 
 </section>
+
+
+{{--New Products--}}
+
+
+{{----}}
+
+
+
+
+
 
 {{--F.A.Q--}}
 
@@ -731,8 +742,6 @@
 @endphp
 
 {{--Scroll to top buttton--}}
-
-{{--<div class="w-10 h-8 pt-4"><i data-lucide="arrow-up-from-dot"></i></div>--}}
 
 <a
     href="#top"

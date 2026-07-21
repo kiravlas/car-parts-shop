@@ -4,4 +4,8 @@ import "flag-icons/css/flag-icons.min.css";
 
 import {createIcons, icons} from 'lucide';
 
-createIcons({icons});
+document.addEventListener("DOMContentLoaded", () => {
+    createIcons({icons});
+
+    window.HSStaticMethods?.autoInit();
+});
