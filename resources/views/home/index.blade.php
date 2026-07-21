@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="forest">
+<html lang="en" data-theme="forest" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,42 +15,128 @@
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 </head>
 <body>
+
+
 {{--Announcment marquee--}}
 
 <div
-    class="relative overflow-hidden border-y border-secondary/20 bg-base-100 before:pointer-events-none before:absolute before:inset-y-0 before:start-0 before:z-2 before:w-16 before:bg-[linear-gradient(to_right,var(--color-background),transparent)] after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-2 after:w-16 after:bg-[linear-gradient(to_left,var(--color-background),transparent)]">
+    class="relative sticky top-0 z-50 overflow-hidden border-y border-secondary/20 bg-base-100 before:pointer-events-none before:absolute before:inset-y-0 before:start-0 before:z-2 before:w-16 before:bg-[linear-gradient(to_right,var(--color-background),transparent)] after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-2 after:w-16 after:bg-[linear-gradient(to_left,var(--color-background),transparent)]">
     <div
         class="marquee-track-x [animation:marquee-x_40s_linear_infinite] hover:[animation-play-state:paused] flex w-max gap-4 py-2.5">
+        <div class="flex items-center justify-center gap-10 ps-4 text-sm text-gray-800 dark:text-neutral-200">
+            <span class="inline-flex items-center justify-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
+                        data-lucide="van"
+                        class="size-3.5"></i></span> Fast delivery on all orders</span>
+            <span class="inline-flex items-center justify-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
+                        data-lucide="wrench" class="size-3.5"></i></span> Quality auto parts you can trust</span>
+            <span class="inline-flex items-center justify-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
+                        data-lucide="lock-keyhole" class="size-3.5"></i> </span> Secure checkout & safe payments</span>
+            <span class="inline-flex items-center justify-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
+                        data-lucide="handshake" class="size-3.5"></i> </span> Expert support for finding the right part</span>
+        </div>
+
         <div class="flex items-center gap-10 ps-4 text-sm text-gray-800 dark:text-neutral-200">
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🚚</span> Fast delivery on all orders</span>
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔧</span> Quality auto parts you can trust</span>
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔒</span> Secure checkout & safe payments</span>
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">📞</span> Expert support for finding the right part</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i data-lucide="van"
+                                                                                                       class="size-3.5"></i></span> Fast delivery on all orders</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
+                        data-lucide="wrench" class="size-3.5"></i></span> Quality auto parts you can trust</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
+                        data-lucide="lock-keyhole" class="size-3.5"></i> </span> Secure checkout & safe payments</span>
+            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
+                        data-lucide="handshake" class="size-3.5"></i> </span> Expert support for finding the right part</span>
         </div>
-        <div class="flex items-center gap-10 pe-4 text-sm text-gray-800 dark:text-neutral-200" aria-hidden="true">
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🚚</span> Fast delivery on all orders</span>
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔧</span> Quality auto parts you can trust</span>
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">🔒</span> Secure checkout & safe payments</span>
-            <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true">📞</span> Expert support for finding the right part</span>
-        </div>
+
     </div>
 </div>
 </div>
 
-{{--Navigation-1--}}
+{{--Green-Navigation-1--}}
 
 
-<div class=" navbar bg-base-100 text-neutral-content">
-    hi
+<div class="hidden lg:flex items-center min-h-8 bg-neutral text-neutral-content ">
+    <div class="flex-1">
+
+        <button class="btn btn-link">Discounts</button>
+        <button class="btn btn-link">Top Sellers</button>
+        <button class="btn btn-link">New Arrivals</button>
+        <button class="btn btn-link">Categories</button>
+
+    </div>
+
+    <div class="flex items-center justify-center space-x-0.5 mr-2">
+        <div class="flex items-center space-x-1.5">
+
+            <div class="dropdown dropdown-hover z-40">
+                <div tabindex="0" role="button" class="btn m-1"><i data-lucide="mails"></i> Emails</div>
+                <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm">
+                    <li><a>Item 1</a></li>
+                    <li><a>Item 2</a></li>
+                    <li><a>Item 3</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown dropdown-hover z-40">
+                <div tabindex="0" role="button" class="btn m-1"><i data-lucide="users"></i> Social media</div>
+                <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm">
+                    <li><a>Item 1</a></li>
+                    <li><a>Item 2</a></li>
+                    <li><a>Item 3</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown dropdown-hover z-40">
+                <div tabindex="0" role="button" class="btn m-1"><i data-lucide="phone-call"></i> +(373) 61-21-00-21
+                </div>
+                <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm">
+                    <li><a>Item 1</a></li>
+                    <li><a>Item 2</a></li>
+                    <li><a>Item 3</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown dropdown-hover z-40">
+                <div tabindex="0" role="button" class="btn m-1"><i data-lucide="clipboard-clock"></i> Schedule today:
+                    9:00
+                    to
+                    18:00
+                    <div class="inline-grid *:[grid-area:1/1]">
+                        <div class="status status-success animate-ping"></div>
+                        <div class="status status-success"></div>
+                    </div>
+                </div>
+                <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm">
+                    <li><a>Item 1</a></li>
+                    <li><a>Item 2</a></li>
+                    <li><a>Item 3</a></li>
+                    <li><a>Item 4</a></li>
+                    <li><a>Item 5</a></li>
+                    <li><a>Item 6</a></li>
+                    <li><a>Item 7</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="flex items-center space-x-2">
+            <button class="btn btn-outline btn-xs"><a class="link "><span class="fi fi-md"></span>Md</a></button>
+            <button class="btn btn-outline btn-xs"><a class="link "><span class="fi fi-ru"></span>Ru</a></button>
+            <button class="btn btn-outline btn-xs"><a class="link "><span class="fi fi-gb"></span>En</a></button>
+        </div>
+
+    </div>
+
+
 </div>
-{{--Navigation-2--}}
+{{--Main-Navigation-2--}}
 
-<div class="navbar bg-base-100 shadow-sm">
+<div class="navbar bg-base-100 shadow-sm sticky top-10 z-30">
     <div class="navbar-start">
         <a class="cursor-pointer">
             <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts"
                  class="h-10 rounded-3xl transition-transform duration-100 active:scale-95">
         </a>
+
     </div>
 
     <div class="navbar-center">

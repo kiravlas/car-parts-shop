@@ -17,6 +17,8 @@
         "vite": "^8.0.0"
     },
     "dependencies": {
+        "flag-icons": "^7.5.0",
+        "lucide": "^1.25.0",
         "preline": "^4.2.0"
     }
 }
