@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 </head>
-<body>
+<body class="relative" id="top">
 
 
 {{--Announcment marquee--}}
@@ -249,7 +249,7 @@
 
 {{--Main-Navigation-2--}}
 
-<div class="navbar bg-base-100 shadow-sm sticky top-10 z-30">
+<div class="navbar bg-base/90 backdrop-blur-md shadow-sm sticky top-10 z-30">
     <div class="navbar-start">
         <a class="cursor-pointer">
             <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts"
@@ -729,6 +729,18 @@
        'mann.svg'
    ];
 @endphp
+
+{{--Scroll to top buttton--}}
+
+{{--<div class="w-10 h-8 pt-4"><i data-lucide="arrow-up-from-dot"></i></div>--}}
+
+<a
+    href="#top"
+    class="fixed bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-content shadow-xl hover:scale-105 transition">
+    <i data-lucide="arrow-up" class="size-5"></i>
+</a>
+
+{{--Footer 1--}}
 
 <footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
     <aside>
