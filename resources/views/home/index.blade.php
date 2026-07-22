@@ -1288,23 +1288,23 @@
 
                 <div class="flex gap-3 mt-4">
 
-                    <a class="btn btn-circle btn-outline">
+                    <a class="btn btn-ghost btn-outline">
                         <img src="{{ asset('images/social/facebook.svg') }}" class="h-5">
                     </a>
 
-                    <a class="btn btn-circle btn-outline">
+                    <a class="btn btn-ghost btn-outline">
                         <img src="{{ asset('images/social/instagram.svg') }}" class="h-5">
                     </a>
 
-                    <a class="btn btn-circle btn-outline">
+                    <a class="btn btn-ghost btn-outline">
                         <img src="{{ asset('images/social/youtube.svg') }}" class="h-5">
                     </a>
 
-                    <a class="btn btn-circle btn-outline">
+                    <a class="btn btn-ghost btn-outline">
                         <img src="{{ asset('images/social/tiktok.svg') }}" class="h-5">
                     </a>
 
-                    <a class="btn btn-circle btn-outline">
+                    <a class="btn btn-ghost btn-outline">
                         <img src="{{ asset('images/social/telegram.svg') }}" class="h-5">
                     </a>
 
