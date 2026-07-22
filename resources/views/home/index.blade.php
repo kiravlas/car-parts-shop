@@ -48,7 +48,6 @@
 
     </div>
 </div>
-</div>
 
 {{--Green-Navigation-1--}}
 
@@ -160,7 +159,7 @@
                 <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-60 p-2 shadow-lg">
                     <li><a>Sales +(373) 61-21-00-21</a></li>
                     <li><a>Support +(373) 61-21-00-22</a></li>
-                    <li class="text-center">
+                    <li>
                         <div class="inline-grid *:[grid-area:1/1]">
                             Mn-Fr: 9:00 - 18:00
                             <div class="status status-success animate-ping"></div>
@@ -346,8 +345,12 @@
         </div>
     </div>
 
-    <div class="navbar-end">
-        <a class="btn">Login</a>
+    <div class="navbar-end flex gap-4 items-center justify-center">
+        <a class="btn btn-ghost  hidden md:inline-flex">Login</a>
+        <a class="btn btn-ghost  hidden md:inline-flex"><i data-lucide="heart"></i></a>
+        <a class="btn btn-ghost  hidden md:inline-flex"><i data-lucide="scale"></i></a>
+        <a class="btn btn-ghost"><i data-lucide="shopping-cart"></i></a>
+
         <button class="btn sm:hidden" popovertarget="my-megamenu-4">
             Menu
         </button>
@@ -371,8 +374,8 @@
     <div class="hero-overlay absolute inset-0"></div>
 
     <!-- Content -->
-    <div class="hero-content relative z-10 text-neutral-content text-center">
-        <div class="max-w-md">
+    <div class="hero-content relative z-10 w-full text-neutral-content text-center">
+        <div class="w-full max-w-sm">
             <h1 class="mb-5 text-5xl font-bold">
                 Need 4 Parts
             </h1>
@@ -381,18 +384,34 @@
                 Find the right parts for <strong>your</strong> car.
             </p>
 
-            <!-- Collapse -->
-            <button type="button"
-                    class="hs-collapse-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-neutral border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                    id="hs-collapse" aria-expanded="false" aria-controls="hs-collapse-heading"
+            <!-- Search by vehicle form -->
+            <div class="aura aura-dual w-full">
+                <button
+                    type="button"
+                    class="hs-collapse-toggle btn btn-neutral w-full justify-between"
+                    id="hs-collapse"
+                    aria-expanded="false"
+                    aria-controls="hs-collapse-heading"
                     data-hs-collapse="#hs-collapse-heading">
-                Search by Vehicle <i class="size-4" data-lucide="search"></i>
-                <svg class="hs-collapse-open:rotate-180 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
-                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m6 9 6 6 6-6"/>
-                </svg>
-            </button>
+
+    <span class="flex items-center gap-2">
+        <i data-lucide="tool-case" class="size-5"></i>
+        Search Parts by Vehicle
+    </span>
+
+                    <svg
+                        class="hs-collapse-open:rotate-180 transition-transform size-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M6 9l6 6 6-6"/>
+                    </svg>
+
+                </button>
+            </div>
+
             <div id="hs-collapse-heading"
                  class="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300"
                  aria-labelledby="hs-collapse" role="region">
@@ -440,6 +459,33 @@
                 </div>
             </div>
             <!-- End Collapse -->
+            <div class="divider my-8">OR</div>
+
+            <div class="mt-8 mb-5">
+                <p class="text-sm uppercase tracking-widest text-base-content/80">
+                    Already know what you need?
+                </p>
+            </div>
+
+
+            <div class="join w-full mb-5">
+                <input
+                    class="input input-bordered join-item flex-1"
+                    placeholder="Enter part number (e.g. 06A115561B)">
+
+                <button class="btn btn-primary join-item">
+                    <i data-lucide="search" class="size-4"></i>
+                </button>
+            </div>
+            <div class="join w-full">
+                <input
+                    class="input input-bordered join-item flex-1"
+                    placeholder="Enter VIN number (17-character code)">
+
+                <button class="btn btn-primary join-item">
+                    <i data-lucide="car-front" class="size-4"></i>
+                </button>
+            </div>
 
         </div>
     </div>
@@ -448,27 +494,135 @@
 
 {{--Introduction --}}
 
-<section class="max-w-5xl mx-auto my-20 px-4 text-center">
+<section class="py-24 bg-base-200 overflow-hidden">
 
-    <h2 class="text-4xl md:text-6xl font-bold text-primary">
-        Find the Right Parts.
-    </h2>
+    <div class="max-w-6xl mx-auto px-4">
 
-    <p class="mt-6 text-xl text-base-content/70 max-w-2xl mx-auto">
-        Quality automotive parts for passenger cars and commercial vehicles from trusted suppliers.
-    </p>
+        <div class="space-y-10">
+
+            <!-- Heading -->
+            <div class="text-center max-w-3xl mx-auto">
+
+                <h2 class="text-4xl md:text-5xl font-bold text-primary">
+                    Why Choose Need4Parts?
+                </h2>
+
+                <p class="mt-6 text-lg text-base-content/70">
+                    We make finding the right automotive parts simple, reliable, and stress-free.
+                    Whether you're maintaining your daily driver or repairing a commercial vehicle,
+                    we're here to help every step of the way.
+                </p>
+
+            </div>
+
+
+            <!-- Trustpilot -->
+            <div class="flex justify-center items-center gap-2 text-sm font-medium">
+
+                <span>
+                    Excellent 4.7 out of 5
+                </span>
+
+                <svg
+                    class="size-5"
+                    fill="#00B67A"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+
+                    <title>Trustpilot</title>
+
+                    <path
+                        d="M17.227 16.67l2.19 6.742-7.413-5.388 5.223-1.354zM24 9.31h-9.165L12.005.589l-2.84 8.723L0 9.3l7.422 5.397-2.84 8.714 7.422-5.388 4.583-3.326L24 9.311z"/>
+
+                </svg>
+
+                <span>
+                    Trustpilot
+                </span>
+
+            </div>
+
+
+            <!-- Feature cards -->
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+
+                <div class="card bg-base-100 border border-base-300 shadow-md">
+                    <div class="card-body items-center text-center">
+
+                        <i data-lucide="truck" class="size-10 text-primary"></i>
+
+                        <h3 class="card-title mt-3">
+                            Fast Delivery
+                        </h3>
+
+                        <p class="text-sm text-base-content/70">
+                            Quick dispatch and reliable shipping to get your parts when you need them.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="card bg-base-100 border border-base-300 shadow-md">
+                    <div class="card-body items-center text-center">
+
+                        <i data-lucide="badge-check" class="size-10 text-primary"></i>
+
+                        <h3 class="card-title mt-3">
+                            Genuine Parts
+                        </h3>
+
+                        <p class="text-sm text-base-content/70">
+                            Quality components sourced from trusted manufacturers for dependable performance.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="card bg-base-100 border border-base-300 shadow-md">
+                    <div class="card-body items-center text-center">
+
+                        <i data-lucide="headset" class="size-10 text-primary"></i>
+
+                        <h3 class="card-title mt-3">
+                            Expert Support
+                        </h3>
+
+                        <p class="text-sm text-base-content/70">
+                            Our team helps you identify compatible parts and answers your technical questions.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="card bg-base-100 border border-base-300 shadow-md">
+                    <div class="card-body items-center text-center">
+
+                        <i data-lucide="rotate-ccw" class="size-10 text-primary"></i>
+
+                        <h3 class="card-title mt-3">
+                            Easy Returns
+                        </h3>
+
+                        <p class="text-sm text-base-content/70">
+                            A straightforward return process gives you confidence with every purchase.
+                        </p>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
-
-
-{{--New Products--}}
-
-
-{{----}}
-
-
-
-
 
 
 {{--F.A.Q--}}
