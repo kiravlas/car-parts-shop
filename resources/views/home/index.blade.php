@@ -375,7 +375,7 @@
 
     <!-- Content -->
     <div class="hero-content relative z-10 w-full text-neutral-content text-center">
-        <div class="w-full max-w-sm">
+        <div class="w-full max-w-xs">
             <h1 class="mb-5 text-5xl font-bold">
                 Need 4 Parts
             </h1>
@@ -1030,12 +1030,16 @@
 @endphp
 
 {{--Scroll to top buttton--}}
-
-<a
-    href="#top"
-    class="fixed bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-content shadow-xl hover:scale-105 transition">
-    <i data-lucide="arrow-up" class="size-5"></i>
-</a>
+<div
+    x-data="backToTop"
+>
+    <a
+        href="#top"
+        x-ref="buttonToTop"
+        class="fixed bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-content shadow-xl hover:scale-105 opacity-0 translate-5 pointer-events-none ">
+        <i data-lucide="arrow-up" class="size-5"></i>
+    </a>
+</div>
 
 
 {{--Subscribe to News--}}
@@ -1054,7 +1058,7 @@
                 seasonal promotions and automotive tips.
             </p>
 
-            <div class="join mt-8 w-full max-w-md mx-auto">
+            <div class="join mt-8 w-full max-w-xs mx-auto">
 
                 <input
                     type="email"
