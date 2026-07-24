@@ -46,6 +46,7 @@ Alpine.data('backToTop', () => ({
 
             }
 
+
         });
     }
 

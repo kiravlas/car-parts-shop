@@ -477,7 +477,7 @@
                     <i data-lucide="search" class="size-4"></i>
                 </button>
             </div>
-            <div class="join w-full">
+            <div class="join w-full mb-5">
                 <input
                     class="input input-bordered join-item flex-1"
                     placeholder="Enter VIN number (17-character code)">
@@ -487,14 +487,250 @@
                 </button>
             </div>
 
+            <div class="join w-full">
+                <input
+                    class="input input-bordered join-item flex-1"
+                    placeholder="Enter product name">
+
+                <button class="btn btn-primary join-item">
+                    <i data-lucide="shopping-basket" class="size-4"></i>
+                </button>
+            </div>
+
         </div>
     </div>
 
 </div>
 
+
+{{--Promotion Carousel + Product of the day--}}
+
+<section class="py-16 bg-base-200">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+
+            {{-- Promotion Carousel --}}
+            <div
+                id="hs-carousel"
+                class="relative col-span-3"
+                data-hs-carousel='{
+        "loadingClasses":"opacity-0",
+        "isAutoPlay":true,
+        "isInfiniteLoop":true,
+        "dotsItemClasses":"size-3 rounded-full border border-base-content/30 cursor-pointer transition-all duration-300 hs-carousel-active:w-8 hs-carousel-active:bg-primary hs-carousel-active:border-primary"
+    }'>
+
+                <!-- Carousel -->
+                <div
+                    class="hs-carousel relative h-[380px] w-full overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-2xl">
+
+                    <!-- Slides -->
+                    <div
+                        class="hs-carousel-body absolute inset-0 flex flex-nowrap transition-transform duration-700 opacity-0">
+
+                        <!-- Slide 1 -->
+                        <div class="hs-carousel-slide">
+                            <img
+                                src="{{ asset('images/promo/summer-sail-1.png') }}"
+                                alt="Summer Sale"
+                                class="h-full w-full object-fill">
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="hs-carousel-slide">
+                            <img
+                                src="{{ asset('images/promo/summer-sail-2.png') }}"
+                                alt="Brake Parts"
+                                class="h-full w-full object-fill">
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="hs-carousel-slide">
+                            <img
+                                src="{{ asset('images/promo/summer-sail-3.png') }}"
+                                alt="Engine Oil"
+                                class="h-full w-full object-fill">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Previous -->
+                <button
+                    type="button"
+                    class="hs-carousel-prev absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-base-300 bg-base-100/80 text-base-content shadow-lg backdrop-blur transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-content hidden md:flex">
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="size-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6"/>
+                    </svg>
+
+                </button>
+
+                <!-- Next -->
+                <button
+                    type="button"
+                    class="hs-carousel-next absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-base-300 bg-base-100/80 text-base-content shadow-lg backdrop-blur transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-primary-content hidden md:flex">
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="size-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>
+                    </svg>
+
+                </button>
+
+                <!-- Pagination -->
+                <div class="hs-carousel-pagination absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-2"></div>
+
+            </div>
+
+
+            {{-- Product of the day card--}}
+
+            <div class="card w-full bg-base-100 shadow-xl border border-base-300">
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{{--Product Categories--}}
+
+<section class="py-16 ">
+    <div class="max-w-7xl mx-auto px-4 space-y-10">
+        {{--Product Categories Header--}}
+        <div>
+            <h1 class="text-primary text-5xl font-bold text-start">Browse Categories</h1>
+        </div>
+
+        {{--Product Categories Grid--}}
+        <div class="grid grid-cols-3 grid-rows-4 gap-6">
+            {{--Categories--}}
+            <div class="row-span-2 bg-base-100 border border-base-300 shadow-md">
+                <div class="card-body items-center text-center">
+
+                    <i data-lucide="disc" class="size-10 text-primary"></i>
+
+                    <h3 class="card-title mt-3">
+                        Brakes & Suspension 1
+                    </h3>
+
+                    <p class="text-sm text-base-content/70">
+                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
+                    </p>
+
+                </div>
+            </div>
+            <div class=" bg-base-100 border border-base-300 shadow-md">
+                <div class="card-body items-center text-center">
+
+                    <i data-lucide="disc" class="size-10 text-primary"></i>
+
+                    <h3 class="card-title mt-3">
+                        Brakes & Suspension 2
+                    </h3>
+
+                    <p class="text-sm text-base-content/70">
+                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
+                    </p>
+
+                </div>
+            </div>
+            <div class="row-span-2 bg-base-100 border border-base-300 shadow-md">
+                <div class="card-body items-center text-center">
+
+                    <i data-lucide="disc" class="size-10 text-primary"></i>
+
+                    <h3 class="card-title mt-3">
+                        Brakes & Suspension 3
+                    </h3>
+
+                    <p class="text-sm text-base-content/70">
+                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
+                    </p>
+
+                </div>
+            </div>
+            <div class="row-span-2 row-start-2 col-start-2 bg-base-100 border border-base-300 shadow-md">
+                <div class="card-body items-center text-center">
+
+                    <i data-lucide="disc" class="size-10 text-primary"></i>
+
+                    <h3 class="card-title mt-3">
+                        Brakes & Suspension 4
+                    </h3>
+
+                    <p class="text-sm text-base-content/70">
+                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
+                    </p>
+
+                </div>
+            </div>
+            <div class=" col-start-1 bg-base-100 border border-base-300 shadow-md">
+                <div class="card-body items-center text-center">
+
+                    <i data-lucide="disc" class="size-10 text-primary"></i>
+
+                    <h3 class="card-title mt-3">
+                        Brakes & Suspension 5
+                    </h3>
+
+                    <p class="text-sm text-base-content/70">
+                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
+                    </p>
+
+                </div>
+            </div>
+            <div class=" col-start-3 bg-base-100 border border-base-300 shadow-md">
+                <div class="card-body items-center text-center">
+
+                    <i data-lucide="disc" class="size-10 text-primary"></i>
+
+                    <h3 class="card-title mt-3">
+                        Brakes & Suspension 6
+                    </h3>
+
+                    <p class="text-sm text-base-content/70">
+                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
+                    </p>
+
+                </div>
+            </div>
+            {{--          Free Shipping Banner --}}
+            <div class=" col-span-3 bg-base-100 border border-base-300 shadow-md overflow-hidden">
+               
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
 {{--Why Us --}}
 
-<section class="py-24 bg-base-200 overflow-hidden">
+<section class="py-16 bg-base-200 overflow-hidden">
 
     <div class="max-w-6xl mx-auto px-4">
 
@@ -628,7 +864,7 @@
 
 
 <section
-    class="py-16 bg-base-200"
+    class="py-16 bg-base-300"
     x-data="{
         started: false,
 
@@ -759,9 +995,93 @@
 
 </section>
 
+
+{{-- Popular Brands --}}
+
+<section class="py-16 bg-base-100">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        {{-- Heading --}}
+        <div class="text-center max-w-3xl mx-auto mb-12">
+
+            <h2 class="text-4xl md:text-5xl font-bold text-primary">
+                Popular Brands
+            </h2>
+
+            <p class="mt-5 text-lg text-base-content/70">
+                We provide quality automotive parts from leading manufacturers
+                you can rely on.
+            </p>
+
+        </div>
+
+
+        {{-- Brand Grid --}}
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+
+            @php
+                $brands = [
+                    ['name' => 'Toyota', 'image' => 'toyota.svg'],
+                    ['name' => 'BMW', 'image' => 'bmw.svg'],
+                    ['name' => 'Mercedes-Benz', 'image' => 'mercedes.svg'],
+                    ['name' => 'Audi', 'image' => 'audi.svg'],
+                    ['name' => 'Volkswagen', 'image' => 'volkswagen.svg'],
+                    ['name' => 'Ford', 'image' => 'ford.svg'],
+                    ['name' => 'Bosch', 'image' => 'bosch.svg'],
+                    ['name' => 'Mazda', 'image' => 'mazda.svg'],
+                ];
+            @endphp
+
+
+            @foreach($brands as $brand)
+
+                <div class="group flex h-28 items-center justify-center rounded-2xl
+                            border border-base-300 bg-base-100 shadow-sm
+                            transition duration-300
+                            hover:-translate-y-1 hover:shadow-lg">
+
+                    <img
+                        src="{{ asset('images/brands/'.$brand['image']) }}"
+                        alt="{{ $brand['name'] }}"
+                        class="h-12 max-w-32 object-contain
+                               grayscale-0 opacity-100
+                               md:grayscale md:opacity-60
+                               transition duration-300
+                               md:group-hover:grayscale-0
+                               md:group-hover:opacity-100"
+                    >
+
+                </div>
+
+            @endforeach
+
+
+        </div>
+
+
+        {{-- CTA --}}
+        <div class="text-center mt-12">
+
+            <button class="btn btn-primary">
+
+                View All Brands
+
+                <i data-lucide="arrow-right" class="size-4"></i>
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
 {{--F.A.Q--}}
 
-<section class="max-w-4xl mx-auto my-16 px-4">
+<section class="max-w-4xl mx-auto py-16 px-4">
     <h2 class="text-3xl md:text-4xl font-semibold italic text-primary text-center mb-8">
         Frequently Asked Questions
     </h2>
@@ -828,206 +1148,194 @@
 </section>
 
 {{-- Need4Parts Customer Reviews Marquee --}}
+<section>
 
-<div
-    class="relative flex flex-col gap-3 overflow-hidden
+    <div
+        class="relative flex flex-col gap-3 overflow-hidden
     before:pointer-events-none before:absolute before:inset-y-0 before:start-0 before:z-10 before:w-24
     before:bg-[linear-gradient(to_right,hsl(var(--b2)),transparent)]
     after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-10 after:w-24
     after:bg-[linear-gradient(to_left,hsl(var(--b2)),transparent)]">
 
-    @php
-        $reviews = [
-            [
-                'name' => 'Alex M.',
-                'initials' => 'AM',
-                'text' => 'Found the exact brake pads for my Toyota. Fast delivery and the parts matched perfectly.'
-            ],
-            [
-                'name' => 'Maria K.',
-                'initials' => 'MK',
-                'text' => 'The search by car model is amazing. Found my air filter in less than a minute.'
-            ],
-            [
-                'name' => 'Daniel R.',
-                'initials' => 'DR',
-                'text' => 'Good prices and real information about parts. Much better than random marketplaces.'
-            ],
-            [
-                'name' => 'Victor P.',
-                'initials' => 'VP',
-                'text' => 'Ordered suspension parts for my BMW. Everything arrived safely and quickly.'
-            ],
-            [
-                'name' => 'Elena S.',
-                'initials' => 'ES',
-                'text' => 'Finally a shop where I know the part will fit my vehicle.'
-            ],
-            [
-                'name' => 'Andrei C.',
-                'initials' => 'AC',
-                'text' => 'VIN search helped me avoid buying the wrong component. Very useful feature.'
-            ],
-            [
-                'name' => 'Chris T.',
-                'initials' => 'CT',
-                'text' => 'Delivery was fast and support helped me choose the correct oil and filters.'
-            ],
-            [
-                'name' => 'Sergiu V.',
-                'initials' => 'SV',
-                'text' => 'Bought headlights and filters. Great quality and fair prices.'
-            ],
-        ];
-    @endphp
+        @php
+            $reviews = [
+                [
+                    'name' => 'Alex M.',
+                    'initials' => 'AM',
+                    'text' => 'Found the exact brake pads for my Toyota. Fast delivery and the parts matched perfectly.'
+                ],
+                [
+                    'name' => 'Maria K.',
+                    'initials' => 'MK',
+                    'text' => 'The search by car model is amazing. Found my air filter in less than a minute.'
+                ],
+                [
+                    'name' => 'Daniel R.',
+                    'initials' => 'DR',
+                    'text' => 'Good prices and real information about parts. Much better than random marketplaces.'
+                ],
+                [
+                    'name' => 'Victor P.',
+                    'initials' => 'VP',
+                    'text' => 'Ordered suspension parts for my BMW. Everything arrived safely and quickly.'
+                ],
+                [
+                    'name' => 'Elena S.',
+                    'initials' => 'ES',
+                    'text' => 'Finally a shop where I know the part will fit my vehicle.'
+                ],
+                [
+                    'name' => 'Andrei C.',
+                    'initials' => 'AC',
+                    'text' => 'VIN search helped me avoid buying the wrong component. Very useful feature.'
+                ],
+                [
+                    'name' => 'Chris T.',
+                    'initials' => 'CT',
+                    'text' => 'Delivery was fast and support helped me choose the correct oil and filters.'
+                ],
+                [
+                    'name' => 'Sergiu V.',
+                    'initials' => 'SV',
+                    'text' => 'Bought headlights and filters. Great quality and fair prices.'
+                ],
+            ];
+        @endphp
 
 
-    {{-- First Row --}}
-    <div class="flex overflow-hidden">
+        {{-- First Row --}}
+        <div class="flex overflow-hidden">
 
-        <div
-            class="flex w-max gap-4 py-2
+            <div
+                class="flex w-max gap-4 py-2
             [animation:marquee-x_60s_linear_infinite]
             hover:[animation-play-state:paused]">
 
-            @foreach(array_merge($reviews, $reviews) as $review)
+                @foreach(array_merge($reviews, $reviews) as $review)
 
-                <figure
-                    class="w-72 shrink-0 rounded-xl border border-base-300
+                    <figure
+                        class="w-72 shrink-0 rounded-xl border border-base-300
                     bg-base-100 p-4 shadow-md">
 
-                    <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3">
 
-                        <div class="avatar placeholder">
-                            <div
-                                class="size-10 rounded-full
+                            <div class="avatar placeholder">
+                                <div
+                                    class="size-10 rounded-full
                                 bg-success text-success-content">
                                 <span class="text-sm">
                                     {{ $review['initials'] }}
                                 </span>
+                                </div>
                             </div>
+
+
+                            <div class="min-w-0">
+
+                                <p class="truncate text-sm font-semibold text-base-content">
+                                    {{ $review['name'] }}
+                                </p>
+
+                                <p class="truncate text-xs text-base-content/60">
+                                    Verified buyer
+                                </p>
+
+                            </div>
+
                         </div>
 
 
-                        <div class="min-w-0">
-
-                            <p class="truncate text-sm font-semibold text-base-content">
-                                {{ $review['name'] }}
-                            </p>
-
-                            <p class="truncate text-xs text-base-content/60">
-                                Verified buyer
-                            </p>
-
+                        <div class="mt-3 text-success text-sm">
+                            ★★★★★
                         </div>
 
-                    </div>
+
+                        <blockquote class="mt-2 text-sm text-base-content/70">
+                            {{ $review['text'] }}
+                        </blockquote>
 
 
-                    <div class="mt-3 text-success text-sm">
-                        ★★★★★
-                    </div>
+                    </figure>
 
+                @endforeach
 
-                    <blockquote class="mt-2 text-sm text-base-content/70">
-                        {{ $review['text'] }}
-                    </blockquote>
-
-
-                </figure>
-
-            @endforeach
+            </div>
 
         </div>
 
-    </div>
 
+        {{-- Second Row --}}
+        <div class="flex overflow-hidden">
 
-    {{-- Second Row --}}
-    <div class="flex overflow-hidden">
-
-        <div
-            class="flex w-max gap-4 py-2
+            <div
+                class="flex w-max gap-4 py-2
             [animation:marquee-x_60s_linear_infinite]
             [animation-direction:reverse]
             hover:[animation-play-state:paused]">
 
 
-            @foreach(array_merge($reviews, $reviews) as $review)
+                @foreach(array_merge($reviews, $reviews) as $review)
 
-                <figure
-                    class="w-72 shrink-0 rounded-xl border border-base-300
+                    <figure
+                        class="w-72 shrink-0 rounded-xl border border-base-300
                     bg-base-100 p-4 shadow-md">
 
-                    <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3">
 
-                        <div class="avatar placeholder">
+                            <div class="avatar placeholder">
 
-                            <div
-                                class="size-10 rounded-full
+                                <div
+                                    class="size-10 rounded-full
                                 bg-success text-success-content">
 
                                 <span class="text-sm">
                                     {{ $review['initials'] }}
                                 </span>
 
+                                </div>
+
+                            </div>
+
+
+                            <div class="min-w-0">
+
+                                <p class="truncate text-sm font-semibold text-base-content">
+                                    {{ $review['name'] }}
+                                </p>
+
+                                <p class="truncate text-xs text-base-content/60">
+                                    Verified buyer
+                                </p>
+
                             </div>
 
                         </div>
 
 
-                        <div class="min-w-0">
-
-                            <p class="truncate text-sm font-semibold text-base-content">
-                                {{ $review['name'] }}
-                            </p>
-
-                            <p class="truncate text-xs text-base-content/60">
-                                Verified buyer
-                            </p>
-
+                        <div class="mt-3 text-success text-sm">
+                            ★★★★★
                         </div>
 
-                    </div>
+
+                        <blockquote class="mt-2 text-sm text-base-content/70">
+                            {{ $review['text'] }}
+                        </blockquote>
 
 
-                    <div class="mt-3 text-success text-sm">
-                        ★★★★★
-                    </div>
+                    </figure>
+
+                @endforeach
 
 
-                    <blockquote class="mt-2 text-sm text-base-content/70">
-                        {{ $review['text'] }}
-                    </blockquote>
-
-
-                </figure>
-
-            @endforeach
-
+            </div>
 
         </div>
+
 
     </div>
 
 
-</div>
-
-
-{{--Brand marquee--}}
-
-@php
-    $brands = [
-       'toyota.svg',
-       'bmw.svg',
-       'mercedes.svg',
-       'audi.svg',
-       'volkswagen.svg',
-       'ford.svg',
-       'bosch.svg',
-       'mann.svg'
-   ];
-@endphp
+</section>
 
 {{--Scroll to top buttton--}}
 <div
