@@ -19,6 +19,7 @@
     "dependencies": {
         "@alpinejs/intersect": "^3.15.12",
         "alpinejs": "^3.15.12",
+        "axios": "^1.18.1",
         "flag-icons": "^7.5.0",
         "gsap": "^3.15.0",
         "lucide": "^1.25.0",

@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Need 4 Parts</title>
@@ -640,6 +641,7 @@
                         Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
                     </p>
 
+                    <a href="{{route('show.category', ['category' => 'wheels'])}}">To categories</a>
                 </div>
             </div>
             <div class=" bg-base-100 border border-base-300 shadow-md">
@@ -719,7 +721,7 @@
             </div>
             {{--          Free Shipping Banner --}}
             <div class=" col-span-3 bg-base-100 border border-base-300 shadow-md overflow-hidden">
-               
+
             </div>
 
         </div>
