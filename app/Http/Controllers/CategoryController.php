@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+
 class CategoryController
 {
-    function show($category)
+    function show($category): View
     {
         return view('categories.show', compact('category'));
     }

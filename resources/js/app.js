@@ -7,9 +7,12 @@ import {createIcons, icons} from 'lucide';
 import Alpine from 'alpinejs'
 import {intersect} from "@alpinejs/intersect";
 import gsap from "gsap";
+import axios from "axios";
 
-
+window.axios = axios;
 window.Alpine = Alpine
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 Alpine.plugin(intersect)
 // Animate to top button

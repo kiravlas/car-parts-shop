@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class OrderRequest extends FormRequest
+class OrderCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,7 @@ class OrderRequest extends FormRequest
                 'email:rfc',
                 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/',
             ],
-
-            'product_name' => [
-                'required',
-            ],
+            'product_name' => ['required'],
         ];
     }
 }

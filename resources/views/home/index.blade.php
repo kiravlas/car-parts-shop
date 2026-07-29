@@ -516,7 +516,7 @@
             {{-- Promotion Carousel --}}
             <div
                 id="hs-carousel"
-                class="relative col-span-3"
+                class="relative lg:col-span-3"
                 data-hs-carousel='{
         "loadingClasses":"opacity-0",
         "isAutoPlay":true,
@@ -604,12 +604,42 @@
 
             <div class="card w-full bg-base-100 shadow-xl border border-base-300">
 
+                <figure class="h-52">
+                    <img
+                        src="https://placehold.co/600x400"
+                        class="h-full w-full object-cover">
+                </figure>
+
+                <div class="card-body">
+
+                    <span class="badge badge-accent w-fit">
+                        SALE
+                    </span>
+
+                    <h2 class="card-title">
+                        Alloy Wheels
+                    </h2>
+
+                    <p class="text-sm opacity-70">
+                        Lightweight aluminum wheels.
+                    </p>
+
+                    <div class="mt-auto flex justify-between items-center">
+                        <span class="text-xl font-bold text-primary">
+                            $399
+                        </span>
+
+                        <button class="btn btn-primary">
+                            View
+                        </button>
+                    </div>
+
+                </div>
 
             </div>
 
 
         </div>
-
 
     </div>
 
@@ -727,8 +757,582 @@
         </div>
     </div>
 
-
 </section>
+
+{{-- New Arrivals --}}
+<section class="py-16 bg-base-100">
+    <div class="max-w-7xl mx-auto px-4">
+
+        <!-- Section Heading -->
+        <div class="mb-10 flex items-center justify-between">
+            <h2 class="text-4xl font-bold text-primary">
+                New Arrivals
+            </h2>
+
+            <a href="#"
+               class="btn btn-primary btn-outline">
+                View All
+            </a>
+        </div>
+
+        <!-- Carousel Wrapper -->
+        <div class="relative px-16">
+
+            <div
+                id="hs-carousel"
+                class="relative overflow-visible"
+                data-hs-carousel='{
+                    "loadingClasses":"opacity-0",
+                    "isAutoPlay":true,
+                    "isInfiniteLoop":true,
+                     "dotsItemClasses":"hs-carousel-active:bg-primary hs-carousel-active:border-primary size-3 border border-base-content/30 rounded-full cursor-pointer",
+                    "slidesQty":{
+                        "xs":1,
+                        "sm":2,
+                        "md":3,
+                        "lg":4
+                    }
+                }'>
+
+                <!-- Carousel -->
+                <div class="hs-carousel relative w-full min-h-[430px] overflow-hidden rounded-xl">
+
+                    <!-- Body -->
+                    <div
+                        class="hs-carousel-body absolute inset-0 flex flex-nowrap transition-transform duration-700 -mx-3 opacity-0">
+
+                        <!-- Product -->
+                        <div class="hs-carousel-slide px-3">
+                            <div
+                                class="card bg-base-200 shadow-xl  h-full">
+
+                                <figure class="h-52">
+                                    <img
+                                        src="https://placehold.co/600x400"
+                                        alt="Product"
+                                        class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-primary w-fit">
+                                        NEW
+                                    </span>
+
+                                    <h2 class="card-title mt-2">
+                                        Brembo Brake Disc
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Premium performance brake disc.
+                                    </p>
+
+                                    <div class="mt-auto flex items-center justify-between pt-4">
+
+                                        <span class="text-xl font-bold text-primary">
+                                            $199
+                                        </span>
+
+                                        <button class="btn btn-primary">
+                                            View
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Duplicate these slides -->
+                        <div class="hs-carousel-slide px-3">
+                            <div class="card bg-base-200 shadow-xl h-full">
+                                <figure class="h-52">
+                                    <img src="https://placehold.co/600x400"
+                                         class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-secondary w-fit">
+                                        HOT
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        LED Headlights
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Bright modern headlights.
+                                    </p>
+
+                                    <div class="mt-auto flex justify-between items-center">
+                                        <span class="text-xl font-bold text-primary">$149</span>
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hs-carousel-slide px-3">
+                            <div class="card bg-base-200 shadow-xl h-full">
+                                <figure class="h-52">
+                                    <img src="https://placehold.co/600x400"
+                                         class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-accent w-fit">
+                                        SALE
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Alloy Wheels
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Lightweight aluminum wheels.
+                                    </p>
+
+                                    <div class="mt-auto flex justify-between items-center">
+                                        <span class="text-xl font-bold text-primary">$399</span>
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hs-carousel-slide px-3">
+                            <div class="card bg-base-200 shadow-xl h-full">
+                                <figure class="h-52">
+                                    <img src="https://placehold.co/600x400"
+                                         class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-accent w-fit">
+                                        SALE
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Alloy Wheels
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Lightweight aluminum wheels.
+                                    </p>
+
+                                    <div class="mt-auto flex justify-between items-center">
+                                        <span class="text-xl font-bold text-primary">$399</span>
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hs-carousel-slide px-3">
+                            <div class="card bg-base-200 shadow-xl h-full">
+                                <figure class="h-52">
+                                    <img src="https://placehold.co/600x400"
+                                         class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-accent w-fit">
+                                        SALE
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Alloy Wheels
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Lightweight aluminum wheels.
+                                    </p>
+
+                                    <div class="mt-auto flex justify-between items-center">
+                                        <span class="text-xl font-bold text-primary">$399</span>
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hs-carousel-slide px-3">
+                            <div class="card bg-base-200 shadow-xl h-full">
+                                <figure class="h-52">
+                                    <img src="https://placehold.co/600x400"
+                                         class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-accent w-fit">
+                                        SALE
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Alloy Wheels
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Lightweight aluminum wheels.
+                                    </p>
+
+                                    <div class="mt-auto flex justify-between items-center">
+                                        <span class="text-xl font-bold text-primary">$399</span>
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hs-carousel-slide px-3">
+                            <div class="card bg-base-200 shadow-xl h-full">
+                                <figure class="h-52">
+                                    <img src="https://placehold.co/600x400"
+                                         class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-accent w-fit">
+                                        SALE
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Alloy Wheels
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Lightweight aluminum wheels.
+                                    </p>
+
+                                    <div class="mt-auto flex justify-between items-center">
+                                        <span class="text-xl font-bold text-primary">$399</span>
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hs-carousel-slide px-3">
+                            <div class="card bg-base-200 shadow-xl h-full">
+                                <figure class="h-52">
+                                    <img src="https://placehold.co/600x400"
+                                         class="h-full w-full object-cover">
+                                </figure>
+
+                                <div class="card-body">
+                                    <span class="badge badge-accent w-fit">
+                                        SALE
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Alloy Wheels
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Lightweight aluminum wheels.
+                                    </p>
+
+                                    <div class="mt-auto flex justify-between items-center">
+                                        <span class="text-xl font-bold text-primary">$399</span>
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Copy more slides as needed -->
+
+                    </div>
+                    <!-- End Body -->
+
+                </div>
+                <!-- End Carousel -->
+
+
+                <!-- LEFT ARROW -->
+                <button
+                    type="button"
+                    class="hs-carousel-prev absolute -left-16 top-1/2 -translate-y-1/2 z-20
+                           size-12 rounded-full
+                           bg-base-300
+                           shadow-lg
+                           hover:bg-primary
+                           hover:text-primary-content
+                           transition">
+
+                    <svg
+                        class="size-6 mx-auto"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 18l-6-6 6-6"/>
+                    </svg>
+
+                </button>
+
+
+                <!-- RIGHT ARROW -->
+                <button
+                    type="button"
+                    class="hs-carousel-next absolute -right-16 top-1/2 -translate-y-1/2 z-20
+                           size-12 rounded-full
+                           bg-base-300
+                           shadow-lg
+                           hover:bg-primary
+                           hover:text-primary-content
+                           transition">
+
+                    <svg
+                        class="size-6 mx-auto"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 18l6-6-6-6"/>
+                    </svg>
+
+                </button>
+
+                {{-- Pagination --}}
+                <div class="hs-carousel-pagination flex justify-center gap-2 mt-8"></div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{{-- Top Sellers --}}
+<section class="py-16 bg-base-300">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-primary text-4xl font-bold">
+            Top Sellers
+        </h2>
+    </div>
+</section>
+
+
+{{-- Blog --}}
+
+
+<section class="py-16 bg-base-200">
+    <div class="max-w-7xl mx-auto px-4">
+
+        <!-- Heading -->
+        <div class="mb-12 flex items-center justify-between">
+
+            <h2 class="text-4xl font-bold text-primary">
+                Blog
+            </h2>
+
+
+            <a href="#" class="flex items-center gap-2 text-primary font-semibold hover:underline">
+
+                Learn more
+
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+
+            </a>
+
+        </div>
+
+
+        <!-- Articles -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+
+            <!-- Article Card -->
+            <article class="card bg-base-100 shadow-xl">
+
+                <figure>
+                    <img
+                        class="h-64 w-full object-cover"
+                        src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc"
+                        alt="Car maintenance"
+                    />
+                </figure>
+
+
+                <div class="card-body">
+
+                    <div class="flex items-center gap-3">
+
+                        <img
+                            class="w-10 h-10 rounded-full"
+                            src="https://i.pravatar.cc/100?img=12"
+                            alt="Author"
+                        >
+
+                        <div>
+                            <p class="text-sm font-semibold">
+                                Alex Carter
+                            </p>
+
+                            <p class="text-sm text-base-content/60">
+                                Automotive Expert
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <h3 class="card-title mt-4">
+                        How to choose the right brake parts
+                    </h3>
+
+
+                    <p class="text-base-content/70">
+                        Discover the main differences between brake pads,
+                        discs and calipers before buying replacements.
+                    </p>
+
+
+                    <div class="card-actions justify-end mt-4">
+
+                        <a href="#" class="btn btn-primary btn-sm">
+                            Read More
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Article Card -->
+            <article class="card bg-base-100 shadow-xl">
+
+                <figure>
+                    <img
+                        class="h-64 w-full object-cover"
+                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7"
+                        alt="Car engine"
+                    />
+                </figure>
+
+
+                <div class="card-body">
+
+                    <div class="flex items-center gap-3">
+
+                        <img
+                            class="w-10 h-10 rounded-full"
+                            src="https://i.pravatar.cc/100?img=33"
+                            alt="Author"
+                        >
+
+                        <div>
+                            <p class="text-sm font-semibold">
+                                Mark Wilson
+                            </p>
+
+                            <p class="text-sm text-base-content/60">
+                                Mechanic
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <h3 class="card-title mt-4">
+                        Signs your engine needs maintenance
+                    </h3>
+
+
+                    <p class="text-base-content/70">
+                        Learn common engine problems and which parts should
+                        be checked first.
+                    </p>
+
+
+                    <div class="card-actions justify-end mt-4">
+
+                        <a href="#" class="btn btn-primary btn-sm">
+                            Read More
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Article Card -->
+            <article class="card bg-base-100 shadow-xl">
+
+                <figure>
+                    <img
+                        class="h-64 w-full object-cover"
+                        src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3"
+                        alt="Car repair"
+                    />
+                </figure>
+
+
+                <div class="card-body">
+
+                    <div class="flex items-center gap-3">
+
+                        <img
+                            class="w-10 h-10 rounded-full"
+                            src="https://i.pravatar.cc/100?img=47"
+                            alt="Author"
+                        >
+
+                        <div>
+                            <p class="text-sm font-semibold">
+                                Emma Stone
+                            </p>
+
+                            <p class="text-sm text-base-content/60">
+                                Car Specialist
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <h3 class="card-title mt-4">
+                        OEM vs aftermarket parts
+                    </h3>
+
+
+                    <p class="text-base-content/70">
+                        Understand which replacement parts are better for
+                        performance and reliability.
+                    </p>
+
+
+                    <div class="card-actions justify-end mt-4">
+
+                        <a href="#" class="btn btn-primary btn-sm">
+                            Read More
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+</section>
+
 
 {{--Why Us --}}
 
@@ -1556,13 +2160,15 @@
 
                     <img src="{{ asset('images/payments/visa.svg') }}" class="h-8 " alt="Visa">
 
-                    <img src="{{ asset('images/payments/mastercard.svg') }}" class="h-8 text-[]" alt="Mastercard">
+                    <img src="{{ asset('images/payments/mastercard.svg') }}" class="h-8 text-[]"
+                         alt="Mastercard">
 
                     <img src="{{ asset('images/payments/paypal.svg') }}" class="h-8 text-[]" alt="PayPal">
 
                     <img src="{{ asset('images/payments/applepay.svg') }}" class="h-8 text-[]" alt="Apple Pay">
 
-                    <img src="{{ asset('images/payments/googlepay.svg') }}" class="h-8 text-[]" alt="Google Pay">
+                    <img src="{{ asset('images/payments/googlepay.svg') }}" class="h-8 text-[]"
+                         alt="Google Pay">
 
                 </div>
 
