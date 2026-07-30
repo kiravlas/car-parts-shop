@@ -17,14 +17,13 @@
 </head>
 <body class="relative" id="top">
 
-
 {{--Announcment marquee--}}
 
 <div
     class="relative sticky top-0 z-50 overflow-hidden border-y border-secondary/20 bg-base-100 before:pointer-events-none before:absolute before:inset-y-0 before:start-0 before:z-2 before:w-16 before:bg-[linear-gradient(to_right,var(--color-background),transparent)] after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-2 after:w-16 after:bg-[linear-gradient(to_left,var(--color-background),transparent)]">
     <div
         class="marquee-track-x [animation:marquee-x_40s_linear_infinite] hover:[animation-play-state:paused] flex w-max gap-4 py-2.5">
-        <div class="flex items-center justify-center gap-10 ps-4 text-sm text-gray-800 dark:text-neutral-200">
+        <div class="flex items-center justify-center gap-10 ps-4 text-sm text-neutral-200">
             <span class="inline-flex items-center justify-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
                         data-lucide="van"
                         class="size-3.5"></i></span> Fast delivery on all orders</span>
@@ -36,7 +35,7 @@
                         data-lucide="handshake" class="size-3.5"></i> </span> Expert support for finding the right part</span>
         </div>
 
-        <div class="flex items-center gap-10 ps-4 text-sm text-gray-800 dark:text-neutral-200">
+        <div class="flex items-center gap-10 ps-4 text-sm text-neutral-200">
             <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i data-lucide="van"
                                                                                                        class="size-3.5"></i></span> Fast delivery on all orders</span>
             <span class="inline-flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true"><i
@@ -503,7 +502,6 @@
 
 </div>
 
-
 {{--Promotion Carousel + Product of the day--}}
 
 <section class="py-16 bg-base-200">
@@ -606,15 +604,89 @@
 
                 <figure class="h-52">
                     <img
-                        src="https://placehold.co/600x400"
+                        src="https://images.unsplash.com/photo-1542282088-fe8426682b8f"
+                        alt="Luxury car"
                         class="h-full w-full object-cover">
                 </figure>
 
                 <div class="card-body">
+                    <div
+                        x-data="{
+        hours: 10,
+        minutes: 24,
+        seconds: 59,
 
-                    <span class="badge badge-accent w-fit">
-                        SALE
-                    </span>
+        start() {
+            setInterval(() => {
+
+                if (this.seconds > 0) {
+                    this.seconds--
+                }
+                else {
+
+                    this.seconds = 59
+
+                    if (this.minutes > 0) {
+                        this.minutes--
+                    }
+                    else {
+
+                        this.minutes = 59
+
+                        if (this.hours > 0) {
+                            this.hours--
+                        }
+                        else {
+                            this.hours = 0
+                            this.minutes = 0
+                            this.seconds = 0
+                        }
+
+                    }
+                }
+
+            }, 1000)
+        }
+    }"
+                        x-init="start()"
+                        class="flex items-center justify-between"
+                    >
+
+
+    <span class="badge badge-accent">
+        SALE
+    </span>
+
+
+                        <span class="countdown font-mono text-2xl">
+
+        <span
+            :style="`--value:${hours}`"
+            aria-live="polite"
+            :aria-label="hours">
+        </span>
+
+        :
+
+        <span
+            :style="`--value:${minutes}`"
+            aria-live="polite"
+            :aria-label="minutes">
+        </span>
+
+        :
+
+        <span
+            :style="`--value:${seconds}`"
+            aria-live="polite"
+            :aria-label="seconds">
+        </span>
+
+    </span>
+
+
+                    </div>
+
 
                     <h2 class="card-title">
                         Alloy Wheels
@@ -645,10 +717,9 @@
 
 </section>
 
-
 {{--Product Categories--}}
 
-<section class="py-16 ">
+<section class="py-8 ">
     <div class="max-w-7xl mx-auto px-4 space-y-10">
         {{--Product Categories Header--}}
         <div>
@@ -656,103 +727,592 @@
         </div>
 
         {{--Product Categories Grid--}}
-        <div class="grid grid-cols-3 grid-rows-4 gap-6">
+        <div class="grid grid-cols-3 grid-rows-4 gap-4">
             {{--Categories--}}
-            <div class="row-span-2 bg-base-100 border border-base-300 shadow-md">
-                <div class="card-body items-center text-center">
+            {{-- Category 1 --}}
+            <div
+                class="
+    row-span-2
+    group
+    overflow-hidden
+    rounded-2xl
+    border
+    border-base-300
+    bg-base-100
+    shadow-lg
+    transition-all
+    duration-500
+    hover:-translate-y-1
+    hover:border-primary
+    hover:shadow-primary/30
+    hover:shadow-2xl
+    ">
 
-                    <i data-lucide="disc" class="size-10 text-primary"></i>
+                <a href="{{ route('show.category', ['category'=>'brakes']) }}"
+                   class="relative block h-full">
 
-                    <h3 class="card-title mt-3">
-                        Brakes & Suspension 1
-                    </h3>
 
-                    <p class="text-sm text-base-content/70">
-                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
-                    </p>
+                    <figure class="h-full overflow-hidden">
 
-                    <a href="{{route('show.category', ['category' => 'wheels'])}}">To categories</a>
+                        <img
+                            src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1200&q=80"
+                            alt="Brakes"
+                            class="
+                h-full
+                w-full
+                object-cover
+                transition-transform
+                duration-700
+                group-hover:scale-110
+                ">
+
+                    </figure>
+
+
+                    {{-- Dark overlay on hover --}}
+                    <div
+                        class="
+            absolute
+            inset-0
+            bg-black/20
+            transition-all
+            duration-500
+            group-hover:bg-black/60
+            ">
+                    </div>
+
+
+                    {{-- CENTER CONTENT --}}
+                    <div
+                        class="
+            absolute
+            inset-0
+            flex
+            items-center
+            justify-center
+            p-6
+            text-center
+            text-white
+            ">
+
+
+                        <div>
+
+
+                <span class="badge badge-primary mb-4">
+                    CATEGORY
+                </span>
+
+
+                            <h3 class="text-3xl font-bold drop-shadow-lg">
+                                Brakes
+                            </h3>
+
+
+                            <p class="mt-3 text-white/90 drop-shadow">
+                                Brake Pads, Rotors,
+                                Calipers & Suspension Parts.
+                            </p>
+
+
+                            <div
+                                class="
+                    mt-5
+                    font-semibold
+                    opacity-0
+                    translate-y-3
+                    transition-all
+                    duration-500
+                    group-hover:opacity-100
+                    group-hover:translate-y-0
+                    ">
+
+                                Explore →
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </a>
+
+
+            </div>
+
+            {{-- Category 2 --}}
+            <div
+                class="
+    group
+    overflow-hidden
+    rounded-2xl
+    border
+    border-base-300
+    bg-base-100
+    shadow-lg
+    transition-all
+    duration-500
+    hover:-translate-y-1
+    hover:border-primary
+    hover:shadow-primary/20
+    hover:shadow-xl
+    ">
+
+
+                <a href="{{ route('show.category', ['category'=>'engine']) }}"
+                   class="block h-full">
+
+
+                    <figure class="h-40 overflow-hidden">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1200&q=80"
+                            alt="Engine Parts"
+                            class="
+                h-full
+                w-full
+                object-cover
+                transition-transform
+                duration-700
+                group-hover:scale-110
+                ">
+
+                    </figure>
+
+
+                    <div class="card-body p-5">
+
+
+            <span class="badge badge-secondary w-fit">
+                ENGINE
+            </span>
+
+
+                        <h3 class="card-title mt-2">
+                            Engine Parts
+                        </h3>
+
+
+                        <p class="text-sm text-base-content/70">
+                            Filters, Timing Kits,
+                            Pistons & Pumps.
+                        </p>
+
+
+                        <div
+                            class="
+                mt-3
+                font-semibold
+                text-primary
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+                ">
+
+                            Explore →
+
+                        </div>
+
+
+                    </div>
+
+
+                </a>
+
+
+            </div>
+
+
+            {{-- Category 3 --}}
+            <div
+                class="
+    row-span-2
+    group
+    overflow-hidden
+    rounded-2xl
+    border
+    border-base-300
+    bg-base-100
+    shadow-lg
+    transition-all
+    duration-500
+    hover:-translate-y-1
+    hover:border-primary
+    hover:shadow-primary/30
+    hover:shadow-2xl
+    ">
+
+
+                <a href="{{ route('show.category', ['category'=>'wheels']) }}"
+                   class="relative block h-full">
+
+
+                    <figure class="h-full overflow-hidden">
+
+
+                        <img
+                            src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80"
+                            alt="Wheels"
+                            class="
+                h-full
+                w-full
+                object-cover
+                transition-transform
+                duration-700
+                group-hover:scale-110
+                ">
+
+
+                    </figure>
+
+
+                    <div
+                        class="
+            absolute
+            inset-0
+            bg-black/0
+            transition-all
+            duration-500
+            group-hover:bg-black/50
+            ">
+                    </div>
+
+
+                    <div
+                        class="
+            absolute
+            bottom-0
+            p-6
+            text-white
+            ">
+
+
+            <span class="badge badge-accent mb-3">
+                CATEGORY
+            </span>
+
+
+                        <h3 class="text-3xl font-bold">
+                            Wheels & Tires
+                        </h3>
+
+
+                        <p class="mt-2 text-white/90">
+                            Alloy Wheels,
+                            Performance Tires &
+                            Accessories.
+                        </p>
+
+
+                        <div
+                            class="
+                mt-4
+                font-semibold
+                opacity-0
+                translate-y-3
+                transition-all
+                duration-500
+                group-hover:opacity-100
+                group-hover:translate-y-0
+                ">
+
+                            Explore →
+
+                        </div>
+
+
+                    </div>
+
+
+                </a>
+
+
+            </div>
+            {{-- Category 4 --}}
+            <div
+                class="row-span-2 row-start-2 col-start-2 overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-lg transition-all duration-500 hover:border-primary hover:shadow-primary/30 hover:shadow-2xl group">
+
+                <a href="{{ route('show.category', ['category' => 'lighting']) }}"
+                   class="card image-full h-full">
+
+                    <figure class="overflow-hidden">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80"
+                            alt="Lighting"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    </figure>
+
+                    <div
+                        class="card-body justify-end bg-gradient-to-t from-black/80 via-black/35 to-transparent transition-all duration-500 group-hover:from-black/90">
+
+                        <div class="space-y-4">
+
+                <span class="badge badge-info badge-lg w-fit">
+                    CATEGORY
+                </span>
+
+                            <div>
+
+                                <h3 class="text-2xl font-bold text-white">
+                                    Lighting
+                                </h3>
+
+                                <p class="mt-2 text-white/85">
+                                    LED Headlights, Tail Lights,
+                                    Fog Lamps & Xenon Upgrades.
+                                </p>
+
+                            </div>
+
+                            <div class="flex items-center gap-2 text-white font-semibold">
+
+                                Explore
+
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="size-5 transition-all duration-300 group-hover:translate-x-1"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M9 5l7 7-7 7"/>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            {{-- Category 5 --}}
+            <div
+                class="col-start-1 overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-lg transition-all duration-500 hover:border-primary hover:shadow-primary/20 hover:shadow-xl group">
+
+                <a href="{{ route('show.category', ['category'=>'interior']) }}"
+                   class="block h-full">
+
+                    <figure class="h-40 overflow-hidden">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+                            alt="Interior"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    </figure>
+
+                    <div class="card-body">
+
+            <span class="badge badge-success w-fit">
+                INTERIOR
+            </span>
+
+                        <h3 class="card-title text-2xl">
+                            Interior Accessories
+                        </h3>
+
+                        <p class="text-base-content/70">
+                            Seat Covers,
+                            Floor Mats,
+                            Steering Wheels &
+                            Premium Accessories.
+                        </p>
+
+                        <div class="mt-3 flex items-center gap-2 font-semibold text-primary">
+
+                            Explore
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="size-5 transition-all duration-300 group-hover:translate-x-1"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor">
+
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M9 5l7 7-7 7"/>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            {{-- Category 6 --}}
+            <div
+                class="col-start-3 overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-lg transition-all duration-500 hover:border-primary hover:shadow-primary/20 hover:shadow-xl group">
+
+                <a href="{{ route('show.category', ['category'=>'performance']) }}"
+                   class="block h-full">
+
+                    <figure class="h-40 overflow-hidden">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+                            alt="Performance"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    </figure>
+
+                    <div class="card-body">
+
+            <span class="badge badge-warning w-fit">
+                PERFORMANCE
+            </span>
+
+                        <h3 class="card-title text-2xl">
+                            Performance Parts
+                        </h3>
+
+                        <p class="text-base-content/70">
+                            Turbo Kits,
+                            Air Intakes,
+                            Exhaust Systems &
+                            Sport Components.
+                        </p>
+
+                        <div class="mt-3 flex items-center gap-2 font-semibold text-primary">
+
+                            Explore
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="size-5 transition-all duration-300 group-hover:translate-x-1"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor">
+
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M9 5l7 7-7 7"/>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+            {{-- Free Shipping Banner --}}
+            <div
+                class="
+    col-span-3
+    group
+    relative
+    overflow-hidden
+    rounded-2xl
+    bg-base-100
+    transition-all
+    duration-500
+    ">
+
+
+                <div class="relative h-64 overflow-hidden">
+
+
+                    {{-- Truck Image --}}
+                    <img
+                        src="https://images.unsplash.com/photo-1586191582151-f73872dfd183?auto=format&fit=crop&w=1600&q=80"
+                        alt="Delivery truck"
+                        class="
+            h-full
+            w-full
+            object-cover
+            transition-transform
+            duration-700
+            group-hover:scale-105
+            ">
+
+
+                    {{-- Dark overlay --}}
+                    <div
+                        class="
+            absolute
+            inset-0
+            bg-gradient-to-r
+            from-black/80
+            via-black/40
+            to-transparent
+            ">
+                    </div>
+
+
+                    {{-- Content --}}
+                    <div
+                        class="
+            absolute
+            inset-y-0
+            left-0
+            flex
+            items-center
+            p-8
+            md:p-12
+            ">
+
+
+                        <div class="max-w-lg text-white">
+
+
+                <span class="badge badge-primary mb-4">
+                    FREE DELIVERY
+                </span>
+
+
+                            <h2 class="text-4xl font-bold drop-shadow-lg">
+                                Fast Shipping For Every Order
+                            </h2>
+
+
+                            <p class="mt-3 text-white/90">
+                                Get your car parts delivered quickly
+                                and safely straight to your garage.
+                            </p>
+
+
+                            <a href="#"
+                               class="
+                   btn
+                   btn-primary
+                   mt-6
+                   ">
+
+                                Shop Now
+
+                            </a>
+
+
+                        </div>
+
+
+                    </div>
+
+
                 </div>
-            </div>
-            <div class=" bg-base-100 border border-base-300 shadow-md">
-                <div class="card-body items-center text-center">
 
-                    <i data-lucide="disc" class="size-10 text-primary"></i>
-
-                    <h3 class="card-title mt-3">
-                        Brakes & Suspension 2
-                    </h3>
-
-                    <p class="text-sm text-base-content/70">
-                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
-                    </p>
-
-                </div>
-            </div>
-            <div class="row-span-2 bg-base-100 border border-base-300 shadow-md">
-                <div class="card-body items-center text-center">
-
-                    <i data-lucide="disc" class="size-10 text-primary"></i>
-
-                    <h3 class="card-title mt-3">
-                        Brakes & Suspension 3
-                    </h3>
-
-                    <p class="text-sm text-base-content/70">
-                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
-                    </p>
-
-                </div>
-            </div>
-            <div class="row-span-2 row-start-2 col-start-2 bg-base-100 border border-base-300 shadow-md">
-                <div class="card-body items-center text-center">
-
-                    <i data-lucide="disc" class="size-10 text-primary"></i>
-
-                    <h3 class="card-title mt-3">
-                        Brakes & Suspension 4
-                    </h3>
-
-                    <p class="text-sm text-base-content/70">
-                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
-                    </p>
-
-                </div>
-            </div>
-            <div class=" col-start-1 bg-base-100 border border-base-300 shadow-md">
-                <div class="card-body items-center text-center">
-
-                    <i data-lucide="disc" class="size-10 text-primary"></i>
-
-                    <h3 class="card-title mt-3">
-                        Brakes & Suspension 5
-                    </h3>
-
-                    <p class="text-sm text-base-content/70">
-                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
-                    </p>
-
-                </div>
-            </div>
-            <div class=" col-start-3 bg-base-100 border border-base-300 shadow-md">
-                <div class="card-body items-center text-center">
-
-                    <i data-lucide="disc" class="size-10 text-primary"></i>
-
-                    <h3 class="card-title mt-3">
-                        Brakes & Suspension 6
-                    </h3>
-
-                    <p class="text-sm text-base-content/70">
-                        Brake Pads, Brake Discs, Shock Absorbers, Control Arms, Wheel Bearings
-                    </p>
-
-                </div>
-            </div>
-            {{--          Free Shipping Banner --}}
-            <div class=" col-span-3 bg-base-100 border border-base-300 shadow-md overflow-hidden">
 
             </div>
+
+            {{--            end of grid--}}
 
         </div>
     </div>
@@ -775,6 +1335,7 @@
             </a>
         </div>
 
+
         <!-- Carousel Wrapper -->
         <div class="relative px-16">
 
@@ -785,7 +1346,7 @@
                     "loadingClasses":"opacity-0",
                     "isAutoPlay":true,
                     "isInfiniteLoop":true,
-                     "dotsItemClasses":"hs-carousel-active:bg-primary hs-carousel-active:border-primary size-3 border border-base-content/30 rounded-full cursor-pointer",
+                    "dotsItemClasses":"hs-carousel-active:bg-primary hs-carousel-active:border-primary size-3 border border-base-content/30 rounded-full cursor-pointer",
                     "slidesQty":{
                         "xs":1,
                         "sm":2,
@@ -794,37 +1355,41 @@
                     }
                 }'>
 
-                <!-- Carousel -->
+
                 <div class="hs-carousel relative w-full min-h-[430px] overflow-hidden rounded-xl">
 
-                    <!-- Body -->
+
                     <div
                         class="hs-carousel-body absolute inset-0 flex flex-nowrap transition-transform duration-700 -mx-3 opacity-0">
 
-                        <!-- Product -->
+
+                        <!-- Product 1 -->
                         <div class="hs-carousel-slide px-3">
-                            <div
-                                class="card bg-base-200 shadow-xl  h-full">
+
+                            <div class="card bg-base-200 shadow-xl h-full">
 
                                 <figure class="h-52">
                                     <img
-                                        src="https://placehold.co/600x400"
-                                        alt="Product"
+                                        src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc"
+                                        alt="Car brake discs"
                                         class="h-full w-full object-cover">
                                 </figure>
 
+
                                 <div class="card-body">
+
                                     <span class="badge badge-primary w-fit">
                                         NEW
                                     </span>
 
                                     <h2 class="card-title mt-2">
-                                        Brembo Brake Disc
+                                        Performance Brake Disc
                                     </h2>
 
                                     <p class="text-sm opacity-70">
-                                        Premium performance brake disc.
+                                        High quality brake discs for improved stopping power.
                                     </p>
+
 
                                     <div class="mt-auto flex items-center justify-between pt-4">
 
@@ -837,20 +1402,29 @@
                                         </button>
 
                                     </div>
+
                                 </div>
 
                             </div>
+
                         </div>
 
-                        <!-- Duplicate these slides -->
+
+                        <!-- Product 2 -->
                         <div class="hs-carousel-slide px-3">
+
                             <div class="card bg-base-200 shadow-xl h-full">
+
                                 <figure class="h-52">
-                                    <img src="https://placehold.co/600x400"
-                                         class="h-full w-full object-cover">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1542362567-b07e54358753"
+                                        alt="Car headlights"
+                                        class="h-full w-full object-cover">
                                 </figure>
 
+
                                 <div class="card-body">
+
                                     <span class="badge badge-secondary w-fit">
                                         HOT
                                     </span>
@@ -860,192 +1434,220 @@
                                     </h2>
 
                                     <p class="text-sm opacity-70">
-                                        Bright modern headlights.
+                                        Modern LED headlights with bright visibility.
                                     </p>
 
+
                                     <div class="mt-auto flex justify-between items-center">
-                                        <span class="text-xl font-bold text-primary">$149</span>
-                                        <button class="btn btn-primary">View</button>
+
+                                        <span class="text-xl font-bold text-primary">
+                                            $149
+                                        </span>
+
+                                        <button class="btn btn-primary">
+                                            View
+                                        </button>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
 
+
+                        <!-- Product 3 -->
                         <div class="hs-carousel-slide px-3">
+
                             <div class="card bg-base-200 shadow-xl h-full">
+
                                 <figure class="h-52">
-                                    <img src="https://placehold.co/600x400"
-                                         class="h-full w-full object-cover">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d"
+                                        alt="Alloy wheels"
+                                        class="h-full w-full object-cover">
                                 </figure>
 
+
                                 <div class="card-body">
+
                                     <span class="badge badge-accent w-fit">
                                         SALE
                                     </span>
 
                                     <h2 class="card-title">
-                                        Alloy Wheels
+                                        Sport Alloy Wheels
                                     </h2>
 
                                     <p class="text-sm opacity-70">
-                                        Lightweight aluminum wheels.
+                                        Lightweight wheels designed for performance.
                                     </p>
 
+
                                     <div class="mt-auto flex justify-between items-center">
-                                        <span class="text-xl font-bold text-primary">$399</span>
-                                        <button class="btn btn-primary">View</button>
+
+                                        <span class="text-xl font-bold text-primary">
+                                            $399
+                                        </span>
+
+                                        <button class="btn btn-primary">
+                                            View
+                                        </button>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
 
+
+                        <!-- Product 4 -->
                         <div class="hs-carousel-slide px-3">
+
                             <div class="card bg-base-200 shadow-xl h-full">
+
                                 <figure class="h-52">
-                                    <img src="https://placehold.co/600x400"
-                                         class="h-full w-full object-cover">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1489824904134-891ab64532f1"
+                                        alt="Car engine parts"
+                                        class="h-full w-full object-cover">
                                 </figure>
 
+
                                 <div class="card-body">
+
+                                    <span class="badge badge-primary w-fit">
+                                        NEW
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Engine Components
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Reliable replacement parts for your engine.
+                                    </p>
+
+
+                                    <div class="mt-auto flex justify-between items-center">
+
+                                        <span class="text-xl font-bold text-primary">
+                                            $259
+                                        </span>
+
+                                        <button class="btn btn-primary">
+                                            View
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Product 5 -->
+                        <div class="hs-carousel-slide px-3">
+
+                            <div class="card bg-base-200 shadow-xl h-full">
+
+                                <figure class="h-52">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7"
+                                        alt="Car interior accessories"
+                                        class="h-full w-full object-cover">
+                                </figure>
+
+
+                                <div class="card-body">
+
+                                    <span class="badge badge-secondary w-fit">
+                                        POPULAR
+                                    </span>
+
+                                    <h2 class="card-title">
+                                        Premium Interior Kit
+                                    </h2>
+
+                                    <p class="text-sm opacity-70">
+                                        Upgrade your vehicle interior with quality accessories.
+                                    </p>
+
+
+                                    <div class="mt-auto flex justify-between items-center">
+
+                                        <span class="text-xl font-bold text-primary">
+                                            $89
+                                        </span>
+
+                                        <button class="btn btn-primary">
+                                            View
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Product 6 -->
+                        <div class="hs-carousel-slide px-3">
+
+                            <div class="card bg-base-200 shadow-xl h-full">
+
+                                <figure class="h-52">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+                                        alt="Sports car accessories"
+                                        class="h-full w-full object-cover">
+                                </figure>
+
+
+                                <div class="card-body">
+
                                     <span class="badge badge-accent w-fit">
                                         SALE
                                     </span>
 
                                     <h2 class="card-title">
-                                        Alloy Wheels
+                                        Performance Exhaust
                                     </h2>
 
                                     <p class="text-sm opacity-70">
-                                        Lightweight aluminum wheels.
+                                        Improve sound and performance with a sport exhaust.
                                     </p>
 
-                                    <div class="mt-auto flex justify-between items-center">
-                                        <span class="text-xl font-bold text-primary">$399</span>
-                                        <button class="btn btn-primary">View</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="hs-carousel-slide px-3">
-                            <div class="card bg-base-200 shadow-xl h-full">
-                                <figure class="h-52">
-                                    <img src="https://placehold.co/600x400"
-                                         class="h-full w-full object-cover">
-                                </figure>
-
-                                <div class="card-body">
-                                    <span class="badge badge-accent w-fit">
-                                        SALE
-                                    </span>
-
-                                    <h2 class="card-title">
-                                        Alloy Wheels
-                                    </h2>
-
-                                    <p class="text-sm opacity-70">
-                                        Lightweight aluminum wheels.
-                                    </p>
 
                                     <div class="mt-auto flex justify-between items-center">
-                                        <span class="text-xl font-bold text-primary">$399</span>
-                                        <button class="btn btn-primary">View</button>
+
+                                        <span class="text-xl font-bold text-primary">
+                                            $499
+                                        </span>
+
+                                        <button class="btn btn-primary">
+                                            View
+                                        </button>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
 
-                        <div class="hs-carousel-slide px-3">
-                            <div class="card bg-base-200 shadow-xl h-full">
-                                <figure class="h-52">
-                                    <img src="https://placehold.co/600x400"
-                                         class="h-full w-full object-cover">
-                                </figure>
-
-                                <div class="card-body">
-                                    <span class="badge badge-accent w-fit">
-                                        SALE
-                                    </span>
-
-                                    <h2 class="card-title">
-                                        Alloy Wheels
-                                    </h2>
-
-                                    <p class="text-sm opacity-70">
-                                        Lightweight aluminum wheels.
-                                    </p>
-
-                                    <div class="mt-auto flex justify-between items-center">
-                                        <span class="text-xl font-bold text-primary">$399</span>
-                                        <button class="btn btn-primary">View</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="hs-carousel-slide px-3">
-                            <div class="card bg-base-200 shadow-xl h-full">
-                                <figure class="h-52">
-                                    <img src="https://placehold.co/600x400"
-                                         class="h-full w-full object-cover">
-                                </figure>
-
-                                <div class="card-body">
-                                    <span class="badge badge-accent w-fit">
-                                        SALE
-                                    </span>
-
-                                    <h2 class="card-title">
-                                        Alloy Wheels
-                                    </h2>
-
-                                    <p class="text-sm opacity-70">
-                                        Lightweight aluminum wheels.
-                                    </p>
-
-                                    <div class="mt-auto flex justify-between items-center">
-                                        <span class="text-xl font-bold text-primary">$399</span>
-                                        <button class="btn btn-primary">View</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="hs-carousel-slide px-3">
-                            <div class="card bg-base-200 shadow-xl h-full">
-                                <figure class="h-52">
-                                    <img src="https://placehold.co/600x400"
-                                         class="h-full w-full object-cover">
-                                </figure>
-
-                                <div class="card-body">
-                                    <span class="badge badge-accent w-fit">
-                                        SALE
-                                    </span>
-
-                                    <h2 class="card-title">
-                                        Alloy Wheels
-                                    </h2>
-
-                                    <p class="text-sm opacity-70">
-                                        Lightweight aluminum wheels.
-                                    </p>
-
-                                    <div class="mt-auto flex justify-between items-center">
-                                        <span class="text-xl font-bold text-primary">$399</span>
-                                        <button class="btn btn-primary">View</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Copy more slides as needed -->
 
                     </div>
-                    <!-- End Body -->
 
                 </div>
-                <!-- End Carousel -->
 
 
                 <!-- LEFT ARROW -->
@@ -1059,6 +1661,7 @@
                            hover:text-primary-content
                            transition">
 
+
                     <svg
                         class="size-6 mx-auto"
                         xmlns="http://www.w3.org/2000/svg"
@@ -1071,6 +1674,7 @@
                             stroke-linejoin="round"
                             stroke-width="2"
                             d="M15 18l-6-6 6-6"/>
+
                     </svg>
 
                 </button>
@@ -1087,6 +1691,7 @@
                            hover:text-primary-content
                            transition">
 
+
                     <svg
                         class="size-6 mx-auto"
                         xmlns="http://www.w3.org/2000/svg"
@@ -1099,31 +1704,394 @@
                             stroke-linejoin="round"
                             stroke-width="2"
                             d="M9 18l6-6-6-6"/>
+
                     </svg>
 
                 </button>
 
+
                 {{-- Pagination --}}
                 <div class="hs-carousel-pagination flex justify-center gap-2 mt-8"></div>
+
 
             </div>
 
         </div>
+
     </div>
 </section>
 
-{{-- Top Sellers --}}
+{{--
+     Top Sellers
+--}}
 <section class="py-16 bg-base-300">
+
+    {{-- Normal width container for heading --}}
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-primary text-4xl font-bold">
-            Top Sellers
-        </h2>
+
+        <div class="mb-10 flex items-center justify-between">
+
+            <h2 class="text-4xl font-bold text-primary">
+                Top Sellers
+            </h2>
+
+            <a href="#" class="btn btn-outline btn-primary">
+                View All
+            </a>
+
+        </div>
+
     </div>
+
+    {{-- Wider container ONLY for the carousel --}}
+    <div class="max-w-[92rem] mx-auto px-4">
+
+        <div class="relative px-16">
+
+            <div
+                id="top-sellers-carousel"
+                class="relative overflow-visible"
+                data-hs-carousel='{
+                    "loadingClasses":"opacity-0",
+                    "isAutoPlay":false,
+                    "isInfiniteLoop":false,
+                    "dotsItemClasses":"hs-carousel-active:bg-primary hs-carousel-active:border-primary size-3 rounded-full border border-base-content/30 cursor-pointer",
+                    "slidesQty":{
+                        "xs":1,
+                        "sm":2,
+                        "md":3,
+                        "lg":4
+                    },
+                    "slidesPerMove":1
+                }'>
+
+                <div class="hs-carousel relative w-full min-h-[480px] overflow-hidden">
+
+                    <div
+                        class="hs-carousel-body absolute inset-0 flex flex-nowrap transition-transform duration-500 -mx-2 opacity-0">
+
+                        @for($i = 1; $i <= 6; $i++)
+
+                            <div class="hs-carousel-slide px-2">
+
+                                <div
+                                    class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                    {{-- Image --}}
+                                    <figure class="relative h-44 overflow-hidden">
+
+                                        <img
+                                            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                                            alt="Premium Engine Oil"
+                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                        <span class="badge badge-error badge-xs absolute top-3 left-3">
+                                            HOT
+                                        </span>
+
+                                        <button
+                                            class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+
+                                            <i
+                                                data-lucide="heart-plus"
+                                                class="size-4 text-red-500">
+                                            </i>
+
+                                        </button>
+
+                                    </figure>
+
+                                    {{-- Body --}}
+                                    <div class="card-body gap-3">
+
+                                        <div class="flex items-center gap-2">
+
+                                            <span class="badge badge-primary badge-lg">
+                                                $51
+                                            </span>
+
+                                            <span class="text-sm line-through opacity-50">
+                                                $61
+                                            </span>
+
+                                        </div>
+
+                                        <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                            Castrol
+                                        </p>
+
+                                        <h2 class="card-title text-base leading-tight">
+                                            Premium Engine Oil
+                                        </h2>
+
+                                        <p class="text-sm text-base-content/70 line-clamp-2">
+                                            Synthetic 5W-30 motor oil for maximum engine protection.
+                                        </p>
+
+                                        <div class="flex items-center gap-2 text-xs">
+
+                                            <i
+                                                data-lucide="star"
+                                                class="size-3 fill-yellow-400 text-yellow-400">
+                                            </i>
+
+                                            <span>5.0</span>
+
+                                            <i
+                                                data-lucide="square-check"
+                                                class="size-3 text-success">
+                                            </i>
+
+                                            <span>24 pcs left</span>
+
+                                        </div>
+
+                                        <div class="flex items-center gap-2 text-xs">
+
+                                            <i
+                                                data-lucide="truck"
+                                                class="size-3 text-primary">
+                                            </i>
+
+                                            <span>Delivery Today</span>
+
+                                        </div>
+
+                                        <button class="btn btn-primary btn-sm mt-auto w-full">
+
+                                            <i
+                                                data-lucide="shopping-basket"
+                                                class="size-4">
+                                            </i>
+
+                                            Add to Cart
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        @endfor
+
+                    </div>
+
+                </div>
+
+                {{-- LEFT ARROW --}}
+                <button
+                    type="button"
+                    class="hs-carousel-prev absolute -left-16 top-1/2 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-base-100 shadow-xl transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:bg-primary hover:text-primary-content disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-base-100 disabled:hover:text-base-content disabled:hover:scale-100">
+
+                    <i data-lucide="chevron-left" class="size-6"></i>
+
+                </button>
+
+                {{-- RIGHT ARROW --}}
+                <button
+                    type="button"
+                    class="hs-carousel-next absolute -right-16 top-1/2 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-base-100 shadow-xl transition-all duration-300 hover:cursor-pointer hover:scale-105 hover:bg-primary hover:text-primary-content disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-base-100 disabled:hover:text-base-content disabled:hover:scale-100">
+
+                    <i data-lucide="chevron-right" class="size-6"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
+
+{{--On Sale--}}
+
+<section class="py-16 bg-base-300">
+
+    {{-- Normal width container for heading --}}
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="mb-10 flex items-center justify-between">
+
+            <h2 class="text-4xl font-bold text-primary">
+                On Sale
+            </h2>
+
+            <a href="#" class="btn btn-outline btn-primary">
+                View All
+            </a>
+
+        </div>
+
+    </div>
+
+    {{-- Wider container ONLY for the carousel --}}
+    <div class="max-w-[92rem] mx-auto px-4">
+
+        <div class="relative px-16">
+
+            <div
+                id="top-sellers-carousel"
+                class="relative overflow-visible"
+                data-hs-carousel='{
+                    "loadingClasses":"opacity-0",
+                    "isAutoPlay":false,
+                    "isInfiniteLoop":false,
+                    "dotsItemClasses":"hs-carousel-active:bg-primary hs-carousel-active:border-primary size-3 rounded-full border border-base-content/30 cursor-pointer",
+                    "slidesQty":{
+                        "xs":1,
+                        "sm":2,
+                        "md":3,
+                        "lg":4
+                    },
+                    "slidesPerMove":1
+                }'>
+
+                <div class="hs-carousel relative w-full min-h-[480px] overflow-hidden">
+
+                    <div
+                        class="hs-carousel-body absolute inset-0 flex flex-nowrap transition-transform duration-500 -mx-2 opacity-0">
+
+                        @for($i = 1; $i <= 6; $i++)
+
+                            <div class="hs-carousel-slide px-2">
+
+                                <div
+                                    class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                    {{-- Image --}}
+                                    <figure class="relative h-44 overflow-hidden">
+
+                                        <img
+                                            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                                            alt="Premium Engine Oil"
+                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                        <span class="badge badge-info badge-xs absolute top-3 left-3">
+                                            SALE
+                                        </span>
+
+                                        <button
+                                            class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+
+                                            <i
+                                                data-lucide="heart-plus"
+                                                class="size-4 text-red-500">
+                                            </i>
+
+                                        </button>
+
+                                    </figure>
+
+                                    {{-- Body --}}
+                                    <div class="card-body gap-3">
+
+                                        <div class="flex items-center gap-2">
+
+                                            <span class="badge badge-primary badge-lg">
+                                                $51
+                                            </span>
+
+                                            <span class="text-sm line-through opacity-50">
+                                                $61
+                                            </span>
+
+                                        </div>
+
+                                        <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                            Castrol
+                                        </p>
+
+                                        <h2 class="card-title text-base leading-tight">
+                                            Premium Engine Oil
+                                        </h2>
+
+                                        <p class="text-sm text-base-content/70 line-clamp-2">
+                                            Synthetic 5W-30 motor oil for maximum engine protection.
+                                        </p>
+
+                                        <div class="flex items-center gap-2 text-xs">
+
+                                            <i
+                                                data-lucide="star"
+                                                class="size-3 fill-yellow-400 text-yellow-400">
+                                            </i>
+
+                                            <span>5.0</span>
+
+                                            <i
+                                                data-lucide="square-check"
+                                                class="size-3 text-success">
+                                            </i>
+
+                                            <span>24 pcs left</span>
+
+                                        </div>
+
+                                        <div class="flex items-center gap-2 text-xs">
+
+                                            <i
+                                                data-lucide="truck"
+                                                class="size-3 text-primary">
+                                            </i>
+
+                                            <span>Delivery Today</span>
+
+                                        </div>
+
+                                        <button class="btn btn-primary btn-sm mt-auto w-full">
+
+                                            <i
+                                                data-lucide="shopping-basket"
+                                                class="size-4">
+                                            </i>
+
+                                            Add to Cart
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        @endfor
+
+                    </div>
+
+                </div>
+
+                {{-- LEFT ARROW --}}
+                <button
+                    type="button"
+                    class="hs-carousel-prev absolute -left-16 top-1/2 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-base-100 shadow-xl transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:bg-primary hover:text-primary-content disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-base-100 disabled:hover:text-base-content disabled:hover:scale-100">
+
+                    <i data-lucide="chevron-left" class="size-6"></i>
+
+                </button>
+
+                {{-- RIGHT ARROW --}}
+                <button
+                    type="button"
+                    class="hs-carousel-next absolute -right-16 top-1/2 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-base-100 shadow-xl transition-all duration-300 hover:cursor-pointer hover:scale-105 hover:bg-primary hover:text-primary-content disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-base-100 disabled:hover:text-base-content disabled:hover:scale-100">
+
+                    <i data-lucide="chevron-right" class="size-6"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 {{-- Blog --}}
-
 
 <section class="py-16 bg-base-200">
     <div class="max-w-7xl mx-auto px-4">
@@ -1333,7 +2301,6 @@
     </div>
 </section>
 
-
 {{--Why Us --}}
 
 <section class="py-16 bg-base-200 overflow-hidden">
@@ -1468,7 +2435,6 @@
 
 {{--Statistics--}}
 
-
 <section
     class="py-16 bg-base-300"
     x-data="{
@@ -1601,7 +2567,6 @@
 
 </section>
 
-
 {{-- Popular Brands --}}
 
 <section class="py-16 bg-base-100">
@@ -1684,7 +2649,6 @@
 
 </section>
 
-
 {{--F.A.Q--}}
 
 <section class="max-w-4xl mx-auto py-16 px-4">
@@ -1754,6 +2718,7 @@
 </section>
 
 {{-- Need4Parts Customer Reviews Marquee --}}
+
 <section>
 
     <div
@@ -1955,7 +2920,6 @@
     </a>
 </div>
 
-
 {{--Subscribe to News--}}
 
 <section class="bg-base-300 text-base-content py-20">
@@ -1989,7 +2953,6 @@
 
     </div>
 </section>
-
 
 {{-- Footer --}}
 
