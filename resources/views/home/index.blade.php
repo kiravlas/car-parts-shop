@@ -845,83 +845,59 @@
 
             {{-- Category 2 --}}
             <div
-                class="
-    group
-    overflow-hidden
-    rounded-2xl
-    border
-    border-base-300
-    bg-base-100
-    shadow-lg
-    transition-all
-    duration-500
-    hover:-translate-y-1
-    hover:border-primary
-    hover:shadow-primary/20
-    hover:shadow-xl
-    ">
-
+                class="group overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-lg transition-all duration-500 hover:border-primary hover:shadow-primary/20 hover:shadow-xl">
 
                 <a href="{{ route('show.category', ['category'=>'engine']) }}"
                    class="block h-full">
-
 
                     <figure class="h-40 overflow-hidden">
 
                         <img
                             src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1200&q=80"
                             alt="Engine Parts"
-                            class="
-                h-full
-                w-full
-                object-cover
-                transition-transform
-                duration-700
-                group-hover:scale-110
-                ">
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
 
                     </figure>
 
-
-                    <div class="card-body p-5">
-
+                    <div class="card-body">
 
             <span class="badge badge-secondary w-fit">
                 ENGINE
             </span>
 
-
-                        <h3 class="card-title mt-2">
+                        <h3 class="card-title text-2xl">
                             Engine Parts
                         </h3>
 
-
-                        <p class="text-sm text-base-content/70">
-                            Filters, Timing Kits,
-                            Pistons & Pumps.
+                        <p class="text-base-content/70">
+                            Filters,
+                            Timing Kits,
+                            Pistons &
+                            Pumps.
                         </p>
 
+                        <div class="mt-3 flex items-center gap-2 font-semibold text-primary">
 
-                        <div
-                            class="
-                mt-3
-                font-semibold
-                text-primary
-                transition-transform
-                duration-300
-                group-hover:translate-x-1
-                ">
+                            Explore
 
-                            Explore →
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="size-5 transition-all duration-300 group-hover:translate-x-1"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor">
+
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M9 5l7 7-7 7"/>
+
+                            </svg>
 
                         </div>
 
-
                     </div>
 
-
                 </a>
-
 
             </div>
 
@@ -945,13 +921,10 @@
     hover:shadow-2xl
     ">
 
-
                 <a href="{{ route('show.category', ['category'=>'wheels']) }}"
                    class="relative block h-full">
 
-
                     <figure class="h-full overflow-hidden">
-
 
                         <img
                             src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80"
@@ -965,126 +938,167 @@
                 group-hover:scale-110
                 ">
 
-
                     </figure>
 
-
+                    {{-- Dark overlay on hover --}}
                     <div
                         class="
             absolute
             inset-0
-            bg-black/0
+            bg-black/20
             transition-all
             duration-500
-            group-hover:bg-black/50
+            group-hover:bg-black/60
             ">
                     </div>
 
-
+                    {{-- CENTER CONTENT --}}
                     <div
                         class="
             absolute
-            bottom-0
+            inset-0
+            flex
+            items-center
+            justify-center
             p-6
+            text-center
             text-white
             ">
 
+                        <div>
 
-            <span class="badge badge-accent mb-3">
-                CATEGORY
-            </span>
+                <span class="badge badge-accent mb-4">
+                    CATEGORY
+                </span>
 
+                            <h3 class="text-3xl font-bold drop-shadow-lg">
+                                Wheels & Tires
+                            </h3>
 
-                        <h3 class="text-3xl font-bold">
-                            Wheels & Tires
-                        </h3>
+                            <p class="mt-3 text-white/90 drop-shadow">
+                                Alloy Wheels,
+                                Performance Tires &
+                                Accessories.
+                            </p>
 
+                            <div
+                                class="
+                    mt-5
+                    font-semibold
+                    opacity-0
+                    translate-y-3
+                    transition-all
+                    duration-500
+                    group-hover:opacity-100
+                    group-hover:translate-y-0
+                    ">
 
-                        <p class="mt-2 text-white/90">
-                            Alloy Wheels,
-                            Performance Tires &
-                            Accessories.
-                        </p>
+                                Explore →
 
-
-                        <div
-                            class="
-                mt-4
-                font-semibold
-                opacity-0
-                translate-y-3
-                transition-all
-                duration-500
-                group-hover:opacity-100
-                group-hover:translate-y-0
-                ">
-
-                            Explore →
+                            </div>
 
                         </div>
 
-
                     </div>
 
-
                 </a>
-
 
             </div>
             {{-- Category 4 --}}
             <div
-                class="row-span-2 row-start-2 col-start-2 overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-lg transition-all duration-500 hover:border-primary hover:shadow-primary/30 hover:shadow-2xl group">
+                class="
+    row-span-2
+    row-start-2
+    col-start-2
+    group
+    overflow-hidden
+    rounded-2xl
+    border
+    border-base-300
+    bg-base-100
+    shadow-lg
+    transition-all
+    duration-500
+    hover:-translate-y-1
+    hover:border-primary
+    hover:shadow-primary/30
+    hover:shadow-2xl
+    ">
 
-                <a href="{{ route('show.category', ['category' => 'lighting']) }}"
-                   class="card image-full h-full">
+                <a href="{{ route('show.category', ['category'=>'lighting']) }}"
+                   class="relative block h-full">
 
-                    <figure class="overflow-hidden">
+                    <figure class="h-full overflow-hidden">
 
                         <img
                             src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80"
                             alt="Lighting"
-                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            class="
+                h-full
+                w-full
+                object-cover
+                transition-transform
+                duration-700
+                group-hover:scale-110
+                ">
 
                     </figure>
 
+                    {{-- Dark overlay on hover --}}
                     <div
-                        class="card-body justify-end bg-gradient-to-t from-black/80 via-black/35 to-transparent transition-all duration-500 group-hover:from-black/90">
+                        class="
+            absolute
+            inset-0
+            bg-black/20
+            transition-all
+            duration-500
+            group-hover:bg-black/60
+            ">
+                    </div>
 
-                        <div class="space-y-4">
+                    {{-- Center Content --}}
+                    <div
+                        class="
+            absolute
+            inset-0
+            flex
+            items-center
+            justify-center
+            p-6
+            text-center
+            text-white
+            ">
 
-                <span class="badge badge-info badge-lg w-fit">
+                        <div>
+
+                <span class="badge badge-info mb-4">
                     CATEGORY
                 </span>
 
-                            <div>
+                            <h3 class="text-3xl font-bold drop-shadow-lg">
+                                Lighting
+                            </h3>
 
-                                <h3 class="text-2xl font-bold text-white">
-                                    Lighting
-                                </h3>
+                            <p class="mt-3 text-white/90 drop-shadow">
+                                LED Headlights,
+                                Tail Lights,
+                                Fog Lamps &
+                                Xenon Upgrades.
+                            </p>
 
-                                <p class="mt-2 text-white/85">
-                                    LED Headlights, Tail Lights,
-                                    Fog Lamps & Xenon Upgrades.
-                                </p>
+                            <div
+                                class="
+                    mt-5
+                    font-semibold
+                    opacity-0
+                    translate-y-3
+                    transition-all
+                    duration-500
+                    group-hover:opacity-100
+                    group-hover:translate-y-0
+                    ">
 
-                            </div>
-
-                            <div class="flex items-center gap-2 text-white font-semibold">
-
-                                Explore
-
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="size-5 transition-all duration-300 group-hover:translate-x-1"
-                                     fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor">
-
-                                    <path stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="M9 5l7 7-7 7"/>
-
-                                </svg>
+                                Explore →
 
                             </div>
 
@@ -1095,7 +1109,6 @@
                 </a>
 
             </div>
-
 
             {{-- Category 5 --}}
             <div
@@ -1721,9 +1734,7 @@
     </div>
 </section>
 
-{{--
-     Top Sellers
---}}
+{{--Top Sellers--}}
 <section class="py-16 bg-base-300">
 
     {{-- Normal width container for heading --}}
@@ -1743,7 +1754,6 @@
 
     </div>
 
-    {{-- Wider container ONLY for the carousel --}}
     <div class="max-w-[92rem] mx-auto px-4">
 
         <div class="relative px-16">
@@ -1770,111 +1780,397 @@
                     <div
                         class="hs-carousel-body absolute inset-0 flex flex-nowrap transition-transform duration-500 -mx-2 opacity-0">
 
-                        @for($i = 1; $i <= 6; $i++)
+                        {{-- Card 1 --}}
+                        <div class="hs-carousel-slide px-2">
 
-                            <div class="hs-carousel-slide px-2">
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
-                                <div
-                                    class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                                <figure class="relative h-44 overflow-hidden">
 
-                                    {{-- Image --}}
-                                    <figure class="relative h-44 overflow-hidden">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Brake Pads"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
 
-                                        <img
-                                            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                            alt="Premium Engine Oil"
-                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                    <span class="badge badge-error badge-xs absolute top-3 left-3">
+                HOT
+            </span>
 
-                                        <span class="badge badge-error badge-xs absolute top-3 left-3">
-                                            HOT
-                                        </span>
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
 
-                                        <button
-                                            class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                </figure>
 
-                                            <i
-                                                data-lucide="heart-plus"
-                                                class="size-4 text-red-500">
-                                            </i>
+                                <div class="card-body gap-3">
 
-                                        </button>
-
-                                    </figure>
-
-                                    {{-- Body --}}
-                                    <div class="card-body gap-3">
-
-                                        <div class="flex items-center gap-2">
-
-                                            <span class="badge badge-primary badge-lg">
-                                                $51
-                                            </span>
-
-                                            <span class="text-sm line-through opacity-50">
-                                                $61
-                                            </span>
-
-                                        </div>
-
-                                        <p class="text-xs uppercase tracking-widest text-base-content/50">
-                                            Castrol
-                                        </p>
-
-                                        <h2 class="card-title text-base leading-tight">
-                                            Premium Engine Oil
-                                        </h2>
-
-                                        <p class="text-sm text-base-content/70 line-clamp-2">
-                                            Synthetic 5W-30 motor oil for maximum engine protection.
-                                        </p>
-
-                                        <div class="flex items-center gap-2 text-xs">
-
-                                            <i
-                                                data-lucide="star"
-                                                class="size-3 fill-yellow-400 text-yellow-400">
-                                            </i>
-
-                                            <span>5.0</span>
-
-                                            <i
-                                                data-lucide="square-check"
-                                                class="size-3 text-success">
-                                            </i>
-
-                                            <span>24 pcs left</span>
-
-                                        </div>
-
-                                        <div class="flex items-center gap-2 text-xs">
-
-                                            <i
-                                                data-lucide="truck"
-                                                class="size-3 text-primary">
-                                            </i>
-
-                                            <span>Delivery Today</span>
-
-                                        </div>
-
-                                        <button class="btn btn-primary btn-sm mt-auto w-full">
-
-                                            <i
-                                                data-lucide="shopping-basket"
-                                                class="size-4">
-                                            </i>
-
-                                            Add to Cart
-
-                                        </button>
-
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$89</span>
+                                        <span class="text-sm line-through opacity-50">$109</span>
                                     </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Brembo
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Ceramic Brake Pads
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        High-performance ceramic brake pads for smooth and quiet braking.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.9</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>18 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Today</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
 
                                 </div>
 
                             </div>
 
-                        @endfor
+                        </div>
+
+                        {{-- Card 2 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Engine Filter"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-success badge-xs absolute top-3 left-3">
+                NEW
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$24</span>
+                                        <span class="text-sm line-through opacity-50">$31</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">Bosch</p>
+
+                                    <h2 class="card-title text-base leading-tight">Oil Filter</h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Premium oil filter providing maximum engine protection.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.8</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>31 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Tomorrow</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 3 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Performance Tires"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-warning badge-xs absolute top-3 left-3">
+                SALE
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$159</span>
+                                        <span class="text-sm line-through opacity-50">$189</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Michelin
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Performance Tires
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Ultra grip summer tires for exceptional handling and road control.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.9</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>12 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Free Shipping</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 4 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Sport Exhaust"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-error badge-xs absolute top-3 left-3">
+                HOT
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$349</span>
+                                        <span class="text-sm line-through opacity-50">$399</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Borla
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Sport Exhaust System
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Stainless steel cat-back exhaust for enhanced sound and performance.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>5.0</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>9 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Today</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 5 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Steering Wheel"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-success badge-xs absolute top-3 left-3">
+                NEW
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$129</span>
+                                        <span class="text-sm line-through opacity-50">$149</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Sparco
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Racing Steering Wheel
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Premium leather steering wheel with ergonomic grip and sporty design.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.8</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>21 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Ships in 24h</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 6 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80"
+                                        alt="LED Headlights"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-info badge-xs absolute top-3 left-3">
+                BEST
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$74</span>
+                                        <span class="text-sm line-through opacity-50">$89</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Philips
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        LED Headlight Kit
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Bright white LED bulbs with improved night visibility and long lifespan.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.9</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>36 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Tomorrow</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -1906,12 +2202,10 @@
 
 </section>
 
-
 {{--On Sale--}}
 
 <section class="py-16 bg-base-300">
 
-    {{-- Normal width container for heading --}}
     <div class="max-w-7xl mx-auto px-4">
 
         <div class="mb-10 flex items-center justify-between">
@@ -1928,7 +2222,6 @@
 
     </div>
 
-    {{-- Wider container ONLY for the carousel --}}
     <div class="max-w-[92rem] mx-auto px-4">
 
         <div class="relative px-16">
@@ -1955,111 +2248,397 @@
                     <div
                         class="hs-carousel-body absolute inset-0 flex flex-nowrap transition-transform duration-500 -mx-2 opacity-0">
 
-                        @for($i = 1; $i <= 6; $i++)
+                        {{-- Card 1 --}}
+                        <div class="hs-carousel-slide px-2">
 
-                            <div class="hs-carousel-slide px-2">
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
-                                <div
-                                    class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                                <figure class="relative h-44 overflow-hidden">
 
-                                    {{-- Image --}}
-                                    <figure class="relative h-44 overflow-hidden">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Brake Pads"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
 
-                                        <img
-                                            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                            alt="Premium Engine Oil"
-                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                    <span class="badge badge-error badge-xs absolute top-3 left-3">
+                HOT
+            </span>
 
-                                        <span class="badge badge-info badge-xs absolute top-3 left-3">
-                                            SALE
-                                        </span>
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
 
-                                        <button
-                                            class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                </figure>
 
-                                            <i
-                                                data-lucide="heart-plus"
-                                                class="size-4 text-red-500">
-                                            </i>
+                                <div class="card-body gap-3">
 
-                                        </button>
-
-                                    </figure>
-
-                                    {{-- Body --}}
-                                    <div class="card-body gap-3">
-
-                                        <div class="flex items-center gap-2">
-
-                                            <span class="badge badge-primary badge-lg">
-                                                $51
-                                            </span>
-
-                                            <span class="text-sm line-through opacity-50">
-                                                $61
-                                            </span>
-
-                                        </div>
-
-                                        <p class="text-xs uppercase tracking-widest text-base-content/50">
-                                            Castrol
-                                        </p>
-
-                                        <h2 class="card-title text-base leading-tight">
-                                            Premium Engine Oil
-                                        </h2>
-
-                                        <p class="text-sm text-base-content/70 line-clamp-2">
-                                            Synthetic 5W-30 motor oil for maximum engine protection.
-                                        </p>
-
-                                        <div class="flex items-center gap-2 text-xs">
-
-                                            <i
-                                                data-lucide="star"
-                                                class="size-3 fill-yellow-400 text-yellow-400">
-                                            </i>
-
-                                            <span>5.0</span>
-
-                                            <i
-                                                data-lucide="square-check"
-                                                class="size-3 text-success">
-                                            </i>
-
-                                            <span>24 pcs left</span>
-
-                                        </div>
-
-                                        <div class="flex items-center gap-2 text-xs">
-
-                                            <i
-                                                data-lucide="truck"
-                                                class="size-3 text-primary">
-                                            </i>
-
-                                            <span>Delivery Today</span>
-
-                                        </div>
-
-                                        <button class="btn btn-primary btn-sm mt-auto w-full">
-
-                                            <i
-                                                data-lucide="shopping-basket"
-                                                class="size-4">
-                                            </i>
-
-                                            Add to Cart
-
-                                        </button>
-
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$89</span>
+                                        <span class="text-sm line-through opacity-50">$109</span>
                                     </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Brembo
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Ceramic Brake Pads
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        High-performance ceramic brake pads for smooth and quiet braking.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.9</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>18 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Today</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
 
                                 </div>
 
                             </div>
 
-                        @endfor
+                        </div>
+
+                        {{-- Card 2 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Engine Filter"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-success badge-xs absolute top-3 left-3">
+                NEW
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$24</span>
+                                        <span class="text-sm line-through opacity-50">$31</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">Bosch</p>
+
+                                    <h2 class="card-title text-base leading-tight">Oil Filter</h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Premium oil filter providing maximum engine protection.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.8</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>31 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Tomorrow</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 3 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Performance Tires"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-warning badge-xs absolute top-3 left-3">
+                SALE
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$159</span>
+                                        <span class="text-sm line-through opacity-50">$189</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Michelin
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Performance Tires
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Ultra grip summer tires for exceptional handling and road control.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.9</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>12 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Free Shipping</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 4 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Sport Exhaust"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-error badge-xs absolute top-3 left-3">
+                HOT
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$349</span>
+                                        <span class="text-sm line-through opacity-50">$399</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Borla
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Sport Exhaust System
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Stainless steel cat-back exhaust for enhanced sound and performance.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>5.0</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>9 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Today</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 5 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+                                        alt="Steering Wheel"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-success badge-xs absolute top-3 left-3">
+                NEW
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$129</span>
+                                        <span class="text-sm line-through opacity-50">$149</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Sparco
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        Racing Steering Wheel
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Premium leather steering wheel with ergonomic grip and sporty design.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.8</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>21 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Ships in 24h</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {{-- Card 6 --}}
+                        <div class="hs-carousel-slide px-2">
+
+                            <div
+                                class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+                                <figure class="relative h-44 overflow-hidden">
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80"
+                                        alt="LED Headlights"
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                                    <span class="badge badge-info badge-xs absolute top-3 left-3">
+                BEST
+            </span>
+
+                                    <button
+                                        class="btn btn-circle btn-xs absolute top-3 right-3 bg-base-100/90 border-0 hover:bg-base-100">
+                                        <i data-lucide="heart-plus" class="size-4 text-red-500"></i>
+                                    </button>
+
+                                </figure>
+
+                                <div class="card-body gap-3">
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="badge badge-primary badge-lg">$74</span>
+                                        <span class="text-sm line-through opacity-50">$89</span>
+                                    </div>
+
+                                    <p class="text-xs uppercase tracking-widest text-base-content/50">
+                                        Philips
+                                    </p>
+
+                                    <h2 class="card-title text-base leading-tight">
+                                        LED Headlight Kit
+                                    </h2>
+
+                                    <p class="text-sm text-base-content/70 line-clamp-2">
+                                        Bright white LED bulbs with improved night visibility and long lifespan.
+                                    </p>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
+                                        <span>4.9</span>
+                                        <i data-lucide="square-check" class="size-3 text-success"></i>
+                                        <span>36 pcs left</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <i data-lucide="truck" class="size-3 text-primary"></i>
+                                        <span>Delivery Tomorrow</span>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-sm mt-auto w-full">
+                                        <i data-lucide="shopping-basket" class="size-4"></i>
+                                        Add to Cart
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
