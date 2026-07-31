@@ -6,6 +6,6 @@ class ProductController
 {
     public function show($product)
     {
-        return view('products.show', compact('product'));
+        return view('pages.products.show', compact('product'));
     }
 }

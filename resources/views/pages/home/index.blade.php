@@ -1,0 +1,15 @@
+<x-layouts.app>
+    <x-home.hero-section/>
+    <x-home.promotions/>
+    <x-home.categories-grid/>
+    <x-home.top-sellers/>
+    <x-home.new-arrivals/>
+    <x-home.on-sale/>
+    <x-home.popular-brands/>
+    <x-home.why-us/>
+    <x-home.customer-reviews-marquee/>
+    <x-home.statistics/>
+    <x-home.blog/>
+    <x-home.faq/>
+    <x-home.subscribe-to-news/>
+</x-layouts.app>
