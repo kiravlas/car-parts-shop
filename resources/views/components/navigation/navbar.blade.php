@@ -4,7 +4,11 @@
             <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts"
                  class="h-10 rounded-3xl transition-transform duration-100 active:scale-95">
         </a>
-
+        @auth
+            <span>
+        {{ auth()->user()->name }}
+    </span>
+        @endauth
     </div>
 
     <div class="navbar-center">
@@ -153,7 +157,20 @@
     </div>
 
     <div class="navbar-end flex gap-4 items-center justify-center">
-        <a class="btn btn-ghost  hidden md:inline-flex">Login</a>
+        @auth
+            <a href="{{route('profile.show')}}" class="btn btn-ghost  hidden md:inline-flex">Account</a>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <button type="submit">
+                    Logout
+                </button>
+            </form>
+        @endauth
+        @guest
+            <a href="{{route('login')}}" class="btn btn-ghost  hidden md:inline-flex">Login</a>
+        @endguest
         <a class="btn btn-ghost  hidden md:inline-flex"><i data-lucide="heart"></i></a>
         <a class="btn btn-ghost  hidden md:inline-flex"><i data-lucide="scale"></i></a>
         <a class="btn btn-ghost"><i data-lucide="shopping-cart"></i></a>
