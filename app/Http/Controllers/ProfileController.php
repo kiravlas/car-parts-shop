@@ -8,4 +8,15 @@ class ProfileController
     {
         return view('pages.profile.show');
     }
+
+    public function edit()
+    {
+        return view('pages.profile.edit');
+
+    }
+
+    public function security()
+    {
+        return view('profile.security');
+    }
 }

@@ -20,3 +20,9 @@ Route::post('/orders', [OrderController::class, 'store'])->middleware('log.order
 
 
 Route::get('/profile', [ProfileController::class, 'show'])->middleware(['auth', 'verified'])->name('profile.show');
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])
+    ->name('profile.edit');
+
+Route::get('/profile/security', [ProfileController::class, 'security'])
+    ->name('profile.security');
