@@ -6,6 +6,7 @@
     <x-home.new-arrivals/>
     <x-home.on-sale/>
     <x-home.popular-brands/>
+    <x-home.choose-by-car/>
     <x-home.why-us/>
     <x-home.customer-reviews-marquee/>
     <x-home.statistics/>

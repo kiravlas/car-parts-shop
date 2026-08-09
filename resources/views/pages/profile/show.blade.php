@@ -120,7 +120,7 @@
                             <div class="space-y-3">
 
                                 <a
-                                    {{--                                    href="{{ route('profile.edit') }}"--}}
+                                    href="{{ route('profile.edit') }}"
                                     class="btn btn-primary btn-block">
 
                                     Edit Profile
@@ -128,7 +128,7 @@
                                 </a>
 
                                 <a
-                                    {{--                                    href="{{ route('profile.security') }}"--}}
+                                    href="{{ route('profile.security') }}"
                                     class="btn btn-outline btn-block">
 
                                     Security

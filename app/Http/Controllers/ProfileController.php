@@ -17,6 +17,6 @@ class ProfileController
 
     public function security()
     {
-        return view('profile.security');
+        return view('pages.profile.security');
     }
 }

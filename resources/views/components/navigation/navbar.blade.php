@@ -1,6 +1,6 @@
 <div class="navbar bg-base/90 backdrop-blur-md shadow-sm sticky top-10 z-30">
     <div class="navbar-start">
-        <a class="cursor-pointer">
+        <a href="{{route('home.index')}}" class="cursor-pointer">
             <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts"
                  class="h-10 rounded-3xl transition-transform duration-100 active:scale-95">
         </a>
