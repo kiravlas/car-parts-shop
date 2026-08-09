@@ -16,13 +16,17 @@ Route::get('/categories/{category}',
 Route::get('/products/{product}', [ProductController::class, 'show'])
     ->name('show.product');
 
-Route::post('/orders', [OrderController::class, 'store'])->middleware('log.order.ip')->name('orders.store');
+Route::post('/orders', [OrderController::class, 'store'])->middleware('log.order.ip')
+    ->name('orders.store');
 
 
-Route::get('/profile', [ProfileController::class, 'show'])->middleware(['auth', 'verified'])->name('profile.show');
+Route::get('/profile', [ProfileController::class, 'show'])->middleware(['auth'])
+    ->name('profile.show');
 
-Route::get('/profile/edit', [ProfileController::class, 'edit'])
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware(['auth'])
     ->name('profile.edit');
 
-Route::get('/profile/security', [ProfileController::class, 'security'])
+Route::get('/profile/security', [ProfileController::class, 'security'])->middleware(['auth'])
     ->name('profile.security');
+
+
