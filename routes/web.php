@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -25,6 +26,11 @@ Route::get('/profile', [ProfileController::class, 'show'])->middleware(['auth'])
 
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware(['auth'])
     ->name('profile.edit');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/avatar/update', [AvatarController::class, 'update'])->name('avatar.update');
+    Route::delete('/avatar/delete', [AvatarController::class, 'destroy'])->name('avatar.destroy');
+});
 
 Route::get('/profile/security', [ProfileController::class, 'security'])->middleware(['auth'])
     ->name('profile.security');

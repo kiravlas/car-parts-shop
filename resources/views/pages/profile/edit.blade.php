@@ -6,302 +6,147 @@
 
             {{-- Breadcrumb --}}
             <div class="breadcrumbs mb-6 text-sm">
-
                 <ul>
-
                     <li>
-
-                        <a href="{{ route('home.index') }}">
-
-                            Home
-
-                        </a>
-
+                        <a href="{{ route('home.index') }}">Home</a>
                     </li>
-
                     <li>
-
-                        <a href="{{ route('profile.show') }}">
-
-                            My Account
-
-                        </a>
-
+                        <a href="{{ route('profile.show') }}">My Account</a>
                     </li>
-
-                    <li>
-
-                        Edit Profile
-
-                    </li>
-
+                    <li>Edit Profile</li>
                 </ul>
-
             </div>
-
 
             {{-- Heading --}}
             <div class="mb-8">
-
-                <h1 class="text-4xl font-bold">
-
-                    Edit Profile
-
-                </h1>
-
-                <p class="mt-2 text-base-content/70">
-
-                    Update your account information.
-
-                </p>
-
+                <h1 class="text-4xl font-bold">Edit Profile</h1>
+                <p class="mt-2 text-base-content/70">Update your account information and profile picture.</p>
             </div>
-
 
             <div class="grid gap-8 lg:grid-cols-3">
 
-
-                {{-- Left --}}
+                {{-- ============================================================
+                     Profile Picture
+                ============================================================= --}}
                 <div>
-
                     <div class="card border border-base-300 bg-base-100 shadow-xl">
-
                         <div class="card-body items-center text-center">
 
-                            <div class="avatar">
+                            {{-- Avatar --}}
+                            @if(auth()->user()->avatar)
+                                <div class="avatar">
+                                    <div class="w-32 rounded-full ring ring-primary ring-offset-4 ring-offset-base-100">
+                                        <img src="{{ Storage::url(auth()->user()->avatar) }}"
+                                             alt="{{ auth()->user()->name }} avatar">
+                                    </div>
+                                </div>
+                            @else
+                                <div class="avatar placeholder">
+                                    <div
+                                        class="w-32 rounded-full bg-neutral text-neutral-content ring ring-primary ring-offset-4 ring-offset-base-100 flex items-center justify-center text-3xl font-bold">
+                                        <span>{{ strtoupper(substr(auth()->user()->name, 0, 2)) }}</span>
+                                    </div>
+                                </div>
+                            @endif
 
-                                <div class="w-32 rounded-full ring ring-primary ring-offset-4 ring-offset-base-100">
 
-                                    <img
-                                        src="https://placehold.co/300"
-                                        alt="Avatar">
+                            {{-- User Information --}}
+                            <h2 class="mt-5 text-2xl font-bold">{{ auth()->user()->name }}</h2>
+                            <p class="text-base-content/60">{{ auth()->user()->email }}</p>
 
+                            {{-- Avatar Upload Form --}}
+                            <form method="POST" action="{{ route('avatar.update') }}" enctype="multipart/form-data"
+                                  class="mt-6 w-full">
+                                @csrf
+                                <div>
+                                    <label for="avatar" class="label">
+                                        <span class="label-text font-semibold">Profile Picture</span>
+                                    </label>
+                                    <input id="avatar" name="avatar" type="file"
+                                           accept="image/jpeg,image/png,image/webp"
+                                           class="file-input file-input-bordered file-input-primary w-full">
+                                    <p class="mt-2 text-left text-xs text-base-content/60">JPG, PNG or WebP. Maximum
+                                        size 2 MB.</p>
                                 </div>
 
-                            </div>
+                                <button type="submit" class="btn btn-outline btn-primary mt-5 w-full">Upload Photo
+                                </button>
+                            </form>
 
-                            <h2 class="mt-5 text-2xl font-bold">
+                            {{-- Delete Avatar Form (Only shows if avatar exists) --}}
+                            @if(auth()->user()->avatar)
+                                <form method="POST" action="{{ route('avatar.destroy') }}" class="w-full mt-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-ghost btn-error btn-sm w-full">Remove Photo
+                                    </button>
+                                </form>
+                            @endif
 
-                                {{ auth()->user()->name }}
-
-                            </h2>
-
-                            <p class="text-base-content/60">
-
-                                {{ auth()->user()->email }}
-
-                            </p>
-
-                            <button
-                                class="btn btn-outline btn-primary mt-6"
-                                disabled>
-
-                                Upload Avatar
-
-                            </button>
-
-                            <p class="mt-3 text-xs text-base-content/60">
-
-                                Coming soon
-
-                            </p>
+                            {{-- System Alerts --}}
+                            @if(session('success'))
+                                <div
+                                    class="alert alert-success mt-4 py-2 text-sm text-success-content">{{ session('success') }}</div>
+                            @endif
+                            @error('avatar')
+                            <div class="alert alert-error mt-4 py-2 text-sm text-error-content">{{ $message }}</div>
+                            @enderror
 
                         </div>
-
                     </div>
-
                 </div>
 
-
-                {{-- Form --}}
+                {{-- ============================================================
+                     Personal Information
+                ============================================================= --}}
                 <div class="lg:col-span-2">
-
                     <div class="card border border-base-300 bg-base-100 shadow-xl">
-
                         <div class="card-body">
-
-                            <h2 class="card-title">
-
-                                Personal Information
-
-                            </h2>
-
+                            <h2 class="card-title">Personal Information</h2>
                             <div class="divider"></div>
 
-                            <form
-                                method="POST"
-                                action="{{ route('user-profile-information.update') }}"
-                                class="space-y-6">
-
+                            {{-- Fortify Profile Form --}}
+                            <form method="POST" action="{{ route('user-profile-information.update') }}"
+                                  class="space-y-6">
                                 @csrf
                                 @method('PUT')
 
-
-
                                 {{-- Name --}}
                                 <div>
-
-                                    <label
-                                        for="name"
-                                        class="label">
-
-                                    <span class="label-text">
-
-                                        Full Name
-
-                                    </span>
-
+                                    <label for="name" class="label">
+                                        <span class="label-text">Full Name</span>
                                     </label>
-
-                                    <input
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        value="{{ old('name', auth()->user()->name) }}"
-                                        class="input input-bordered w-full @error('name') input-error @enderror">
-
+                                    <input id="name" name="name" type="text"
+                                           value="{{ old('name', auth()->user()->name) }}" autocomplete="name"
+                                           class="input input-bordered w-full @error('name') input-error @enderror">
                                     @error('name')
-
-                                    <p class="mt-2 text-sm text-error">
-
-                                        {{ $message }}
-
-                                    </p>
-
+                                    <p class="mt-2 text-sm text-error">{{ $message }}</p>
                                     @enderror
-
                                 </div>
-
 
                                 {{-- Email --}}
                                 <div>
-
-                                    <label
-                                        for="email"
-                                        class="label">
-
-                                    <span class="label-text">
-
-                                        Email Address
-
-                                    </span>
-
+                                    <label for="email" class="label">
+                                        <span class="label-text">Email Address</span>
                                     </label>
-
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        value="{{ old('email', auth()->user()->email) }}"
-                                        class="input input-bordered w-full @error('email') input-error @enderror">
-
+                                    <input id="email" name="email" type="email"
+                                           value="{{ old('email', auth()->user()->email) }}" autocomplete="email"
+                                           class="input input-bordered w-full @error('email') input-error @enderror">
                                     @error('email')
-
-                                    <p class="mt-2 text-sm text-error">
-
-                                        {{ $message }}
-
-                                    </p>
-
+                                    <p class="mt-2 text-sm text-error">{{ $message }}</p>
                                     @enderror
-
                                 </div>
 
-
-                                @unless(auth()->user()->hasVerifiedEmail())
-
-                                    <div class="alert alert-warning">
-
-                                    <span>
-
-                                        Your email address has not been verified.
-
-                                    </span>
-
-                                    </div>
-
-                                @endunless
-
-
-                                <div class="divider"></div>
-
-
-                                <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
-
-                                    <a
-                                        href="{{ route('profile.show') }}"
-                                        class="btn btn-ghost">
-
-                                        Cancel
-
-                                    </a>
-
-                                    <button
-                                        type="submit"
-                                        class="btn btn-primary">
-
-                                        Save Changes
-
-                                    </button>
-
+                                {{-- Submit Button --}}
+                                <div class="flex justify-end pt-4">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </div>
-
                             </form>
-
                         </div>
-
                     </div>
-
-
-                    {{-- Future Features --}}
-                    <div class="card mt-8 border border-dashed border-base-300 bg-base-100">
-
-                        <div class="card-body">
-
-                            <h2 class="card-title text-base-content/70">
-
-                                Coming Soon
-
-                            </h2>
-
-                            <ul class="space-y-2 text-base-content/60">
-
-                                <li>
-
-                                    ✓ Avatar Upload
-
-                                </li>
-
-                                <li>
-
-                                    ✓ Saved Vehicles
-
-                                </li>
-
-                                <li>
-
-                                    ✓ Shipping Addresses
-
-                                </li>
-
-                                <li>
-
-                                    ✓ Notification Preferences
-
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
                 </div>
 
             </div>
-
         </div>
-
     </div>
-
 </x-layouts.app>

@@ -8,6 +8,6 @@ class CategoryController
 {
     function show($category): View
     {
-        return view('categories.show', compact('category'));
+        return view('pages.categories.show', compact('category'));
     }
 }

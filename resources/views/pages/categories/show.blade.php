@@ -366,7 +366,7 @@
                                 <div class="card-actions mt-5">
 
                                     <a
-                                        href="#"
+                                        href="{{route('show.product', ['product' => 'premium-brake-pads'])}}"
                                         class="btn btn-primary btn-block">
 
                                         View Product
