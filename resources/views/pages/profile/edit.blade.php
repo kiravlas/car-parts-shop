@@ -55,7 +55,8 @@
                             <p class="text-base-content/60">{{ auth()->user()->email }}</p>
 
                             {{-- Avatar Upload Form --}}
-                            <form method="POST" action="{{ route('avatar.update') }}" enctype="multipart/form-data"
+                            <form method="POST" action="{{ route('profile.avatar.update') }}"
+                                  enctype="multipart/form-data"
                                   class="mt-6 w-full">
                                 @csrf
                                 <div>
@@ -75,7 +76,7 @@
 
                             {{-- Delete Avatar Form (Only shows if avatar exists) --}}
                             @if(auth()->user()->avatar)
-                                <form method="POST" action="{{ route('avatar.destroy') }}" class="w-full mt-2">
+                                <form method="POST" action="{{ route('profile.avatar.destroy') }}" class="w-full mt-2">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-ghost btn-error btn-sm w-full">Remove Photo

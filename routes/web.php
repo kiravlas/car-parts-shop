@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
@@ -21,18 +22,15 @@ Route::post('/orders', [OrderController::class, 'store'])->middleware('log.order
     ->name('orders.store');
 
 
-Route::get('/profile', [ProfileController::class, 'show'])->middleware(['auth'])
-    ->name('profile.show');
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware(['auth'])
-    ->name('profile.edit');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
-Route::middleware(['auth'])->group(function () {
-    Route::post('/avatar/update', [AvatarController::class, 'update'])->name('avatar.update');
-    Route::delete('/avatar/delete', [AvatarController::class, 'destroy'])->name('avatar.destroy');
-});
+Route::post('profile/avatar/update', [AvatarController::class, 'update'])->name('profile.avatar.update');
+Route::delete('profile/avatar/delete', [AvatarController::class, 'destroy'])->name('profile.avatar.destroy');
 
-Route::get('/profile/security', [ProfileController::class, 'security'])->middleware(['auth'])
-    ->name('profile.security');
+Route::get('/profile/security', [ProfileController::class, 'security'])->name('profile.security');
+
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
 
