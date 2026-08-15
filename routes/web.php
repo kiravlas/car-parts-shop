@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
@@ -31,6 +33,10 @@ Route::delete('profile/avatar/delete', [AvatarController::class, 'destroy'])->na
 
 Route::get('/profile/security', [ProfileController::class, 'security'])->name('profile.security');
 
-Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::middleware(['auth', 'can:access-admin-dashboard'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', AdminCategoryController::class)->except('show');
+    Route::resource('products', AdminProductController::class);
 
+});
 
