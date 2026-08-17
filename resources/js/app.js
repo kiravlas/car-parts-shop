@@ -64,3 +64,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.HSStaticMethods?.autoInit();
 });
+// Radio
+
+const radioAudio = document.getElementById('radio-audio');
+const radioToggle = document.getElementById('radio-toggle');
+const radioStatus = document.getElementById('radio-status');
+
+const radioPlayIcon = document.getElementById('radio-play-icon');
+const radioPauseIcon = document.getElementById('radio-pause-icon');
+
+if (radioAudio && radioToggle) {
+
+    radioToggle.addEventListener('click', async () => {
+
+        if (radioAudio.paused) {
+
+            try {
+
+                await radioAudio.play();
+
+                radioPlayIcon.classList.add('hidden');
+                radioPauseIcon.classList.remove('hidden');
+
+                radioStatus.textContent = 'Live';
+                radioStatus.classList.remove('badge-ghost');
+                radioStatus.classList.add('badge-success');
+
+            } catch (error) {
+
+                console.error('Unable to play radio:', error);
+
+                radioStatus.textContent = 'Error';
+                radioStatus.classList.remove('badge-ghost');
+                radioStatus.classList.add('badge-error');
+
+            }
+
+        } else {
+
+            radioAudio.pause();
+
+            radioPlayIcon.classList.remove('hidden');
+            radioPauseIcon.classList.add('hidden');
+
+            radioStatus.textContent = 'Paused';
+            radioStatus.classList.remove('badge-success');
+            radioStatus.classList.add('badge-warning');
+
+        }
+
+    });
+
+
+    radioAudio.addEventListener('waiting', () => {
+
+        radioStatus.textContent = 'Buffering...';
+
+    });
+
+
+    radioAudio.addEventListener('playing', () => {
+
+        radioStatus.textContent = 'Live';
+
+        radioStatus.classList.remove(
+            'badge-ghost',
+            'badge-warning',
+            'badge-error'
+        );
+
+        radioStatus.classList.add('badge-success');
+
+    });
+
+
+    radioAudio.addEventListener('error', () => {
+
+        radioStatus.textContent = 'Unavailable';
+
+        radioStatus.classList.remove(
+            'badge-ghost',
+            'badge-success',
+            'badge-warning'
+        );
+
+        radioStatus.classList.add('badge-error');
+
+    });
+
+}

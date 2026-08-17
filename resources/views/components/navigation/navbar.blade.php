@@ -1,14 +1,100 @@
 <div class="navbar bg-base/90 backdrop-blur-md shadow-sm sticky top-10 z-30">
-    <div class="navbar-start">
-        <a href="{{route('home.index')}}" class="cursor-pointer">
-            <img src="{{asset('images/logo.png')}}" alt="Need 4 Parts"
-                 class="h-10 rounded-3xl transition-transform duration-100 active:scale-95">
+    <div class="navbar-start gap-3">
+
+        {{-- Logo --}}
+        <a
+            href="{{ route('home.index') }}"
+            class="shrink-0 cursor-pointer"
+        >
+            <img
+                src="{{ asset('images/logo.png') }}"
+                alt="Need 4 Parts"
+                class="h-10 rounded-3xl transition-transform duration-100 active:scale-95"
+            >
         </a>
-        @auth
-            <span>
-        {{ auth()->user()->name }}
-    </span>
-        @endauth
+
+
+        {{-- Radio Player --}}
+        <div
+            id="radio-player-widget"
+            class="flex items-center"
+        >
+            <div
+                class="flex items-center gap-2 rounded-full
+                   border border-base-content/10
+                   bg-base-200/60
+                   px-1.5 py-1
+                   shadow-sm
+                   backdrop-blur"
+            >
+
+                {{-- Play / Pause --}}
+                <button
+                    type="button"
+                    id="radio-toggle"
+                    class="btn btn-primary btn-circle btn-sm"
+                    aria-label="Play radio"
+                >
+
+                    {{-- Play --}}
+                    <i
+                        id="radio-play-icon"
+                        data-lucide="play"
+                        class="size-4"
+                    ></i>
+
+                    {{-- Pause --}}
+                    <i
+                        id="radio-pause-icon"
+                        data-lucide="pause"
+                        class="hidden size-4"
+                    ></i>
+
+                </button>
+
+
+                {{-- Radio information --}}
+                <div class="hidden sm:block min-w-0 pr-2">
+
+                    <div class="flex items-center gap-2">
+
+                    <span class="text-xs font-bold whitespace-nowrap">
+                        Metalcore Radio
+                    </span>
+
+                        <span
+                            id="radio-status"
+                            class="badge badge-ghost badge-xs"
+                        >
+                        Ready
+                    </span>
+
+                    </div>
+
+                    <p class="text-[10px] text-base-content/50">
+                        laut.fm
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {{-- Audio --}}
+            <audio
+                id="radio-audio"
+                preload="none"
+            >
+                <source
+                    src="https://stream.laut.fm/metalcore"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support the audio element.
+            </audio>
+
+        </div>
+
     </div>
 
     <div class="navbar-center">
@@ -156,28 +242,180 @@
         </div>
     </div>
 
-    <div class="navbar-end flex gap-4 items-center justify-center">
+    <div class="navbar-end flex items-center gap-3">
+
         @auth
-            <a href="{{route('profile.show')}}" class="btn btn-ghost  hidden md:inline-flex">Account</a>
 
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
+            {{-- User dropdown --}}
+            <div class="dropdown dropdown-end">
 
-                <button type="submit">
-                    Logout
-                </button>
-            </form>
+                <div
+                    tabindex="0"
+                    role="button"
+                    class="btn btn-ghost gap-2"
+                >
+
+                    {{-- Avatar --}}
+                    <div class="avatar placeholder">
+
+                        @if (auth()->user()->avatar)
+
+                            <div class="w-8 rounded-full">
+                                <img
+                                    src="{{ Storage::url(auth()->user()->avatar) }}"
+                                    alt="{{ auth()->user()->name }}"
+                                >
+                            </div>
+
+                        @else
+
+                            <div
+                                class="w-8 rounded-full bg-primary text-primary-content"
+                            >
+                        <span>
+                            {{ collect(explode(' ', auth()->user()->name))
+                                ->map(fn ($name) => strtoupper(substr($name, 0, 1)))
+                                ->take(2)
+                                ->implode('') }}
+                        </span>
+                            </div>
+
+                        @endif
+
+                    </div>
+
+                    {{-- Name --}}
+                    <span class="hidden sm:inline">
+                {{ auth()->user()->name }}
+            </span>
+
+                    {{-- Chevron --}}
+                    <i
+                        data-lucide="chevron-down"
+                        class="size-4"
+                    ></i>
+
+                </div>
+
+
+                {{-- Dropdown --}}
+                <ul
+                    tabindex="0"
+                    class="menu dropdown-content
+                   bg-base-200 rounded-box z-50
+                   mt-3 w-52 p-2 shadow"
+                >
+
+                    {{-- Dashboard --}}
+                    <li>
+                        <a href="{{ url('/admin/dashboard') }}">
+                            <i data-lucide="layout-dashboard" class="size-4"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    {{-- Account --}}
+                    <li>
+                        <a href="{{ route('profile.show') }}">
+                            <i data-lucide="user" class="size-4"></i>
+                            Account
+                        </a>
+                    </li>
+
+
+                    <div class="divider my-1"></div>
+
+
+                    {{-- Logout --}}
+                    <li>
+                        <form
+                            method="POST"
+                            action="{{ route('logout') }}"
+                        >
+                            @csrf
+
+                            <button
+                                type="submit"
+                                class="text-error w-full"
+                            >
+                                <i
+                                    data-lucide="log-out"
+                                    class="size-4"
+                                ></i>
+
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+
+                </ul>
+
+            </div>
+
         @endauth
-        @guest
-            <a href="{{route('login')}}" class="btn btn-ghost  hidden md:inline-flex">Login</a>
-        @endguest
-        <a class="btn btn-ghost  hidden md:inline-flex"><i data-lucide="heart"></i></a>
-        <a class="btn btn-ghost  hidden md:inline-flex"><i data-lucide="scale"></i></a>
-        <a class="btn btn-ghost"><i data-lucide="shopping-cart"></i></a>
 
-        <button class="btn sm:hidden" popovertarget="my-megamenu-4">
+        @guest
+
+            <a
+                href="{{ route('login') }}"
+                class="btn btn-ghost btn-circle hidden md:inline-flex"
+                aria-label="Login"
+            >
+                <i data-lucide="log-in"></i>
+            </a>
+
+        @endguest
+
+
+        {{-- Wishlist --}}
+        <a
+            href="#"
+            class="btn btn-ghost btn-circle hidden md:inline-flex"
+            aria-label="Wishlist"
+        >
+            <i data-lucide="heart"></i>
+        </a>
+
+
+        {{-- Compare --}}
+        <a
+            href="#"
+            class="btn btn-ghost btn-circle hidden md:inline-flex"
+            aria-label="Compare"
+        >
+            <i data-lucide="scale"></i>
+        </a>
+
+        {{-- Search --}}
+        <a
+            href="#"
+            class="btn btn-ghost btn-circle hidden md:inline-flex"
+            aria-label="Search"
+        >
+            <i data-lucide="search"></i>
+        </a>
+
+
+        {{-- Cart --}}
+        <a
+            href="#"
+            class="btn btn-ghost btn-circle"
+            aria-label="Shopping cart"
+        >
+            <i data-lucide="shopping-cart"></i>
+        </a>
+
+
+        {{-- Mobile Menu --}}
+        <button
+            class="btn sm:hidden"
+            popovertarget="my-megamenu-4"
+        >
             Menu
         </button>
+
     </div>
+
+
 </div>
 

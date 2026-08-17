@@ -16,9 +16,14 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->integer('price');
-            $table->string('image')->nullable();
             $table->integer('stock')->default(0);
+            $table->integer('price');
+            $table->integer('sale_price')->nullable();
+
+            // Marketing Section Flags
+            $table->boolean('is_new_arrival')->default(true);
+            $table->integer('total_sales')->default(0);
+
             $table->timestamps();
         });
     }

@@ -62,8 +62,9 @@
                                 <div class="w-28 rounded-full ring ring-primary ring-offset-4 ring-offset-base-100">
 
                                     <img
-                                        src="https://placehold.co/300"
-                                        alt="Avatar">
+                                        src="{{ Storage::url(auth()->user()->avatar) }}"
+                                        alt="{{ auth()->user()->name }}"
+                                    >
 
                                 </div>
 

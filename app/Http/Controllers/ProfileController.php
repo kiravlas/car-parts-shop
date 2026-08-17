@@ -6,17 +6,17 @@ class ProfileController
 {
     public function show()
     {
-        return view('pages.profile.show');
+        return view('pages.store.profile.show');
     }
 
     public function edit()
     {
-        return view('pages.profile.edit');
+        return view('pages.store.profile.edit');
 
     }
 
     public function security()
     {
-        return view('pages.profile.security');
+        return view('pages.store.profile.security');
     }
 }
