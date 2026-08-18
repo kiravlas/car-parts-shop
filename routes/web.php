@@ -38,5 +38,10 @@ Route::middleware(['auth', 'can:access-admin-dashboard'])->prefix('admin')->name
     Route::resource('categories', AdminCategoryController::class)->except('show');
     Route::resource('products', AdminProductController::class);
 
+    Route::patch('/product-images/{image}/set-primary',
+        [AdminProductController::class, 'setPrimaryImage'])->name('product-images.set-primary');
+    Route::delete('/product-images/{image}',
+        [AdminProductController::class, 'destroyImage'])->name('product-images.destroy');
+
 });
 
