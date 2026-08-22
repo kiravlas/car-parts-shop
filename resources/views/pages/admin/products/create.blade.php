@@ -95,18 +95,24 @@
                         required
                     >
 
-                        <option value="">
+                        <option value="" disabled selected>
                             Select a category
                         </option>
 
                         @foreach ($categories as $category)
 
                             <option
-                                value="{{ $category->id }}"
-                                @selected(old('category_id') == $category->id)
+                                disabled
                             >
                                 {{ $category->name }}
                             </option>
+
+                            @foreach($category->children as $subcategories)
+                                <option
+                                    value="{{ $subcategories->id }}" @selected(old('$subcategories_id') == $subcategories->id)>
+                                    {{ $subcategories->name }}
+                                </option>
+                            @endforeach
 
                         @endforeach
 

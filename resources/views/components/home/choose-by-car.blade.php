@@ -220,11 +220,11 @@ Choose by Car
 
         {{-- Desktop: 8 columns / 12 makes each --}}
         <div
-            class="grid grid-cols-2 gap-x-6 gap-y-8
-               sm:grid-cols-3
-               md:grid-cols-4
-               lg:grid-cols-6
-               xl:grid-cols-8">
+            class="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-8 px-5
+       sm:grid-cols-3 sm:px-6
+       md:grid-cols-4 md:px-0
+       lg:grid-cols-6
+       xl:grid-cols-8">
 
             @foreach($makeColumns as $column)
 

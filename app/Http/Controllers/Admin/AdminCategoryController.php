@@ -14,7 +14,12 @@ class AdminCategoryController
      */
     public function index()
     {
-        $categories = Category::withCount('products')->latest()->paginate(4);
+        $categories = Category::query()
+            ->whereNull('parent_id')
+            ->with('descendants')
+            ->withCount('products')
+            ->orderBy('name')
+            ->paginate(10);
 
         return view('pages.admin.categories.index', compact('categories'));
     }
@@ -24,11 +29,12 @@ class AdminCategoryController
      */
     public function store(StoreCategoryRequest $request)
     {
-        ['name' => $name] = $request->validated();
+        ['name' => $name, 'parent_id' => $parentId] = $request->validated();
 
         Category::create([
             'name' => $name,
             'slug' => Str::slug($name),
+            'parent_id' => $parentId,
         ]);
 
         return redirect()
@@ -41,7 +47,12 @@ class AdminCategoryController
      */
     public function create()
     {
-        return view('pages.admin.categories.create');
+        $categories = Category::query()
+            ->whereNull('parent_id')
+            ->orderBy('name')
+            ->get();
+
+        return view('pages.admin.categories.create', compact('categories'));
     }
 
     /**

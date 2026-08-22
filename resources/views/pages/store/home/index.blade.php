@@ -2,9 +2,9 @@
     <x-home.hero-section/>
     <x-home.promotions/>
     <x-home.categories-grid/>
-    <x-home.top-sellers/>
-    <x-home.new-arrivals/>
-    <x-home.on-sale/>
+    <x-home.top-sellers :top-sale-products="$topSaleProducts"/>
+    <x-home.new-arrivals :new-arrivals-products="$newArrivalsProducts"/>
+    <x-home.on-sale :on-sale-products="$onSaleProducts"/>
     <x-home.popular-brands/>
     <x-home.choose-by-car/>
     <x-home.why-us/>

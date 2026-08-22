@@ -80,7 +80,11 @@ class AdminProductController
 
     public function create()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')
+            ->with('children')
+            ->whereNull('parent_id')
+            ->get();
+
         return view('pages.admin.products.create', compact('categories'));
     }
 

@@ -1,7 +1,4 @@
 <x-layouts.app>
-    {{--    hello from categories show page--}}
-    {{--    Category: {{$category}}--}}
-    {{--    <a href="{{route('show.product', ['product' =>'best-wheel'])}}">go to product</a>--}}
 
     <div class="min-h-screen bg-base-300 py-10">
 
@@ -366,7 +363,7 @@
                                 <div class="card-actions mt-5">
 
                                     <a
-                                        href="{{route('show.product', ['product' => 'premium-brake-pads'])}}"
+                                        href="{{route('product.show', ['product' => 'premium-brake-pads'])}}"
                                         class="btn btn-primary btn-block">
 
                                         View Product

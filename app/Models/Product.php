@@ -38,17 +38,13 @@ class Product extends Model
         });
     }
 
-    /**
-     * This is a quick helper accessor to get clean, formatted strings like "$19.99"
-     */
+
     public function getFormattedPriceAttribute(): string
     {
         return '$'.number_format($this->price, 2);
     }
 
-    /**
-     * This helper handles formatting for sale prices safely
-     */
+
     public function getFormattedSalePriceAttribute(): ?string
     {
         return $this->sale_price ? '$'.number_format($this->sale_price, 2) : null;
@@ -69,9 +65,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    /**
-     * Automatically convert price to cents when saving, and back to decimals when reading.
-     */
+
     protected function price(): Attribute
     {
         return Attribute::make(
@@ -80,9 +74,7 @@ class Product extends Model
         );
     }
 
-    /**
-     * Automatically convert sale price to cents when saving, and back to decimals when reading.
-     */
+
     protected function salePrice(): Attribute
     {
         return Attribute::make(

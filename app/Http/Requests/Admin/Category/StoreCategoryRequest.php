@@ -24,6 +24,11 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:2', 'regex:/^[\pL\s\-]+$/u', 'max:255', 'unique:categories,name'],
+            'parent_id' => [
+                'nullable',
+                'integer',
+                'exists:categories,id',
+            ],
         ];
     }
 

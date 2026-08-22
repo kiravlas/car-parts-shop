@@ -15,10 +15,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/categories/{category}',
     [CategoryController::class, 'show'])
-    ->name('show.category');
+    ->name('category.show');
 
 Route::get('/products/{product}', [ProductController::class, 'show'])
-    ->name('show.product');
+    ->name('product.show');
 
 Route::post('/orders', [OrderController::class, 'store'])->middleware('log.order.ip')
     ->name('orders.store');

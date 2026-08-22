@@ -387,13 +387,13 @@
         </a>
 
         {{-- Search --}}
-        <a
-            href="#"
+        <label
+            for="search-drawer"
             class="btn btn-ghost btn-circle hidden md:inline-flex"
-            aria-label="Search"
+            aria-label="Open search"
         >
             <i data-lucide="search"></i>
-        </a>
+        </label>
 
 
         {{-- Cart --}}
@@ -419,3 +419,444 @@
 
 </div>
 
+{{-- ========================================================= --}}
+{{-- Search Drawer                                             --}}
+{{-- ========================================================= --}}
+
+<div class="drawer drawer-end z-[99]">
+
+    <input
+        id="search-drawer"
+        type="checkbox"
+        class="drawer-toggle"
+    />
+
+    <div class="drawer-content">
+        {{-- Empty --}}
+    </div>
+
+
+    <div class="drawer-side">
+
+        {{-- Overlay --}}
+        <label
+            for="search-drawer"
+            aria-label="Close search"
+            class="drawer-overlay"
+        ></label>
+
+
+        {{-- ================================================= --}}
+        {{-- Drawer                                             --}}
+        {{-- ================================================= --}}
+
+        <div
+            class="h-full w-full max-w-md
+           overflow-y-auto
+           bg-base-100
+           border-l border-base-content/10
+           shadow-2xl"
+        >
+
+            {{-- ================================================= --}}
+            {{-- Header                                            --}}
+            {{-- ================================================= --}}
+
+            <div
+                class="flex items-center justify-between
+                       border-b border-base-content/10
+                       px-6 py-5"
+            >
+
+                <div>
+
+                    <div class="flex items-center gap-2">
+
+                        <i
+                            data-lucide="search"
+                            class="size-5 text-primary"
+                        ></i>
+
+                        <h2 class="text-lg font-bold">
+                            Find Parts
+                        </h2>
+
+                    </div>
+
+                    <p class="mt-1 text-sm text-base-content/60">
+                        Search parts for your vehicle
+                    </p>
+
+                </div>
+
+
+                {{-- Close --}}
+                <label
+                    for="search-drawer"
+                    class="btn btn-ghost btn-sm btn-circle"
+                    aria-label="Close search"
+                >
+                    <i data-lucide="x"></i>
+                </label>
+
+            </div>
+
+
+            {{-- ================================================= --}}
+            {{-- Search Content                                    --}}
+            {{-- ================================================= --}}
+
+            <div class="space-y-6 p-6">
+
+
+                {{-- ================================================= --}}
+                {{-- Vehicle Finder                                   --}}
+                {{-- ================================================= --}}
+
+                <section>
+
+                    <div class="mb-3">
+
+                        <h3 class="flex items-center gap-2 font-semibold">
+
+                            <i
+                                data-lucide="car-front"
+                                class="size-4 text-primary"
+                            ></i>
+
+                            Find by vehicle
+
+                        </h3>
+
+                        <p class="mt-1 text-xs text-base-content/60">
+                            Select your vehicle to find compatible parts.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        action="#"
+                        method="GET"
+                        class="space-y-3"
+                    >
+
+                        {{-- Make --}}
+                        <label class="form-control">
+
+                            <div class="label py-1">
+                                <span class="label-text text-sm font-medium">
+                                    Make
+                                </span>
+                            </div>
+
+                            <select
+                                name="make"
+                                class="select select-bordered w-full"
+                            >
+                                <option value="" disabled selected>
+                                    Select make
+                                </option>
+
+                                <option>BMW</option>
+                                <option>Mercedes-Benz</option>
+                                <option>Audi</option>
+                                <option>Volkswagen</option>
+                                <option>Toyota</option>
+                                <option>Honda</option>
+                                <option>Ford</option>
+                            </select>
+
+                        </label>
+
+
+                        {{-- Model --}}
+                        <label class="form-control">
+
+                            <div class="label py-1">
+                                <span class="label-text text-sm font-medium">
+                                    Model
+                                </span>
+                            </div>
+
+                            <select
+                                name="model"
+                                class="select select-bordered w-full"
+                            >
+                                <option value="" disabled selected>
+                                    Select model
+                                </option>
+
+                                <option>3 Series</option>
+                                <option>5 Series</option>
+                                <option>C-Class</option>
+                                <option>E-Class</option>
+                                <option>A4</option>
+                                <option>Golf</option>
+                            </select>
+
+                        </label>
+
+
+                        {{-- Year + Engine --}}
+                        <div class="grid grid-cols-2 gap-3">
+
+                            {{-- Year --}}
+                            <label class="form-control">
+
+                                <div class="label py-1">
+                                    <span class="label-text text-sm font-medium">
+                                        Year
+                                    </span>
+                                </div>
+
+                                <select
+                                    name="year"
+                                    class="select select-bordered w-full"
+                                >
+                                    <option value="" disabled selected>
+                                        Year
+                                    </option>
+
+                                    @for ($year = date('Y'); $year >= 1990; $year--)
+                                        <option value="{{ $year }}">
+                                            {{ $year }}
+                                        </option>
+                                    @endfor
+
+                                </select>
+
+                            </label>
+
+
+                            {{-- Engine --}}
+                            <label class="form-control">
+
+                                <div class="label py-1">
+                                    <span class="label-text text-sm font-medium">
+                                        Engine
+                                    </span>
+                                </div>
+
+                                <select
+                                    name="engine"
+                                    class="select select-bordered w-full"
+                                >
+                                    <option value="" disabled selected>
+                                        Engine
+                                    </option>
+
+                                    <option>1.4 Petrol</option>
+                                    <option>1.6 Petrol</option>
+                                    <option>2.0 Petrol</option>
+                                    <option>2.0 Diesel</option>
+                                    <option>3.0 Diesel</option>
+                                </select>
+
+                            </label>
+
+                        </div>
+
+
+                        {{-- Search button --}}
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-full"
+                        >
+                            <i
+                                data-lucide="search"
+                                class="size-4"
+                            ></i>
+
+                            Find Compatible Parts
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                {{-- ================================================= --}}
+                {{-- Divider                                           --}}
+                {{-- ================================================= --}}
+
+                <div class="divider my-0 text-xs text-base-content/40">
+                    OR SEARCH DIRECTLY
+                </div>
+
+
+                {{-- ================================================= --}}
+                {{-- VIN Search                                        --}}
+                {{-- ================================================= --}}
+
+                <section>
+
+                    <div class="mb-3">
+
+                        <h3 class="flex items-center gap-2 font-semibold">
+
+                            <i
+                                data-lucide="scan-line"
+                                class="size-4 text-primary"
+                            ></i>
+
+                            Search by VIN
+
+                        </h3>
+
+                        <p class="mt-1 text-xs text-base-content/60">
+                            Find parts specifically for your vehicle.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        action="#"
+                        method="GET"
+                    >
+
+                        <div class="join w-full">
+
+                            <input
+                                type="text"
+                                name="vin"
+                                maxlength="17"
+                                placeholder="Enter 17-character VIN"
+                                class="input input-bordered join-item w-full uppercase"
+                            >
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary join-item"
+                            >
+                                Search
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+
+                {{-- ================================================= --}}
+                {{-- Part Number                                        --}}
+                {{-- ================================================= --}}
+
+                <section>
+
+                    <div class="mb-3">
+
+                        <h3 class="flex items-center gap-2 font-semibold">
+
+                            <i
+                                data-lucide="hash"
+                                class="size-4 text-primary"
+                            ></i>
+
+                            Search by part number
+
+                        </h3>
+
+                        <p class="mt-1 text-xs text-base-content/60">
+                            Enter an OEM or manufacturer part number.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        action="#"
+                        method="GET"
+                    >
+
+                        <div class="join w-full">
+
+                            <input
+                                type="text"
+                                name="part_number"
+                                placeholder="e.g. 34116792219"
+                                class="input input-bordered join-item w-full"
+                            >
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary join-item"
+                            >
+                                Search
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+
+                {{-- ================================================= --}}
+                {{-- Product Name                                       --}}
+                {{-- ================================================= --}}
+
+                <section>
+
+                    <div class="mb-3">
+
+                        <h3 class="flex items-center gap-2 font-semibold">
+
+                            <i
+                                data-lucide="package-search"
+                                class="size-4 text-primary"
+                            ></i>
+
+                            Search by name
+
+                        </h3>
+
+                        <p class="mt-1 text-xs text-base-content/60">
+                            Search our catalog by product name.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        action="#"
+                        method="GET"
+                    >
+
+                        <label class="input input-bordered flex w-full items-center gap-2">
+
+                            <i
+                                data-lucide="search"
+                                class="size-4 text-base-content/50"
+                            ></i>
+
+                            <input
+                                type="search"
+                                name="q"
+                                placeholder="Brake pads, oil filter..."
+                                class="grow"
+                            >
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-sm"
+                            >
+                                Search
+                            </button>
+
+                        </label>
+
+                    </form>
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
