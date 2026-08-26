@@ -43,7 +43,7 @@
 
             {{-- View Store --}}
             <a
-                href="{{ route('show.product', $product) }}"
+                href="{{ route('product.show', $product->slug) }}"
                 target="_blank"
                 class="btn btn-ghost btn-sm"
             >

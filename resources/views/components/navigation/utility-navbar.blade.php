@@ -97,7 +97,7 @@
 
         {{-- Categories --}}
         <a
-            href="#"
+            href="{{route('categories.index')}}"
             class="group flex h-10 items-center gap-2
                    border-e border-neutral-content/5
                    px-4

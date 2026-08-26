@@ -108,40 +108,21 @@
             <div id="d1" popover>
                 <div class="flex max-sm:flex-col items-start">
                     <ul class="menu w-full md:menu-horizontal">
-
-                        <li>
-                            <a>Engine & Maintenance</a>
-                            <ul>
-                                <li><a>Air Filters</a></li>
-                                <li><a>Oil Filters</a></li>
-                                <li><a>Spark Plugs</a></li>
-                                <li><a>Timing Belts</a></li>
-                                <li><a>Engine Oil</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a>Brakes & Suspension</a>
-                            <ul>
-                                <li><a>Brake Pads</a></li>
-                                <li><a>Brake Discs</a></li>
-                                <li><a>Shock Absorbers</a></li>
-                                <li><a>Control Arms</a></li>
-                                <li><a>Wheel Bearings</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a>Electrical</a>
-                            <ul>
-                                <li><a>Batteries</a></li>
-                                <li><a>Alternators</a></li>
-                                <li><a>Starters</a></li>
-                                <li><a>Sensors</a></li>
-                                <li><a>Headlight Bulbs</a></li>
-                            </ul>
-                        </li>
-
+                        @foreach($categories as $category)
+                            <li>
+                                <a href="{{route('category.show', $category->slug)}}"
+                                   class="mt-2">{{$category->name}}</a>
+                                @if($category->children->isNotEmpty())
+                                    <ul class="mt-1">
+                                        @foreach($category->children as $subcategory)
+                                            <li>
+                                                <a href="{{route('category.show', $subcategory->slug)}}">{{$subcategory->name}}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
                     </ul>
 
                     <img
@@ -367,24 +348,12 @@
         @endguest
 
 
-        {{-- Wishlist --}}
-        <a
-            href="#"
-            class="btn btn-ghost btn-circle hidden md:inline-flex"
-            aria-label="Wishlist"
-        >
+        {{-- Wishlist Nav Wrapper --}}
+        <a href="{{ route('wishlist.index') }}"
+           class="btn btn-ghost btn-circle hidden md:inline-flex">
             <i data-lucide="heart"></i>
         </a>
 
-
-        {{-- Compare --}}
-        <a
-            href="#"
-            class="btn btn-ghost btn-circle hidden md:inline-flex"
-            aria-label="Compare"
-        >
-            <i data-lucide="scale"></i>
-        </a>
 
         {{-- Search --}}
         <label

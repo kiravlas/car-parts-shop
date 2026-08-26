@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Storage;
@@ -38,16 +39,18 @@ class Product extends Model
         });
     }
 
-
-    public function getFormattedPriceAttribute(): string
+    public function isLikedByAuthUser(): bool
     {
-        return '$'.number_format($this->price, 2);
+        if (!auth()->check()) {
+            return false;
+        }
+
+        return $this->likedByUsers()->where('user_id', auth()->id())->exists();
     }
 
-
-    public function getFormattedSalePriceAttribute(): ?string
+    public function likedByUsers(): BelongsToMany
     {
-        return $this->sale_price ? '$'.number_format($this->sale_price, 2) : null;
+        return $this->belongsToMany(User::class, 'product_user')->withTimestamps();
     }
 
     public function images(): HasMany

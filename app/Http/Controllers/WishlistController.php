@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Auth;
+
+class WishlistController
+{
+    public function index()
+    {
+
+        $user = auth()->user();
+        $products = $user->likedProducts()->with(['primaryImage', 'category'])->latest()->paginate(10);
+
+        return view('pages.store.wishlist.index', compact('products'));
+    }
+}
