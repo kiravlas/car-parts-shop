@@ -3,21 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
 
 class ProductLikeController
 {
-    public function toggle(Product $product)
+    public function toggle(Product $product): JsonResponse
     {
         $user = auth()->user();
 
-        $user->likedProducts()->toggle($product->id);
+        $isCurrentlyLiked = $user->likedProducts()
+            ->where('products.id', $product->id)
+            ->exists();
+
+
+        if ($isCurrentlyLiked) {
+
+            $user->likedProducts()->detach($product->id);
+
+            $isLiked = false;
+
+        } else {
+
+            $user->likedProducts()->attach($product->id);
+
+            $isLiked = true;
+
+        }
+
+
+        $likesCount = $product->likedByUsers()->count();
+
+        $totalWishlistCount = $user->likedProducts()->count();
+
 
         return response()->json([
             'success' => true,
-            'is_liked' => $product->isLikedByAuthUser(),
-            'likes_count' => $product->likedByUsers()->count(),
-            'total_wishlist_count' => auth()->user()->likedProducts()->count(),
-            'productId' => $product->id
+            'is_liked' => $isLiked,
+            'likes_count' => $likesCount,
+            'total_wishlist_count' => $totalWishlistCount,
+            'productId' => $product->id,
         ]);
     }
 }

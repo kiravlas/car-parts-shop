@@ -1,4 +1,3 @@
-//
 import 'preline'
 import "flag-icons/css/flag-icons.min.css";
 
@@ -10,16 +9,110 @@ import gsap from "gsap";
 import axios from "axios";
 
 window.axios = axios;
-window.Alpine = Alpine
+window.Alpine = Alpine;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-Alpine.plugin(intersect)
-// Animate to top button
+Alpine.plugin(intersect);
+
+
+// =========================================================
+// WISHLIST STORE
+// =========================================================
+
+Alpine.store('wishlist', {
+
+    count: 0,
+
+    productIds: [],
+
+    loading: false,
+
+
+    // -----------------------------------------------------
+    // Initialize store from Laravel
+    // -----------------------------------------------------
+
+    initData(productIds = [], count = 0) {
+
+        this.productIds = productIds.map(Number);
+
+        this.count = Number(count);
+
+    },
+
+
+    // -----------------------------------------------------
+    // Check if product is liked
+    // -----------------------------------------------------
+
+    isLiked(productId) {
+
+        return this.productIds.includes(Number(productId));
+
+    },
+
+
+    // -----------------------------------------------------
+    // Update store after toggle
+    // -----------------------------------------------------
+
+    update(productId, isLiked, totalCount) {
+
+        productId = Number(productId);
+
+        if (isLiked) {
+
+            if (!this.productIds.includes(productId)) {
+                this.productIds.push(productId);
+            }
+
+        } else {
+
+            this.productIds = this.productIds.filter(
+                id => id !== productId
+            );
+
+        }
+
+        this.count = Number(totalCount);
+
+    },
+
+
+    // -----------------------------------------------------
+    // Remove product from store
+    // -----------------------------------------------------
+
+    remove(productId, totalCount = null) {
+
+        productId = Number(productId);
+
+        this.productIds = this.productIds.filter(
+            id => id !== productId
+        );
+
+        if (totalCount !== null) {
+            this.count = Number(totalCount);
+        } else if (this.count > 0) {
+            this.count--;
+        }
+
+    }
+
+});
+
+
+// =========================================================
+// BACK TO TOP
+// =========================================================
+
 Alpine.data('backToTop', () => ({
+
     visible: false,
 
     init() {
+
         window.addEventListener('scroll', () => {
 
             if (window.scrollY > 500 && !this.visible) {
@@ -50,21 +143,28 @@ Alpine.data('backToTop', () => ({
 
             }
 
-
         });
+
     }
 
 }));
 
-Alpine.start()
+
+Alpine.start();
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
     createIcons({icons});
 
     window.HSStaticMethods?.autoInit();
+
 });
-// Radio
+
+
+// =========================================================
+// RADIO
+// =========================================================
 
 const radioAudio = document.getElementById('radio-audio');
 const radioToggle = document.getElementById('radio-toggle');
@@ -72,6 +172,7 @@ const radioStatus = document.getElementById('radio-status');
 
 const radioPlayIcon = document.getElementById('radio-play-icon');
 const radioPauseIcon = document.getElementById('radio-pause-icon');
+
 
 if (radioAudio && radioToggle) {
 

@@ -349,12 +349,34 @@
 
 
         {{-- Wishlist Nav Wrapper --}}
-        <a href="{{ route('wishlist.index') }}"
-           class="btn btn-ghost btn-circle hidden md:inline-flex">
-            <i data-lucide="heart"></i>
-        </a>
+        <div
+            x-data
+            class="relative hidden md:inline-flex"
+        >
+
+            <a
+                href="{{ route('wishlist.index') }}"
+                class="btn btn-ghost btn-circle"
+                aria-label="Wishlist"
+            >
+
+                <i
+                    data-lucide="heart"
+                ></i>
+
+            </a>
 
 
+            {{-- Wishlist Counter --}}
+            <span
+                x-show="$store.wishlist.count > 0"
+                x-text="$store.wishlist.count"
+                x-cloak
+                class="absolute -right-0.5 -top-0.5 flex size-[18px] items-center justify-center rounded-full bg-primary text-[10px] font-bold leading-none text-primary-content"
+            ></span>
+
+        </div>
+            
         {{-- Search --}}
         <label
             for="search-drawer"

@@ -16,16 +16,31 @@
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 </head>
 
-<body class="relative" id="top">
+<body
+    class="relative"
+    id="top"
+    x-data
+    x-init="$store.wishlist.initData(
+        @js(auth()->check()
+            ? auth()->user()->likedProducts()->pluck('products.id')->toArray()
+            : []
+        ),
+        {{ auth()->check()
+            ? auth()->user()->likedProducts()->count()
+            : 0
+        }}
+    )"
+>
 
 <x-navigation.header/>
 
 <main>
-    {{$slot}}
+    {{ $slot }}
 </main>
 
 <x-ui.scroll-to-top-btn/>
 
 <x-footer/>
+
 </body>
 </html>

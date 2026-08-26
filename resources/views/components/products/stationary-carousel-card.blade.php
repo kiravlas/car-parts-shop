@@ -5,7 +5,68 @@
 ])
 
 <div
-    class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    x-data="{
+        productId: {{ $product->id }},
+        isLiked: $store.wishlist.isLiked({{ $product->id }}),
+        likesCount: {{ $product->likedByUsers()->count() }},
+        loading: false,
+
+        toggleLike() {
+
+            if (this.loading) {
+                return;
+            }
+
+            this.loading = true;
+
+            axios.post('{{ route('products.toggle-like', $product) }}')
+
+                .then(response => {
+
+                    if (!response.data.success) {
+                        return;
+                    }
+
+                    this.isLiked = response.data.is_liked;
+
+                    this.likesCount = response.data.likes_count;
+
+
+                    // Update global wishlist store
+                    $store.wishlist.update(
+                        response.data.productId,
+                        response.data.is_liked,
+                        response.data.total_wishlist_count
+                    );
+
+                })
+
+                .catch(error => {
+
+                    if (error.response?.status === 401) {
+
+                        window.location.href = '{{ route('login') }}';
+
+                        return;
+                    }
+
+                    console.error(
+                        'Wishlist error:',
+                        error
+                    );
+
+                })
+
+                .finally(() => {
+
+                    this.loading = false;
+
+                });
+
+        }
+    }"
+    class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+>
 
     {{-- Product Image --}}
     <figure class="relative h-44 overflow-hidden">
@@ -25,18 +86,39 @@
 
         {{-- Wishlist Button --}}
         <button
+            @click="toggleLike()"
             type="button"
             class="btn btn-circle btn-xs absolute top-3 right-3 border-0 bg-base-100/90 hover:bg-base-100 flex items-center justify-center"
+            :disabled="loading"
         >
-            <!-- Icon 1: Solid Red Heart (Shown when liked) -->
-            <span class="flex items-center justify-center">
-                <i data-lucide="heart" class="size-4 text-red-500 fill-red-500"></i>
-            </span>
 
-            <!-- Icon 2: Gray Heart Plus (Shown when not liked) -->
-            <span class="flex items-center justify-center">
-                <i data-lucide="heart-plus" class="size-4 text-gray-400"></i>
-            </span>
+            {{-- Liked --}}
+            <span
+                x-show="isLiked"
+                class="flex items-center justify-center"
+            >
+
+        <i
+            data-lucide="heart"
+            class="size-4 text-red-500 fill-red-500"
+        ></i>
+
+    </span>
+
+
+            {{-- Not liked --}}
+            <span
+                x-show="!isLiked"
+                class="flex items-center justify-center"
+            >
+
+        <i
+            data-lucide="heart-plus"
+            class="size-4 text-gray-400"
+        ></i>
+
+    </span>
+
         </button>
 
     </figure>
@@ -90,7 +172,8 @@
 
         {{-- Dynamic Likes Count Indicator --}}
         <div class="text-xs text-base-content/60 flex items-center gap-1 mt-1">
-            2 people liked this product
+            <span x-text="likesCount" class="font-bold"></span>
+            <span x-text="likesCount === 1 ? 'person added this to wishlist' : 'people added this to wishlist'"></span>
         </div>
 
         {{-- View Product --}}
