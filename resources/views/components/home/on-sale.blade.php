@@ -10,7 +10,7 @@
                 On Sale
             </h2>
 
-            <a href="#" class="btn btn-outline btn-primary">
+            <a href="{{route('products.index', ['on_sale' => 'on'])}}" class="btn btn-outline btn-primary">
                 View All
             </a>
 

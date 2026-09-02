@@ -10,7 +10,7 @@
                 Top Sellers
             </h2>
 
-            <a href="#" class="btn btn-outline btn-primary">
+            <a href="{{route('products.index', ['sort' => 'popularity'])}}" class="btn btn-outline btn-primary">
                 View All
             </a>
 

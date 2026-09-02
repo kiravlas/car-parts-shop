@@ -1,4 +1,5 @@
 @php use Illuminate\Support\Facades\Storage; @endphp
+
 @props([
     'product',
     'badge' => null,
@@ -30,7 +31,6 @@
                     this.isLiked = response.data.is_liked;
 
                     this.likesCount = response.data.likes_count;
-
 
                     // Update global wishlist store
                     $store.wishlist.update(
@@ -65,31 +65,52 @@
 
         }
     }"
-    class="group card h-full bg-base-100 border border-base-300 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+    class="group card h-full overflow-hidden border border-base-content/10 bg-base-100 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
 >
 
-    {{-- Product Image --}}
-    <figure class="relative h-44 overflow-hidden">
+    {{-- ========================================================= --}}
+    {{-- PRODUCT IMAGE                                             --}}
+    {{-- ========================================================= --}}
+
+    <figure class="relative h-56 overflow-hidden bg-base-200">
 
         <img
-            src="{{Storage::url($product->primaryImage->image_path)}}"
-            alt="{{$product->name}}"
+            src="{{ Storage::url($product->primaryImage->image_path) }}"
+            alt="{{ $product->name }}"
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         >
 
-        {{-- Hot Badge --}}
+        {{-- Soft Image Overlay --}}
+        <div
+            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent"
+        ></div>
+
+
+        {{-- ===================================================== --}}
+        {{-- HOT BADGE                                               --}}
+        {{-- ===================================================== --}}
+
         @if($badge)
-            <span class="badge {{$badge['color']}} badge-xs absolute top-3 left-3">
-                {{$badge['text']}}
+
+            <span
+                class="badge {{ $badge['color'] }} badge-sm absolute left-4 top-4 border-0 px-3 font-semibold shadow-sm"
+            >
+                {{ $badge['text'] }}
             </span>
+
         @endif
 
-        {{-- Wishlist Button --}}
+
+        {{-- ===================================================== --}}
+        {{-- WISHLIST BUTTON                                         --}}
+        {{-- ===================================================== --}}
+
         <button
             @click="toggleLike()"
             type="button"
-            class="btn btn-circle btn-xs absolute top-3 right-3 border-0 bg-base-100/90 hover:bg-base-100 flex items-center justify-center"
+            class="btn btn-circle btn-sm absolute right-4 top-4 border border-base-content/10 bg-base-100/95 shadow-md backdrop-blur transition-all duration-200 hover:scale-105 hover:bg-base-100"
             :disabled="loading"
+            aria-label="Add to wishlist"
         >
 
             {{-- Liked --}}
@@ -98,12 +119,12 @@
                 class="flex items-center justify-center"
             >
 
-        <i
-            data-lucide="heart"
-            class="size-4 text-red-500 fill-red-500"
-        ></i>
+                <i
+                    data-lucide="heart"
+                    class="size-4 fill-red-500 text-red-500"
+                ></i>
 
-    </span>
+            </span>
 
 
             {{-- Not liked --}}
@@ -112,78 +133,149 @@
                 class="flex items-center justify-center"
             >
 
-        <i
-            data-lucide="heart-plus"
-            class="size-4 text-gray-400"
-        ></i>
+                <i
+                    data-lucide="heart-plus"
+                    class="size-4 text-base-content/50"
+                ></i>
 
-    </span>
+            </span>
 
         </button>
 
     </figure>
 
-    {{-- Product Content --}}
-    <div class="card-body gap-3">
 
-        {{-- Price --}}
+    {{-- ========================================================= --}}
+    {{-- PRODUCT CONTENT                                           --}}
+    {{-- ========================================================= --}}
+
+    <div class="card-body gap-3 p-5">
+
+
+        {{-- ===================================================== --}}
+        {{-- PRICE                                                  --}}
+        {{-- ===================================================== --}}
+
         <div class="flex items-center gap-2">
+
             @if($product->sale_price)
-                <span class="badge badge-primary badge-lg">
+
+                <span class="badge badge-primary badge-lg px-3 font-bold">
                     {{ config('shop.currency_symbol') }}{{ $product->sale_price }}
                 </span>
-                <span class="text-sm line-through opacity-50">
+
+                <span class="text-sm text-base-content/40 line-through">
                     {{ config('shop.currency_symbol') }}{{ $product->price }}
                 </span>
+
             @else
-                <span class="badge badge-primary badge-lg">
+
+                <span class="badge badge-primary badge-lg px-3 font-bold">
                     {{ config('shop.currency_symbol') }}{{ $product->price }}
                 </span>
+
             @endif
+
         </div>
 
-        <p class="text-xs uppercase tracking-widest text-base-content/50">
-            Brembo
-        </p>
+        {{-- ===================================================== --}}
+        {{-- PRODUCT NAME                                            --}}
+        {{-- ===================================================== --}}
 
-        {{-- Product Name --}}
-        <h2 class="card-title text-base leading-tight">
-            {{$product->name}}
+        <h2
+            class="card-title line-clamp-2 min-h-12 text-base font-bold leading-snug transition-colors duration-200 group-hover:text-primary"
+        >
+            {{ $product->name }}
         </h2>
 
-        {{-- Description --}}
-        <p class="line-clamp-2 text-sm text-base-content/70">
-            High-performance ceramic brake pads for smooth and quiet braking.
-        </p>
 
-        {{-- Rating / Stock --}}
-        <div class="flex items-center gap-2 text-xs">
-            <i data-lucide="star" class="size-3 fill-yellow-400 text-yellow-400"></i>
-            <span>4.9</span>
-            <i data-lucide="square-check" class="size-3 text-success"></i>
-            <span>{{$product->stock}} pcs left</span>
+        {{-- ===================================================== --}}
+        {{-- RATING / STOCK                                          --}}
+        {{-- ===================================================== --}}
+
+        <div
+            class="flex items-center gap-3 border-t border-base-content/10 pt-3 text-xs text-base-content/60"
+        >
+
+            <div class="flex items-center gap-1">
+
+                <i
+                    data-lucide="star"
+                    class="size-3.5 fill-yellow-400 text-yellow-400"
+                ></i>
+
+                <span class="font-semibold text-base-content/70">
+                    4.9
+                </span>
+
+            </div>
+
+
+            <span class="h-3 w-px bg-base-content/10"></span>
+
+
+            <div class="flex items-center gap-1">
+
+                <i
+                    data-lucide="square-check"
+                    class="size-3.5 text-success"
+                ></i>
+
+                <span>
+                    {{ $product->stock }} pcs left
+                </span>
+
+            </div>
+
         </div>
 
-        {{-- Delivery --}}
-        <div class="flex items-center gap-2 text-xs">
-            <i data-lucide="truck" class="size-3 text-primary"></i>
-            <span>Delivery Today</span>
+
+        {{-- ===================================================== --}}
+        {{-- WISHLIST COUNT                                          --}}
+        {{-- ===================================================== --}}
+
+        <div
+            class="flex items-center gap-1.5 text-xs text-base-content/50"
+        >
+
+            <i
+                data-lucide="heart"
+                class="size-3.5"
+                :class="isLiked ? 'fill-red-500 text-red-500' : ''"
+            ></i>
+
+            <span
+                x-text="likesCount"
+                class="font-bold text-base-content/70"
+            ></span>
+
+            <span
+                x-text="likesCount === 1
+                    ? 'person added this to wishlist'
+                    : 'people added this to wishlist'"
+            ></span>
+
         </div>
 
-        {{-- Dynamic Likes Count Indicator --}}
-        <div class="text-xs text-base-content/60 flex items-center gap-1 mt-1">
-            <span x-text="likesCount" class="font-bold"></span>
-            <span x-text="likesCount === 1 ? 'person added this to wishlist' : 'people added this to wishlist'"></span>
-        </div>
 
-        {{-- View Product --}}
+        {{-- ===================================================== --}}
+        {{-- VIEW PRODUCT                                            --}}
+        {{-- ===================================================== --}}
+
         <a
             href="{{ route('product.show', $product->slug) }}"
-            class="btn btn-primary btn-sm mt-auto w-full inline-flex items-center justify-center gap-2"
+            class="btn btn-primary btn-sm mt-2 w-full gap-2 shadow-sm transition-all duration-200 hover:shadow-md"
         >
-            <i data-lucide="shopping-basket" class="size-4"></i>
+
+            <i
+                data-lucide="shopping-basket"
+                class="size-4"
+            ></i>
+
             View Product
+
         </a>
 
     </div>
+
 </div>

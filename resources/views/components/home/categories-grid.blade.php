@@ -35,7 +35,7 @@
             >
 
                 <a
-                    href="{{ route('category.show', ['category' => 'brake-system']) }}"
+                    href="{{ route('products.index', ['category' => 'brake-system']) }}"
                     class="relative block h-full"
                 >
 
@@ -152,7 +152,7 @@
             >
 
                 <a
-                    href="{{ route('category.show', ['category' => 'engine-and-drivetrain']) }}"
+                    href="{{ route('products.index', ['category' => 'engine-and-drivetrain']) }}"
                     class="block h-full"
                 >
 
@@ -249,7 +249,7 @@
             >
 
                 <a
-                    href="{{ route('category.show', ['category' => 'wheels-and-tyres']) }}"
+                    href="{{ route('products.index', ['category' => 'wheels-and-tyres']) }}"
                     class="relative block h-full"
                 >
 
@@ -376,7 +376,7 @@
             >
 
                 <a
-                    href="{{ route('category.show', ['category' => 'electrical-and-ignition']) }}"
+                    href="{{ route('products.index', ['category' => 'electrical-and-ignition']) }}"
                     class="relative block h-full"
                 >
 
@@ -498,7 +498,7 @@
             >
 
                 <a
-                    href="{{ route('category.show', ['category' => 'body-and-interior']) }}"
+                    href="{{ route('products.index', ['category' => 'body-and-interior']) }}"
                     class="block h-full"
                 >
 
@@ -593,7 +593,7 @@
             >
 
                 <a
-                    href="{{ route('category.show', ['category' => 'fuel-and-exhaust']) }}"
+                    href="{{ route('products.index', ['category' => 'fuel-and-exhaust']) }}"
                     class="block h-full"
                 >
 
@@ -747,7 +747,7 @@
 
 
                             <a
-                                href="#"
+                                href="{{route('categories.index')}}"
                                 class="
                             btn
                             btn-primary

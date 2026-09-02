@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Filters\ProductFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -68,6 +70,15 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function scopeFilter(Builder $query, ProductFilter $filter): Builder
+    {
+        return $filter->apply($query);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     protected function price(): Attribute
     {
@@ -76,7 +87,6 @@ class Product extends Model
             set: fn(float|int $value) => (int) round($value * 100),
         );
     }
-
 
     protected function salePrice(): Attribute
     {

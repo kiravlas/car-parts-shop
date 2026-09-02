@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Store;
 
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
@@ -26,7 +26,7 @@ class HomeController
         $newArrivalsProducts = Product::query()
             ->where('is_new_arrival', true)
             ->orderByDesc('created_at')
-            ->with('primaryImage')
+            ->with('primaryImage', 'category')
             ->take(10)
             ->get();
 

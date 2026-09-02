@@ -106,29 +106,52 @@
             <button popovertarget="d1">Shop</button>
 
             <div id="d1" popover>
-                <div class="flex max-sm:flex-col items-start">
-                    <ul class="menu w-full md:menu-horizontal">
+                <div class="flex max-sm:flex-col items-start gap-6 p-4">
+
+                    <ul class="menu w-full md:menu-horizontal md:gap-2">
+
                         @foreach($categories as $category)
+
                             <li>
-                                <a href="{{route('category.show', $category->slug)}}"
-                                   class="mt-2">{{$category->name}}</a>
+                                <a
+                                    href="{{ route('products.index', ['category' => $category->slug]) }}"
+                                    class="font-semibold hover:bg-base-200 hover:text-primary"
+                                >
+                                    {{ $category->name }}
+                                </a>
+
                                 @if($category->children->isNotEmpty())
+
                                     <ul class="mt-1">
+
                                         @foreach($category->children as $subcategory)
+
                                             <li>
-                                                <a href="{{route('category.show', $subcategory->slug)}}">{{$subcategory->name}}</a>
+                                                <a
+                                                    href="{{ route('products.index', ['category' => $subcategory->slug]) }}"
+                                                    class="text-sm text-base-content/60 hover:bg-base-200 hover:text-primary"
+                                                >
+                                                    {{ $subcategory->name }}
+                                                </a>
                                             </li>
+
                                         @endforeach
+
                                     </ul>
+
                                 @endif
                             </li>
+
                         @endforeach
+
                     </ul>
 
                     <img
-                        src="{{asset('images/nav-shop.png')}}"
-                        class="md:max-w-sm max-md:hidden"
-                        alt="Automotive Parts">
+                        src="{{ asset('images/nav-shop.png') }}"
+                        class="md:max-w-sm max-md:hidden rounded-xl"
+                        alt="Automotive Parts"
+                    >
+
                 </div>
             </div>
 
@@ -376,7 +399,7 @@
             ></span>
 
         </div>
-            
+
         {{-- Search --}}
         <label
             for="search-drawer"

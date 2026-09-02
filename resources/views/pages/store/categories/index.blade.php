@@ -14,6 +14,35 @@
 
             <div class="mb-8 lg:mb-10">
 
+                {{-- ========================================================= --}}
+                {{-- BREADCRUMBS                                               --}}
+                {{-- ========================================================= --}}
+
+                <div class="breadcrumbs mb-6 text-sm text-base-content/60">
+
+                    <ul>
+
+                        <li>
+                            <a
+                                href="{{ route('home.index') }}"
+                                class="transition-colors hover:text-primary"
+                            >
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('categories.index')}}"
+                               class="text-base-content"
+                            >
+                                Categories
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
                 <div class="mb-3 flex items-center gap-2 text-primary">
 
                     <div class="flex size-8 items-center justify-center rounded-lg bg-primary/10">
@@ -80,7 +109,7 @@
                 @foreach($categories as $category)
 
                     <a
-                        href="{{ route('category.show', $category) }}"
+                        href="{{ route('products.index', ['category' => $category->slug]) }}"
                         class="group relative flex min-h-[190px] flex-col justify-between overflow-hidden rounded-3xl border border-base-content/10 bg-base-100 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
                     >
 

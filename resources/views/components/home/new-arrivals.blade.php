@@ -9,7 +9,7 @@
                 New Arrivals
             </h2>
 
-            <a href="#"
+            <a href="{{route('products.index', ['is_new_arrival' => 'on'])}}"
                class="btn btn-primary btn-outline">
                 View All
             </a>

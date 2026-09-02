@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Store\Orders;
 
 use App\Http\Requests\OrderCreateRequest;
 use Illuminate\Support\Facades\Storage;

@@ -19,7 +19,7 @@
 
         {{-- On Sale --}}
         <a
-            href="#"
+            href="{{route('products.index', ['on_sale' => 'on'])}}"
             class="group flex h-10 items-center gap-2
                    border-e border-neutral-content/5
                    px-4
@@ -45,7 +45,7 @@
 
         {{-- Top Sellers --}}
         <a
-            href="#"
+            href="{{route('products.index', ['sort' => 'popularity'])}}"
             class="group flex h-10 items-center gap-2
                    border-e border-neutral-content/5
                    px-4
@@ -71,7 +71,7 @@
 
         {{-- New Arrivals --}}
         <a
-            href="#"
+            href="{{route('products.index', ['is_new_arrival' => 'on'])}}"
             class="group flex h-10 items-center gap-2
                    border-e border-neutral-content/5
                    px-4
