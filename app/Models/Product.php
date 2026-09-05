@@ -80,6 +80,15 @@ class Product extends Model
         return 'slug';
     }
 
+    public function isAlreadyInCart(): bool
+    {
+        if (!auth()->check()) {
+            return false;
+        }
+
+        return $this->hasMany(CartItem::class)->where('user_id', auth()->id())->exists();
+    }
+
     protected function price(): Attribute
     {
         return Attribute::make(

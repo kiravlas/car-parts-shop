@@ -29,7 +29,17 @@
             ? auth()->user()->likedProducts()->count()
             : 0
         }}
-    )"
+    );
+
+     $store.cart.initData(
+            {{ auth()->check()
+                ? auth()->user()->cartItems()->sum('quantity')
+                : 0
+            }}
+        );
+
+
+    "
 >
 
 <x-navigation.header/>

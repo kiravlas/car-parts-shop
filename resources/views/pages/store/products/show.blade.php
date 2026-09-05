@@ -41,9 +41,90 @@
 
             </div>
 
+            @session('success')
+            <div role="alert" class="alert alert-success mb-4">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                    />
+                </svg>
+
+                <span>{{ session('success') }}</span>
+            </div>
+
+            @endsession
 
             {{-- Product --}}
-            <div class="grid gap-10 lg:grid-cols-2">
+            <div
+                x-data="{
+        productId: {{ $product->id }},
+        isLiked: $store.wishlist.isLiked({{ $product->id }}),
+        likesCount: {{ $product->likedByUsers()->count() }},
+        loading: false,
+
+        toggleLike() {
+
+            if (this.loading) {
+                return;
+            }
+
+            this.loading = true;
+
+            axios.post('{{ route('products.toggle-like', $product) }}')
+
+                .then(response => {
+
+                    if (!response.data.success) {
+                        return;
+                    }
+
+                    this.isLiked = response.data.is_liked;
+
+                    this.likesCount = response.data.likes_count;
+
+                    // Update global wishlist store
+                    $store.wishlist.update(
+                        response.data.productId,
+                        response.data.is_liked,
+                        response.data.total_wishlist_count
+                    );
+
+                })
+
+                .catch(error => {
+
+                    if (error.response?.status === 401) {
+
+                        window.location.href = '{{ route('login') }}';
+
+                        return;
+                    }
+
+                    console.error(
+                        'Wishlist error:',
+                        error
+                    );
+
+                })
+
+                .finally(() => {
+
+                    this.loading = false;
+
+                });
+
+        }
+    }"
+                class="grid gap-10 lg:grid-cols-2">
 
 
                 {{-- Gallery --}}
@@ -231,46 +312,87 @@
                             </div>
 
 
-                            {{-- Quantity --}}
-                            <div class="mt-6">
-
-
-                                <label class="label">
-
-                                    Quantity
-
-                                </label>
-
-
-                                <input
-                                    type="number"
-                                    value="1"
-                                    min="1"
-                                    class="input input-bordered w-32">
-
-
-                            </div>
-
-
                             {{-- Buttons --}}
                             <div class="mt-6 flex flex-col gap-3">
 
+                                @if($product->isAlreadyInCart())
+                                    {{-- A clean, minimalist layout state that won't clash with your session popups --}}
+                                    <div class="mt-6 flex flex-col gap-3">
+                                        <div class="text-sm font-medium text-success flex items-center gap-1.5 px-1">
+                                            <span class="badge badge-success badge-sm text-white">✓</span>
+                                            This item is in your cart
+                                        </div>
+
+                                        <a href="{{ route('cart.index') }}" class="btn btn-primary btn-lg w-full">
+                                            View Your Cart
+                                        </a>
+                                    </div>
+                                @else
+                                    {{-- Display the standard selection inputs and submission form if the product is not in the cart --}}
+                                    <form action="{{ route('cart.store') }}" method="post" class="mt-6">
+                                        @csrf
+
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                                        {{-- Quantity Selection Group --}}
+                                        <div class="mb-4">
+                                            <label class="label">
+                                                <span class="label-text font-semibold">Quantity</span>
+                                            </label>
+
+                                            <input
+                                                type="number"
+                                                name="quantity"
+                                                value="1"
+                                                min="1"
+                                                max="{{ $product->stock }}"
+                                                class="input input-bordered w-32 bg-base-200 text-base-content"
+                                            >
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary btn-lg w-full {{ $product->stock === 0 ? 'btn-disabled cursor-not-allowed' : '' }}"
+                                            {{ $product->stock === 0 ? 'disabled' : '' }}
+                                        >
+                                            Add To Cart
+                                        </button>
+                                    </form>
+                                @endif
+
 
                                 <button
-                                    class="btn btn-primary btn-lg"
-                                    {{ $product->stock === 0 ? 'disabled' : '' }}
+                                    type="button"
+                                    @click="toggleLike()"
+                                    :disabled="loading"
+                                    class="btn btn-outline btn-lg w-full gap-2"
                                 >
+    <span
+        x-show="loading"
+        class="loading loading-spinner loading-sm"
+    ></span>
 
-                                    Add To Cart
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="size-4 transition-colors duration-200"
+                                        :class="isLiked
+            ? 'fill-red-500 text-red-500'
+            : 'fill-none text-base-content/50'"
+                                    >
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"
+                                        />
+                                    </svg>
 
-                                </button>
-
-
-                                <button
-                                    class="btn btn-outline btn-lg ">
-
-                                    ♡ Add To Wishlist
-
+                                    <span
+                                        x-text="isLiked ? 'Remove From Wishlist' : 'Add To Wishlist'"
+                                    ></span>
                                 </button>
 
 

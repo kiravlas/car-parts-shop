@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Store\Orders;
+namespace App\Http\Controllers\Store\Orders\Assignment;
 
-use App\Http\Requests\OrderCreateRequest;
+use App\Http\Requests\Store\Assignment\AssignmentOrderCreateRequest;
 use Illuminate\Support\Facades\Storage;
 
-class OrderController
+class AssignmentOrderController
 {
-    public function store(OrderCreateRequest $request)
+    public function store(AssignmentOrderCreateRequest $request)
     {
         ['email' => $email, 'product_name' => $productName] = $request->validated();
 

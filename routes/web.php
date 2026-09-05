@@ -3,9 +3,9 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Store\Cart\CartController;
 use App\Http\Controllers\Store\Categories\CategoryController;
 use App\Http\Controllers\Store\HomeController;
-use App\Http\Controllers\Store\Orders\OrderController;
 use App\Http\Controllers\Store\Products\ProductController;
 use App\Http\Controllers\Store\Products\ProductLikeController;
 use App\Http\Controllers\Store\Products\WishlistController;
@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-
-Route::get('/categories/{category}',
-    [CategoryController::class, 'show'])
-    ->name('category.show');
 
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');
@@ -33,9 +29,15 @@ Route::get('/wishlist', [WishlistController::class, 'index'])
 Route::post('/products/{product}/toggle-like', [ProductLikeController::class, 'toggle'])
     ->name('products.toggle-like');
 
-Route::post('/orders', [OrderController::class, 'store'])->middleware('log.order.ip')
-    ->name('orders.store');
+//Route for assignment email request
+//Route::post('assignment/orders', [AssignmentOrderController::class, 'store'])->middleware('log.order.ip')
+//    ->name('assignment.orders.store');
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+
+Route::put('/cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 

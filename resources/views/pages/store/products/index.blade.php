@@ -8,7 +8,6 @@
 
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-
             {{-- ========================================================= --}}
             {{-- BREADCRUMBS                                               --}}
             {{-- ========================================================= --}}
@@ -27,14 +26,15 @@
                     </li>
 
                     <li>
-                        <a href="{{route('categories.index')}}"
-                           class="transition-colors hover:text-primary"
+                        <a
+                            href="{{ route('categories.index') }}"
+                            class="transition-colors hover:text-primary"
                         >
                             Categories
                         </a>
                     </li>
 
-                    <li class="text-base-content">
+                    <li class="text-base-content ">
                         Products
                     </li>
 
@@ -101,7 +101,7 @@
                 {{-- FILTER SIDEBAR                                            --}}
                 {{-- ========================================================= --}}
 
-                <aside class=" lg:top-24 lg:self-start">
+                <aside class="lg:top-24 lg:self-start">
 
                     <div class="card border border-base-content/10 bg-base-100 shadow-xl">
 
@@ -176,7 +176,7 @@
                                             name="search"
                                             placeholder="Search products..."
                                             value="{{ request('search') }}"
-                                            class="grow min-w-0"
+                                            class="min-w-0 grow"
                                         >
 
                                     </label>
@@ -198,25 +198,37 @@
 
                                     </label>
 
-                                    <select name="category"
-                                            class="select select-bordered w-full bg-base-200 focus:border-primary">
-                                        <option value="">All Categories</option>
+                                    <select
+                                        name="category"
+                                        class="select select-bordered w-full bg-base-200 focus:border-primary"
+                                    >
+
+                                        <option value="">
+                                            All Categories
+                                        </option>
 
                                         @foreach ($categories as $category)
-                                            <!-- Updated value to slug -->
+
                                             <option
-                                                value="{{ $category->slug }}" @selected(request('category') == $category->slug)>
+                                                value="{{ $category->slug }}"
+                                                @selected(request('category') == $category->slug)
+                                            >
                                                 {{ $category->name }}
                                             </option>
 
                                             @foreach ($category->children as $subcategory)
-                                                <!-- Updated value to slug -->
+
                                                 <option
-                                                    value="{{ $subcategory->slug }}" @selected(request('category') == $subcategory->slug)>
+                                                    value="{{ $subcategory->slug }}"
+                                                    @selected(request('category') == $subcategory->slug)
+                                                >
                                                     — {{ $subcategory->name }}
                                                 </option>
+
                                             @endforeach
+
                                         @endforeach
+
                                     </select>
 
                                 </div>
@@ -287,44 +299,61 @@
 
                                 </div>
 
+
                                 {{-- ================================================= --}}
                                 {{-- IS NEW ARRIVAL                                    --}}
                                 {{-- ================================================= --}}
 
                                 <label class="label">
-                                    <input type="checkbox"
-                                           name="is_new_arrival"
-                                           {{ request('is_new_arrival') ? 'checked' : '' }}
-                                           onchange="this.form.submit()"
-                                           class="checkbox checkbox-primary"/>
+
+                                    <input
+                                        type="checkbox"
+                                        name="is_new_arrival"
+                                        {{ request('is_new_arrival') ? 'checked' : '' }}
+                                        onchange="this.form.submit()"
+                                        class="checkbox checkbox-primary"
+                                    >
+
                                     New Arrivals Only
+
                                 </label>
 
 
                                 {{-- ================================================= --}}
-                                {{-- ON SALE                                    --}}
+                                {{-- ON SALE                                           --}}
                                 {{-- ================================================= --}}
 
                                 <label class="label">
-                                    <input type="checkbox"
-                                           name="on_sale"
-                                           {{ request('on_sale') ? 'checked' : '' }}
-                                           onchange="this.form.submit()"
-                                           class="checkbox checkbox-primary"/>
+
+                                    <input
+                                        type="checkbox"
+                                        name="on_sale"
+                                        {{ request('on_sale') ? 'checked' : '' }}
+                                        onchange="this.form.submit()"
+                                        class="checkbox checkbox-primary"
+                                    >
+
                                     On Sale Products Only
+
                                 </label>
 
+
                                 {{-- ================================================= --}}
-                                {{-- IN STOCK                                    --}}
+                                {{-- IN STOCK                                           --}}
                                 {{-- ================================================= --}}
 
                                 <label class="label">
-                                    <input type="checkbox"
-                                           name="in_stock"
-                                           {{ request('in_stock') ? 'checked' : '' }}
-                                           onchange="this.form.submit()"
-                                           class="checkbox checkbox-primary"/>
+
+                                    <input
+                                        type="checkbox"
+                                        name="in_stock"
+                                        {{ request('in_stock') ? 'checked' : '' }}
+                                        onchange="this.form.submit()"
+                                        class="checkbox checkbox-primary"
+                                    >
+
                                     In Stock Only
+
                                 </label>
 
 
@@ -405,7 +434,7 @@
                                                     max="50000"
                                                     step="1"
                                                     placeholder="0"
-                                                    class="grow min-w-0"
+                                                    class="min-w-0 grow"
                                                 >
 
                                             </label>
@@ -441,7 +470,7 @@
                                                     max="50000"
                                                     step="1"
                                                     placeholder="50,000"
-                                                    class="grow min-w-0"
+                                                    class="min-w-0 grow"
                                                 >
 
                                             </label>
@@ -505,6 +534,8 @@
                                         request('min_price') ||
                                         request('max_price') ||
                                         request('is_new_arrival') ||
+                                        request('on_sale') ||
+                                        request('in_stock') ||
                                         (request('sort') && request('sort') !== 'latest')
                                     )
 
@@ -550,6 +581,9 @@
                         request('category') ||
                         request('min_price') ||
                         request('max_price') ||
+                        request('is_new_arrival') ||
+                        request('on_sale') ||
+                        request('in_stock') ||
                         (request('sort') && request('sort') !== 'latest')
                     )
 
@@ -580,9 +614,15 @@
 
                                 @php
                                     $selectedCategory = $categories->firstWhere(
-                                        'id',
+                                        'slug',
                                         request('category')
                                     );
+
+                                    if (!$selectedCategory) {
+                                        $selectedCategory = $categories
+                                            ->flatMap(fn ($category) => $category->children)
+                                            ->firstWhere('slug', request('category'));
+                                    }
                                 @endphp
 
                                 @if($selectedCategory)
@@ -660,6 +700,10 @@
                                             Name: Z-A
                                             @break
 
+                                        @case('popularity')
+                                            Most Popular
+                                            @break
+
                                     @endswitch
 
                                 </div>
@@ -669,45 +713,6 @@
                         </div>
 
                     @endif
-
-
-                    {{-- ========================================================= --}}
-                    {{-- PRODUCTS HEADER                                             --}}
-                    {{-- ========================================================= --}}
-
-                    <div class="mb-5 flex items-center justify-between">
-
-                        <div>
-
-                            <h2 class="text-xl font-bold">
-                                Products
-                            </h2>
-
-                            <p class="text-sm text-base-content/50">
-
-                                Showing
-
-                                <span class="font-semibold text-base-content">
-                                    {{ $products->firstItem() ?? 0 }}
-                                </span>
-
-                                –
-
-                                <span class="font-semibold text-base-content">
-                                    {{ $products->lastItem() ?? 0 }}
-                                </span>
-
-                                of
-
-                                <span class="font-semibold text-base-content">
-                                    {{ $products->total() }}
-                                </span>
-
-                            </p>
-
-                        </div>
-
-                    </div>
 
 
                     {{-- ========================================================= --}}
@@ -726,7 +731,9 @@
                                 x-data="{
                                     productId: {{ $product->id }},
 
-                                    isLiked: $store.wishlist.isLiked({{ $product->id }}),
+                                    get isLiked() {
+                                        return $store.wishlist.isLiked(this.productId);
+                                    },
 
                                     likesCount: {{ $product->likedByUsers()->count() }},
 
@@ -748,17 +755,25 @@
                                                     return;
                                                 }
 
-                                                // Update this card
-                                                this.isLiked = response.data.is_liked;
-
-                                                this.likesCount = response.data.likes_count;
-
-                                                // Update global wishlist store
+                                                /*
+                                                 * The global wishlist store is the
+                                                 * single source of truth.
+                                                 *
+                                                 * We do NOT set this.isLiked because
+                                                 * isLiked is a getter.
+                                                 */
                                                 $store.wishlist.update(
                                                     response.data.productId,
                                                     response.data.is_liked,
                                                     response.data.total_wishlist_count
                                                 );
+
+                                                /*
+                                                 * Update the number of likes
+                                                 * for this specific product.
+                                                 */
+                                                this.likesCount =
+                                                    response.data.likes_count;
 
                                             })
 
@@ -766,7 +781,8 @@
 
                                                 if (error.response?.status === 401) {
 
-                                                    window.location.href = '{{ route('login') }}';
+                                                    window.location.href =
+                                                        '{{ route('login') }}';
 
                                                     return;
                                                 }
@@ -853,35 +869,29 @@
                                         @click.stop="toggleLike()"
                                         :disabled="loading"
                                         class="btn btn-circle btn-sm absolute right-3 top-3 border border-base-content/10 bg-base-100/95 shadow-sm backdrop-blur transition-all duration-200 hover:scale-105 hover:bg-base-100"
-                                        aria-label="Add to wishlist"
+                                        :aria-label="isLiked ? 'Remove from wishlist' : 'Add to wishlist'"
                                     >
 
-                                        {{-- Liked --}}
-                                        <span
-                                            x-show="isLiked"
-                                            x-cloak
-                                            class="flex items-center justify-center"
+                                        {{-- Regular Heart --}}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="size-4 transition-all duration-200"
+                                            :class="isLiked
+                                                ? 'fill-red-500 text-red-500'
+                                                : 'fill-none text-base-content/60'"
                                         >
-        <i
-            data-lucide="heart"
-            class="size-4 fill-red-500 text-red-500"
-        ></i>
-    </span>
-
-                                        {{-- Not liked --}}
-                                        <span
-                                            x-show="!isLiked"
-                                            x-cloak
-                                            class="flex items-center justify-center"
-                                        >
-        <i
-            data-lucide="heart-plus"
-            class="size-4 text-base-content/60"
-        ></i>
-    </span>
+                                            <path
+                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"
+                                            />
+                                        </svg>
 
                                     </button>
-
 
                                 </figure>
 
@@ -975,6 +985,7 @@
                                     {{-- Stock / Likes --}}
                                     <div class="mt-1 flex items-center justify-between gap-3">
 
+
                                         {{-- Stock --}}
                                         <div class="flex items-center gap-1.5 text-xs text-base-content/50">
 
@@ -995,11 +1006,24 @@
                                             class="flex items-center gap-1 text-xs text-base-content/50"
                                         >
 
-                                            <i
-                                                data-lucide="heart"
-                                                class="size-3.5"
-                                                :class="isLiked ? 'fill-red-500 text-red-500' : ''"
-                                            ></i>
+                                            {{-- Regular Heart --}}
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="size-3.5 transition-all duration-200"
+                                                :class="isLiked
+                                                    ? 'fill-red-500 text-red-500'
+                                                    : 'fill-none text-base-content/50'"
+                                            >
+                                                <path
+                                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"
+                                                />
+                                            </svg>
 
                                             <span
                                                 x-text="likesCount"
