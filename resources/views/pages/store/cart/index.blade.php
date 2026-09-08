@@ -39,7 +39,11 @@
             {{-- ========================================================= --}}
             {{-- CART                                                       --}}
             {{-- ========================================================= --}}
-
+            @session('error')
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline">{{ session('error') }}</span>
+            </div>
+            @endsession
             <div
                 x-show="!cartIsEmpty"
                 x-cloak
@@ -776,22 +780,24 @@
                             </div>
 
                         </div>
-
-
                         {{-- Checkout --}}
-                        <button
-                            type="button"
-                            class="btn btn-primary mt-6 w-full gap-2 uppercase tracking-wider shadow-sm"
-                        >
+                        <form action="{{route('checkout.store')}}" method="post">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="btn btn-primary mt-6 w-full gap-2 uppercase tracking-wider shadow-sm"
+                            >
 
-                            Proceed to Checkout
+                                Proceed to Checkout
 
-                            <i
-                                data-lucide="arrow-right"
-                                class="size-4"
-                            ></i>
+                                <i
+                                    data-lucide="arrow-right"
+                                    class="size-4"
+                                ></i>
 
-                        </button>
+                            </button>
+
+                        </form>
 
 
                         {{-- Continue Shopping --}}

@@ -877,66 +877,7 @@
                     </form>
 
                 </section>
-
-
-                {{-- ================================================= --}}
-                {{-- Product Name                                       --}}
-                {{-- ================================================= --}}
-
-                <section>
-
-                    <div class="mb-3">
-
-                        <h3 class="flex items-center gap-2 font-semibold">
-
-                            <i
-                                data-lucide="package-search"
-                                class="size-4 text-primary"
-                            ></i>
-
-                            Search by name
-
-                        </h3>
-
-                        <p class="mt-1 text-xs text-base-content/60">
-                            Search our catalog by product name.
-                        </p>
-
-                    </div>
-
-
-                    <form
-                        action="#"
-                        method="GET"
-                    >
-
-                        <label class="input input-bordered flex w-full items-center gap-2">
-
-                            <i
-                                data-lucide="search"
-                                class="size-4 text-base-content/50"
-                            ></i>
-
-                            <input
-                                type="search"
-                                name="q"
-                                placeholder="Brake pads, oil filter..."
-                                class="grow"
-                            >
-
-                            <button
-                                type="submit"
-                                class="btn btn-primary btn-sm"
-                            >
-                                Search
-                            </button>
-
-                        </label>
-
-                    </form>
-
-                </section>
-
+                
 
             </div>
 

@@ -128,16 +128,6 @@
                 </button>
             </div>
 
-            <div class="join w-full">
-                <input
-                    class="input input-bordered join-item flex-1"
-                    placeholder="Enter product name">
-
-                <button class="btn btn-primary join-item">
-                    <i data-lucide="shopping-basket" class="size-4"></i>
-                </button>
-            </div>
-
         </div>
     </div>
 
