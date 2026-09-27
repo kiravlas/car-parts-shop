@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Store\Categories;
 
-use App\Models\Category;
+use App\Supervisors\CategorySupervisor;
 use Illuminate\Contracts\View\View;
 
 class CategoryController
 {
-    function index(): View
+    public function index(CategorySupervisor $supervisor): View
     {
-        $categories = Category::whereNull('parent_id')
-            ->with('children')
-            ->orderBy('name')
-            ->get();
+        $categories = $supervisor->readAll();
+
         return view('pages.store.categories.index', compact('categories'));
     }
 }

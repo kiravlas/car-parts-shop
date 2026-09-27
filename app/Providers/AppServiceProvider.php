@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\User;
+use App\Observers\CategoryObserver;
+use App\Supervisors\CategorySupervisor;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -26,20 +28,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::preventLazyLoading(!$this->app->isProduction());
-        Model::preventSilentlyDiscardingAttributes($this->app->isLocal());
+        Category::observe(CategoryObserver::class);
 
-        View::composer('components.navigation.navbar', function ($view) {
-            $categories = Category::query()
-                ->whereNull('parent_id')
-                ->with([
-                    'children' => fn($query) => $query->orderBy('name'),
-                ])
-                ->orderBy('name')
-                ->get();
-
-            $view->with('categories', $categories);
-        });
+        View::composer('components.navigation.navbar',
+            static fn ($view) => $view->with('navbarCategories', app(CategorySupervisor::class)->readAll()));
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
@@ -54,7 +46,8 @@ class AppServiceProvider extends ServiceProvider
             return $user->isAdmin();
         });
 
+        Model::preventLazyLoading(! $this->app->isProduction());
+        Model::preventSilentlyDiscardingAttributes($this->app->isLocal());
+
     }
-
-
 }

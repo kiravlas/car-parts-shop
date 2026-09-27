@@ -43,6 +43,4 @@ class UpdateCategoryRequest extends FormRequest
             'name.regex' => 'The category name must contain letters and cannot be just numbers.',
         ];
     }
-
-
 }

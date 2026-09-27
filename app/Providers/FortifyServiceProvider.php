@@ -7,8 +7,6 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Models\User;
-use App\Responses\LoginResponse;
-use App\Responses\VerifyEmailResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,10 +21,7 @@ class FortifyServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.
@@ -67,9 +62,7 @@ class FortifyServiceProvider extends ServiceProvider
                 ],
             ]);
 
-
             $user = User::where('email', $request->email)->first();
-
 
             if (
                 $user &&
@@ -78,11 +71,9 @@ class FortifyServiceProvider extends ServiceProvider
                 return $user;
             }
 
-
             return null;
 
         });
-
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);

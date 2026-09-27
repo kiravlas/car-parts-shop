@@ -15,7 +15,6 @@ class ProductLikeController
             ->where('products.id', $product->id)
             ->exists();
 
-
         if ($isCurrentlyLiked) {
 
             $user->likedProducts()->detach($product->id);
@@ -30,11 +29,9 @@ class ProductLikeController
 
         }
 
-
         $likesCount = $product->likedByUsers()->count();
 
         $totalWishlistCount = $user->likedProducts()->count();
-
 
         return response()->json([
             'success' => true,

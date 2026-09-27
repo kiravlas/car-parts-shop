@@ -15,6 +15,7 @@ class AdminProductController
     public function index()
     {
         $products = Product::with(['category', 'primaryImage'])->latest()->paginate(10);
+
         return view('pages.admin.products.index', compact('products'));
     }
 
@@ -117,7 +118,7 @@ class AdminProductController
             'images' => function ($query) {
                 $query->orderBy('is_primary', 'desc')
                     ->orderBy('id', 'asc');
-            }
+            },
         ]);
 
         return view('pages.admin.products.edit', compact('categories', 'product'));

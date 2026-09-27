@@ -1,0 +1,10 @@
+Make product card linkable on home page.
+cash car make in select on home
+car parts pivot table many-to many
+pattern composite
+tenant architecture pattern
+ставить пробел перед return
+сконфинрировать larastan
+custom collections for models
+custom query builders
+поставить всю бизнес логику в супервизоры

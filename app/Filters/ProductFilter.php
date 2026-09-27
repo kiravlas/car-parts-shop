@@ -11,9 +11,7 @@ class ProductFilter
     /**
      * Create a new class instance.
      */
-    public function __construct(protected Request $request)
-    {
-    }
+    public function __construct(protected Request $request) {}
 
     public function apply(Builder $query): Builder
     {
@@ -26,7 +24,7 @@ class ProductFilter
 
             $category = Category::where('slug', $categorySlug)->first();
 
-            if (!$category) {
+            if (! $category) {
                 return $query;
             }
 
@@ -36,7 +34,6 @@ class ProductFilter
 
             return $query->whereIn('category_id', $categoryIds);
         });
-
 
         $query->when($this->request->filled('min_price'), function ($query) {
             return $query->where('price', '>=', (float) $this->request->input('min_price') * 100);
@@ -66,11 +63,9 @@ class ProductFilter
             return $query->whereNotNull('sale_price');
         });
 
-
         $query->when($this->request->has('in_stock'), function ($query) {
-            return $query->where('stock', ">", 0);
+            return $query->where('stock', '>', 0);
         });
-
 
         return $query;
     }

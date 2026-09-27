@@ -110,21 +110,21 @@
 
                     <ul class="menu w-full md:menu-horizontal md:gap-2">
 
-                        @foreach($categories as $category)
+                        @foreach($navbarCategories as $mainCategory)
 
                             <li>
                                 <a
-                                    href="{{ route('products.index', ['category' => $category->slug]) }}"
+                                    href="{{ route('products.index', ['category' => $mainCategory->slug]) }}"
                                     class="font-semibold hover:bg-base-200 hover:text-primary"
                                 >
-                                    {{ $category->name }}
+                                    {{ $mainCategory->name }}
                                 </a>
 
-                                @if($category->children->isNotEmpty())
+                                @if($mainCategory->children->isNotEmpty())
 
                                     <ul class="mt-1">
 
-                                        @foreach($category->children as $subcategory)
+                                        @foreach($mainCategory->children as $subcategory)
 
                                             <li>
                                                 <a
@@ -877,7 +877,7 @@
                     </form>
 
                 </section>
-                
+
 
             </div>
 

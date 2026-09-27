@@ -5,89 +5,55 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\Category\StoreCategoryRequest;
 use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
 use App\Models\Category;
-use Illuminate\Support\Str;
+use App\Supervisors\CategorySupervisor;
 
 class AdminCategoryController
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(protected CategorySupervisor $supervisor)
+    {
+    }
+
     public function index()
     {
-        $categories = Category::query()
-            ->whereNull('parent_id')
-            ->with('descendants')
-            ->withCount('products')
-            ->orderBy('name')
-            ->paginate(10);
+        $categories = $this->supervisor->adminCategoriesList(10);
 
         return view('pages.admin.categories.index', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCategoryRequest $request)
     {
-        ['name' => $name, 'parent_id' => $parentId] = $request->validated();
-
-        Category::create([
-            'name' => $name,
-            'slug' => Str::slug($name),
-            'parent_id' => $parentId,
-        ]);
+        $this->supervisor->storeCategory($request->validated());
 
         return redirect()
             ->route('admin.categories.index')
             ->with('success', 'Category created successfully!');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $categories = Category::query()
-            ->whereNull('parent_id')
-            ->orderBy('name')
-            ->get();
+        $categories = $this->supervisor->readAll();
 
         return view('pages.admin.categories.create', compact('categories'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Category $category)
     {
         return view('pages.admin.categories.edit', compact('category'));
-
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        ['name' => $name] = $request->validated();
-
-        $category->update([
-            'name' => $name,
-            'slug' => Str::slug($name),
-        ]);
+        $this->supervisor->updateCategory($category, $request->validated());
 
         return redirect()
             ->route('admin.categories.index')
             ->with('success', 'Category updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Category $category)
     {
-        //
-        $category->delete();
+        $this->supervisor->deleteCategory($category);
+
         return redirect()
             ->route('admin.categories.index')
             ->with('success', 'Category deleted successfully!');

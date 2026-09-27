@@ -17,7 +17,7 @@ class CheckoutController
 
         $sessionId = request()->query('session_id');
 
-        if (!$sessionId) {
+        if (! $sessionId) {
             return redirect()->route('cart.index')->with('error', 'Invalid checkout verification link.');
         }
 
@@ -35,7 +35,8 @@ class CheckoutController
                 return redirect()->route('cart.index')->with('error', 'The payment verification cycle was not authorized.');
             }
         } catch (Exception $e) {
-            Log::error('Stripe token validation failure: ' . $e->getMessage());
+            Log::error('Stripe token validation failure: '.$e->getMessage());
+
             return redirect()->route('cart.index')->with('error', 'We encountered an issue confirming your payment transaction.');
         }
 
@@ -47,12 +48,13 @@ class CheckoutController
 
         $grandTotal = $cartItems->sum(function ($item) {
             $activePrice = $item->product->sale_price ?? $item->product->price;
+
             return $activePrice * $item->quantity;
         });
 
         $order = Order::create([
             'user_id' => $user->id,
-            'total_amount' => (int)round($grandTotal * 100),
+            'total_amount' => (int) round($grandTotal * 100),
             'status' => 'processing',
             'shipping_address' => 'Customer Pickup / Standard Delivery Address Placeholder',
             'stripe_payment_id' => $sessionId,
@@ -65,7 +67,7 @@ class CheckoutController
                 'order_id' => $order->id,
                 'product_id' => $item->product_id,
                 'product_name' => $item->product->name,
-                'price' => (int)round($unitPrice * 100),
+                'price' => (int) round($unitPrice * 100),
                 'quantity' => $item->quantity,
             ]);
 
@@ -96,7 +98,7 @@ class CheckoutController
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
-                    'unit_amount' => (int)round($productPrice * 100),
+                    'unit_amount' => (int) round($productPrice * 100),
                     'product_data' => [
                         'name' => $item->product->name,
                         'description' => $item->product->description ?? 'Car part configuration asset',
@@ -111,14 +113,14 @@ class CheckoutController
                 'customer_email' => $user->email,
                 'line_items' => $lineItems,
                 'mode' => 'payment',
-                'success_url' => route('checkout.success') . '?session_id={CHECKOUT_SESSION_ID}',
+                'success_url' => route('checkout.success').'?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => route('checkout.cancel'),
             ]);
 
             return redirect()->away($checkoutSession->url);
         } catch (ApiErrorException $e) {
-            Log::error('Status: ' . $e->getHttpStatus() . ', Code: ' . $e->getStripeCode() .
-                ', Message: ' . $e->getMessage() . ', Request ID: ' . $e->getRequestId());
+            Log::error('Status: '.$e->getHttpStatus().', Code: '.$e->getStripeCode().
+                ', Message: '.$e->getMessage().', Request ID: '.$e->getRequestId());
 
             return redirect()
                 ->route('cart.index')

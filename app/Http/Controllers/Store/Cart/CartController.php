@@ -38,7 +38,6 @@ class CartController
         );
     }
 
-
     /**
      * Add a product to the cart.
      */
@@ -106,7 +105,6 @@ class CartController
                 'Product added to your cart successfully!'
             );
     }
-
 
     /**
      * Update a cart item's quantity.
@@ -177,18 +175,14 @@ class CartController
             ),
 
             // Number of cart rows/products
-            'cartItemCount' =>
-                $freshCartItems->count(),
+            'cartItemCount' => $freshCartItems->count(),
 
             // Total quantity of everything
-            'cartQuantity' =>
-                $freshCartItems->sum('quantity'),
+            'cartQuantity' => $freshCartItems->sum('quantity'),
 
-            'cartIsEmpty' =>
-                $freshCartItems->isEmpty(),
+            'cartIsEmpty' => $freshCartItems->isEmpty(),
         ]);
     }
-
 
     /**
      * Remove a cart item.
@@ -232,15 +226,12 @@ class CartController
             ),
 
             // Number of remaining cart rows
-            'cartItemCount' =>
-                $freshCartItems->count(),
+            'cartItemCount' => $freshCartItems->count(),
 
             // Total quantity remaining
-            'cartQuantity' =>
-                $freshCartItems->sum('quantity'),
+            'cartQuantity' => $freshCartItems->sum('quantity'),
 
-            'cartIsEmpty' =>
-                $freshCartItems->isEmpty(),
+            'cartIsEmpty' => $freshCartItems->isEmpty(),
         ]);
     }
 }

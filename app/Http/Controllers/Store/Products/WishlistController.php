@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Store\Products;
 
-use Auth;
-
 class WishlistController
 {
     public function index()

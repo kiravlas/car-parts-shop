@@ -7,12 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
 class Category extends Model
 {
-
     protected $fillable = ['name', 'slug', 'parent_id'];
-
 
     public function products(): HasMany
     {
@@ -36,7 +33,6 @@ class Category extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
-
     public function totalProductsCount(): Attribute
     {
         return Attribute::get(function (): int {
@@ -55,5 +51,3 @@ class Category extends Model
         return 'slug';
     }
 }
-
-

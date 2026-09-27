@@ -15,7 +15,7 @@ class AvatarController
             Storage::disk('public')->delete($user->avatar);
 
             $user->update([
-                'avatar' => null
+                'avatar' => null,
             ]);
 
             return back()->with('success', 'Profile picture removed.');
@@ -39,10 +39,9 @@ class AvatarController
         $path = $request->file('avatar')->store('avatars', 'public');
 
         $user->update([
-            'avatar' => $path
+            'avatar' => $path,
         ]);
 
         return back()->with('success', 'Avatar updated successfully!');
     }
-
 }

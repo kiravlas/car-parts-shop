@@ -43,7 +43,7 @@ class Product extends Model
 
     public function isLikedByAuthUser(): bool
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return false;
         }
 
@@ -82,7 +82,7 @@ class Product extends Model
 
     public function isAlreadyInCart(): bool
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return false;
         }
 
@@ -92,16 +92,16 @@ class Product extends Model
     protected function price(): Attribute
     {
         return Attribute::make(
-            get: fn(int $value) => $value / 100,
-            set: fn(float|int $value) => (int) round($value * 100),
+            get: fn (int $value) => $value / 100,
+            set: fn (float|int $value) => (int) round($value * 100),
         );
     }
 
     protected function salePrice(): Attribute
     {
         return Attribute::make(
-            get: fn(?int $value) => $value ? $value / 100 : null,
-            set: fn(float|int|null $value) => $value ? (int) round($value * 100) : null,
+            get: fn (?int $value) => $value ? $value / 100 : null,
+            set: fn (float|int|null $value) => $value ? (int) round($value * 100) : null,
         );
     }
 }
