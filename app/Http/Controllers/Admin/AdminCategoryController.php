@@ -9,9 +9,7 @@ use App\Supervisors\CategorySupervisor;
 
 class AdminCategoryController
 {
-    public function __construct(protected CategorySupervisor $supervisor)
-    {
-    }
+    public function __construct(protected CategorySupervisor $supervisor) {}
 
     public function index()
     {

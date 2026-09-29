@@ -2,45 +2,27 @@
 
 namespace App\Http\Controllers\Store\Profile;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Store\Profile\UpdateAvatarRequest;
+use App\Supervisors\UserSupervisor;
 
 class AvatarController
 {
-    public function destroy()
+    public function __construct(protected UserSupervisor $supervisor)
     {
-        $user = auth()->user();
-
-        if ($user->avatar) {
-            Storage::disk('public')->delete($user->avatar);
-
-            $user->update([
-                'avatar' => null,
-            ]);
-
-            return back()->with('success', 'Profile picture removed.');
-        }
-
-        return back();
     }
 
-    public function update(Request $request)
+    public function destroy()
     {
-        $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
-        ]);
+        $avatarWasDeleted = $this->supervisor->deleteAvatar(auth()->user());
 
-        $user = auth()->user();
+        return $avatarWasDeleted
+            ? back()->with('success', 'Profile picture removed.')
+            : back();
+    }
 
-        if ($user->avatar) {
-            Storage::disk('public')->delete($user->avatar);
-        }
-
-        $path = $request->file('avatar')->store('avatars', 'public');
-
-        $user->update([
-            'avatar' => $path,
-        ]);
+    public function update(UpdateAvatarRequest $request)
+    {
+        $this->supervisor->updateAvatar(auth()->user(), $request->file('avatar'));
 
         return back()->with('success', 'Avatar updated successfully!');
     }

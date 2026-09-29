@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use App\Observers\CategoryObserver;
+use App\Observers\ProductObserver;
 use App\Supervisors\CategorySupervisor;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Category::observe(CategoryObserver::class);
+        Product::observe(ProductObserver::class);
 
         View::composer('components.navigation.navbar',
             static fn ($view) => $view->with('navbarCategories', app(CategorySupervisor::class)->readAll()));

@@ -4,132 +4,86 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\Product\StoreProductRequest;
 use App\Http\Requests\Admin\Product\UpdateProductRequest;
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use App\Supervisors\CategorySupervisor;
+use App\Supervisors\ProductSupervisor;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AdminProductController
 {
-    public function index()
+    public function __construct(
+        protected ProductSupervisor $supervisor
+    ) {}
+
+    public function index(): View
     {
-        $products = Product::with(['category', 'primaryImage'])->latest()->paginate(10);
+        $products = $this->supervisor->adminProductsList(10);
 
         return view('pages.admin.products.index', compact('products'));
     }
 
-    public function setPrimaryImage(ProductImage $image)
+    public function create(CategorySupervisor $categorySupervisor): View
     {
-        ProductImage::where('product_id', $image->product_id)->update(['is_primary' => false]);
+        $categories = $categorySupervisor->readAll();
 
-        $image->update(['is_primary' => true]);
-
-        return back()->with('success', 'Primary main display image changed successfully!');
+        return view('pages.admin.products.create', compact('categories'));
     }
 
-    public function update(UpdateProductRequest $request, Product $product)
+    public function store(StoreProductRequest $request): RedirectResponse
     {
-        $data = collect($request->validated())->except('images')->toArray();
-        $data['slug'] = Str::slug($data['name']);
-
-        $product->update($data);
-
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $imageFile) {
-                $storedPath = $imageFile->store('products', 'public');
-
-                $isPrimary = $product->images()->count() === 0 && $index === 0;
-
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'image_path' => $storedPath,
-                    'is_primary' => $isPrimary,
-                ]);
-            }
-        }
-
-        return redirect()->route('admin.products.index')
-            ->with('success', 'Product updated successfully!');
-    }
-
-    public function store(StoreProductRequest $request)
-    {
-
-        $data = collect($request->validated())->except('images')->toArray();
-
-        $images = $request->file('images', []);
-
-        $data['slug'] = Str::slug($data['name']);
-
-        $product = Product::create($data);
-
-        foreach ($images as $index => $imageFile) {
-            $storedPath = $imageFile->store('products', 'public');
-
-            ProductImage::create([
-                'product_id' => $product->id,
-                'image_path' => $storedPath,
-                'is_primary' => $index === 0,
-            ]);
-        }
+        $this->supervisor->storeProduct(
+            $request->validated(),
+            $request->file('images', [])
+        );
 
         return redirect()
             ->route('admin.products.index')
             ->with('success', 'Product and its images uploaded successfully!');
     }
 
-    public function create()
+    public function edit(Product $product, CategorySupervisor $categorySupervisor): View
     {
-        $categories = Category::orderBy('name', 'asc')
-            ->with('children')
-            ->whereNull('parent_id')
-            ->get();
-
-        return view('pages.admin.products.create', compact('categories'));
-    }
-
-    public function destroyImage(ProductImage $image)
-    {
-        $productId = $image->product_id;
-        $wasPrimary = $image->is_primary;
-
-        if (Storage::disk('public')->exists($image->image_path)) {
-            Storage::disk('public')->delete($image->image_path);
-        }
-
-        $image->delete();
-
-        if ($wasPrimary) {
-            $nextImage = ProductImage::where('product_id', $productId)->first();
-            if ($nextImage) {
-                $nextImage->update(['is_primary' => true]);
-            }
-        }
-
-        return back()->with('success', 'Image removed successfully.');
-    }
-
-    public function edit(Product $product)
-    {
-        $categories = Category::orderBy('name', 'asc')->get();
-
-        $product->load([
-            'images' => function ($query) {
-                $query->orderBy('is_primary', 'desc')
-                    ->orderBy('id', 'asc');
-            },
-        ]);
+        $categories = $categorySupervisor->readAll();
+        $product = $this->supervisor->loadProductWithSortedImages($product);
 
         return view('pages.admin.products.edit', compact('categories', 'product'));
     }
 
-    public function destroy(Product $product)
+    public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
-        $product->delete();
+        $this->supervisor->updateProduct(
+            $product,
+            $request->validated(),
+            $request->file('images', [])
+        );
+
+        return redirect()
+            ->route('admin.products.index')
+            ->with('success', 'Product updated successfully!');
+    }
+
+    public function destroy(Product $product): RedirectResponse
+    {
+        $this->supervisor->destroyProduct($product);
 
         return redirect()
             ->route('admin.products.index')
             ->with('success', 'Product deleted successfully!');
+    }
+
+    public function setPrimaryImage(ProductImage $image): RedirectResponse
+    {
+        $this->supervisor->setPrimaryImage($image);
+
+        return back()->with('success', 'Primary main display image changed successfully!');
+    }
+
+    public function destroyImage(ProductImage $image): RedirectResponse
+    {
+        $this->supervisor->removeImage($image);
+
+        return back()->with('success', 'Image removed successfully.');
     }
 }

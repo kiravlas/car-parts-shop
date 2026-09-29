@@ -6,7 +6,6 @@ use App\Models\Category;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use LaravelIdea\Helper\App\Models\_IH_Category_C;
 
 class CategorySupervisor
 {
@@ -14,32 +13,20 @@ class CategorySupervisor
 
     public function readAll(): Collection
     {
-        $rawCategoriesArray = Cache::remember('categories_raw_array', self::ONE_HOUR_IN_SECONDS, static function () {
-
+        return Cache::remember('categories_tree', self::ONE_HOUR_IN_SECONDS, static function () {
             return Category::whereNull('parent_id')
-                ->with(['children' => static fn($query) => $query->orderBy('name')])
+                ->with(['children' => static fn ($query) => $query->orderBy('name')])
                 ->orderBy('name')
-                ->get()
-                ->toArray();
-        });
-
-        return collect($rawCategoriesArray)->map(static function (array $parentAttributes) {
-            $rawChildren = $parentAttributes['children'] ?? [];
-            unset($parentAttributes['children']);
-            $parentModel = (new Category)->forceFill($parentAttributes);
-            $childrenCollection = collect($rawChildren)->map(static fn(array $childAttributes) => (new Category)->forceFill($childAttributes));
-            $parentModel->setRelation('children', $childrenCollection);
-
-            return $parentModel;
+                ->get();
         });
     }
 
-    public function clearCache(): void
+    public function clearCategoriesCache(): void
     {
-        Cache::forget('categories_raw_array');
+        Cache::forget('categories_tree');
     }
 
-    public function adminCategoriesList($pages): _IH_Category_C|array|LengthAwarePaginator
+    public function adminCategoriesList(int $pages): LengthAwarePaginator
     {
         return Category::query()
             ->whereNull('parent_id')
@@ -58,7 +45,7 @@ class CategorySupervisor
         ]);
     }
 
-    public function updateCategory($category, array $data): bool
+    public function updateCategory(Category $category, array $data): bool
     {
         return $category->update([
             'name' => $data['name'],

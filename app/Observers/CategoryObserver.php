@@ -13,16 +13,16 @@ class CategoryObserver
 
     public function created(Category $category): void
     {
-        $this->supervisor->clearCache();
+        $this->supervisor->clearCategoriesCache();
     }
 
     public function updated(Category $category): void
     {
-        $this->supervisor->clearCache();
+        $this->supervisor->clearCategoriesCache();
     }
 
     public function deleted(Category $category): void
     {
-        $this->supervisor->clearCache();
+        $this->supervisor->clearCategoriesCache();
     }
 }

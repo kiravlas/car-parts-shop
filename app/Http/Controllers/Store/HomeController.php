@@ -2,34 +2,18 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Models\Product;
+use App\Supervisors\ProductSupervisor;
 use Illuminate\Contracts\View\View;
 
 class HomeController
 {
-    public function index(): View
+    public function index(ProductSupervisor $supervisor): View
     {
-        $topSaleProducts = Product::query()
-            ->where('total_sales', '>=', 100)
-            ->orderByDesc('created_at')
-            ->with('primaryImage')
-            ->take(10)
-            ->get();
+        $topSaleProducts = $supervisor->getTopSales(10);
+        $onSaleProducts = $supervisor->getOnSale(10);
+        $newArrivalsProducts = $supervisor->getNewArrivals(10);
 
-        $onSaleProducts = Product::query()
-            ->whereNotNull('sale_price')
-            ->orderByDesc('created_at')
-            ->with('primaryImage')
-            ->take(10)
-            ->get();
-
-        $newArrivalsProducts = Product::query()
-            ->where('is_new_arrival', true)
-            ->orderByDesc('created_at')
-            ->with('primaryImage', 'category')
-            ->take(10)
-            ->get();
-
-        return view('pages.store.home.index', compact('topSaleProducts', 'onSaleProducts', 'newArrivalsProducts'));
+        return view('pages.store.home.index', compact('topSaleProducts', 'onSaleProducts',
+            'newArrivalsProducts'));
     }
 }
