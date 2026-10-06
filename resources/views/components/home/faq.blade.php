@@ -1,14 +1,12 @@
-{{--F.A.Q--}}
-
-<section class="max-w-4xl mx-auto py-16 px-4">
-    <h2 class="text-3xl md:text-4xl font-semibold italic text-primary text-center mb-8">
+{{-- F.A.Q --}}
+<section class="mx-auto max-w-4xl px-4 py-16">
+    <h2 class="mb-8 text-center text-3xl font-semibold italic text-primary md:text-4xl">
         Frequently Asked Questions
     </h2>
 
     <div class="space-y-4">
-
-        <div class="collapse collapse-arrow bg-base-100 border border-base-300">
-            <input type="radio" name="parts-accordion" checked="checked"/>
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+            <input type="radio" name="parts-accordion" checked="checked">
 
             <div class="collapse-title font-semibold">
                 What kind of automotive parts can I find on Need 4 Parts?
@@ -21,9 +19,8 @@
             </div>
         </div>
 
-
-        <div class="collapse collapse-arrow bg-base-100 border border-base-300">
-            <input type="radio" name="parts-accordion"/>
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+            <input type="radio" name="parts-accordion">
 
             <div class="collapse-title font-semibold">
                 How do I know if a part is compatible with my vehicle?
@@ -35,9 +32,8 @@
             </div>
         </div>
 
-
-        <div class="collapse collapse-arrow bg-base-100 border border-base-300">
-            <input type="radio" name="parts-accordion"/>
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+            <input type="radio" name="parts-accordion">
 
             <div class="collapse-title font-semibold">
                 Do you supply parts for commercial vehicles?
@@ -49,9 +45,8 @@
             </div>
         </div>
 
-
-        <div class="collapse collapse-arrow bg-base-100 border border-base-300">
-            <input type="radio" name="parts-accordion"/>
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+            <input type="radio" name="parts-accordion">
 
             <div class="collapse-title font-semibold">
                 Why choose Need 4 Parts?
@@ -62,6 +57,5 @@
                 support to help you find the parts you need quickly and confidently.
             </div>
         </div>
-
     </div>
 </section>

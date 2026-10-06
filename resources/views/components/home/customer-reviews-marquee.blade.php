@@ -1,14 +1,12 @@
 {{-- Need4Parts Customer Reviews Marquee --}}
-
 <section>
-
     <div
         class="relative flex flex-col gap-3 overflow-hidden
-    before:pointer-events-none before:absolute before:inset-y-0 before:start-0 before:z-10 before:w-24
-    before:bg-[linear-gradient(to_right,hsl(var(--b2)),transparent)]
-    after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-10 after:w-24
-    after:bg-[linear-gradient(to_left,hsl(var(--b2)),transparent)]">
-
+               before:pointer-events-none before:absolute before:inset-y-0 before:start-0 before:z-10 before:w-24
+               before:bg-[linear-gradient(to_right,hsl(var(--b2)),transparent)]
+               after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-10 after:w-24
+               after:bg-[linear-gradient(to_left,hsl(var(--b2)),transparent)]"
+    >
         @php
             $reviews = [
                 [
@@ -54,36 +52,25 @@
             ];
         @endphp
 
-
         {{-- First Row --}}
         <div class="flex overflow-hidden">
-
             <div
                 class="flex w-max gap-4 py-2
-            [animation:marquee-x_60s_linear_infinite]
-            hover:[animation-play-state:paused]">
-
+                       [animation:marquee-x_60s_linear_infinite]
+                       hover:[animation-play-state:paused]"
+            >
                 @foreach(array_merge($reviews, $reviews) as $review)
-
-                    <figure
-                        class="w-72 shrink-0 rounded-xl border border-base-300
-                    bg-base-100 p-4 shadow-md">
-
+                    <figure class="w-72 shrink-0 rounded-xl border border-base-300 bg-base-100 p-4 shadow-md">
                         <div class="flex items-center gap-3">
-
                             <div class="avatar placeholder">
-                                <div
-                                    class="size-10 rounded-full
-                                bg-success text-success-content">
-                                <span class="text-sm">
-                                    {{ $review['initials'] }}
-                                </span>
+                                <div class="size-10 rounded-full bg-success text-success-content">
+                                    <span class="text-sm">
+                                        {{ $review['initials'] }}
+                                    </span>
                                 </div>
                             </div>
 
-
                             <div class="min-w-0">
-
                                 <p class="truncate text-sm font-semibold text-base-content">
                                     {{ $review['name'] }}
                                 </p>
@@ -91,66 +78,41 @@
                                 <p class="truncate text-xs text-base-content/60">
                                     Verified buyer
                                 </p>
-
                             </div>
-
                         </div>
 
-
-                        <div class="mt-3 text-success text-sm">
+                        <div class="mt-3 text-sm text-success">
                             ★★★★★
                         </div>
-
 
                         <blockquote class="mt-2 text-sm text-base-content/70">
                             {{ $review['text'] }}
                         </blockquote>
-
-
                     </figure>
-
                 @endforeach
-
             </div>
-
         </div>
-
 
         {{-- Second Row --}}
         <div class="flex overflow-hidden">
-
             <div
                 class="flex w-max gap-4 py-2
-            [animation:marquee-x_60s_linear_infinite]
-            [animation-direction:reverse]
-            hover:[animation-play-state:paused]">
-
-
+                       [animation:marquee-x_60s_linear_infinite]
+                       [animation-direction:reverse]
+                       hover:[animation-play-state:paused]"
+            >
                 @foreach(array_merge($reviews, $reviews) as $review)
-
-                    <figure
-                        class="w-72 shrink-0 rounded-xl border border-base-300
-                    bg-base-100 p-4 shadow-md">
-
+                    <figure class="w-72 shrink-0 rounded-xl border border-base-300 bg-base-100 p-4 shadow-md">
                         <div class="flex items-center gap-3">
-
                             <div class="avatar placeholder">
-
-                                <div
-                                    class="size-10 rounded-full
-                                bg-success text-success-content">
-
-                                <span class="text-sm">
-                                    {{ $review['initials'] }}
-                                </span>
-
+                                <div class="size-10 rounded-full bg-success text-success-content">
+                                    <span class="text-sm">
+                                        {{ $review['initials'] }}
+                                    </span>
                                 </div>
-
                             </div>
 
-
                             <div class="min-w-0">
-
                                 <p class="truncate text-sm font-semibold text-base-content">
                                     {{ $review['name'] }}
                                 </p>
@@ -158,33 +120,19 @@
                                 <p class="truncate text-xs text-base-content/60">
                                     Verified buyer
                                 </p>
-
                             </div>
-
                         </div>
 
-
-                        <div class="mt-3 text-success text-sm">
+                        <div class="mt-3 text-sm text-success">
                             ★★★★★
                         </div>
-
 
                         <blockquote class="mt-2 text-sm text-base-content/70">
                             {{ $review['text'] }}
                         </blockquote>
-
-
                     </figure>
-
                 @endforeach
-
-
             </div>
-
         </div>
-
-
     </div>
-
-
 </section>

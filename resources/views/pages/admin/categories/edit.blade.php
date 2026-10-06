@@ -1,8 +1,6 @@
 <x-layouts.admin-layout>
-
     {{-- Page Header --}}
     <div class="mb-6">
-
         <div class="breadcrumbs mb-2 text-sm">
             <ul>
                 <li>
@@ -17,9 +15,7 @@
                     </a>
                 </li>
 
-                <li>
-                    Edit
-                </li>
+                <li>Edit</li>
             </ul>
         </div>
 
@@ -30,9 +26,7 @@
         <p class="mt-1 text-sm text-base-content/60">
             Update the category information.
         </p>
-
     </div>
-
 
     {{-- Form --}}
     <form
@@ -40,18 +34,12 @@
         method="POST"
         class="max-w-lg rounded-box border border-base-content/10 bg-base-200 p-6 shadow-sm"
     >
-
         @csrf
         @method('PUT')
 
-
         {{-- Category Name --}}
         <div class="form-control">
-
-            <label
-                for="name"
-                class="label"
-            >
+            <label for="name" class="label">
                 <span class="label-text font-semibold">
                     Category Name
                 </span>
@@ -75,13 +63,10 @@
                     </span>
             </label>
             @enderror
-
         </div>
-
 
         {{-- Buttons --}}
         <div class="mt-6 flex gap-2">
-
             <button
                 type="submit"
                 class="btn btn-primary"
@@ -95,9 +80,6 @@
             >
                 Cancel
             </a>
-
         </div>
-
     </form>
-
 </x-layouts.admin-layout>

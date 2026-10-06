@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="forest">
 <head>
     <meta charset="UTF-8">
@@ -10,29 +10,25 @@
 </head>
 
 <body class="min-h-screen bg-base-300">
-
-<div class="min-h-screen flex items-center justify-center px-4 py-10">
-
+<div class="flex min-h-screen items-center justify-center px-4 py-10">
     <div class="w-full max-w-md">
+        {{-- Brand --}}
         <div class="mb-8 text-center">
-
             <a href="{{ route('home.index') }}">
                 <img
                     src="{{ asset('images/logo.png') }}"
                     alt="Need4Parts"
-                    class="mx-auto h-16 w-auto rounded-4xl">
+                    class="mx-auto h-16 w-auto rounded-4xl"
+                >
             </a>
 
             <p class="mt-2 text-base-content/70">
                 Best parts for every journey.
             </p>
-
         </div>
+
         {{ $slot }}
-
     </div>
-
 </div>
-
 </body>
 </html>

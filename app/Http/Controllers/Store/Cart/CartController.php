@@ -2,236 +2,104 @@
 
 namespace App\Http\Controllers\Store\Cart;
 
+use App\Http\Requests\Store\Cart\StoreCartRequest;
+use App\Http\Requests\Store\Cart\UpdateCartRequest;
 use App\Models\CartItem;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Supervisors\CartSupervisor;
 use Illuminate\Support\Facades\Auth;
 
 class CartController
 {
+    public function __construct(
+        protected CartSupervisor $cartSupervisor
+    ) {}
+
     /**
      * Display the user's cart.
      */
     public function index()
     {
-        $cartItems = Auth::user()
-            ->cartItems()
-            ->with([
-                'product.primaryImage',
-                'product.category',
-            ])
-            ->get();
-
-        $grandTotal = $cartItems->sum(function ($item) {
-            $activePrice = $item->product->sale_price
-                ?? $item->product->price;
-
-            return $activePrice * $item->quantity;
-        });
+        $user = Auth::user();
+        $cartItems = $this->cartSupervisor
+            ->getCartItemsForAuthenticatedUser($user);
+        $grandTotal = $this->cartSupervisor
+            ->calculateCartItemsGrandTotal($cartItems);
 
         return view(
             'pages.store.cart.index',
-            compact(
-                'cartItems',
-                'grandTotal'
-            )
+            compact('cartItems', 'grandTotal')
         );
     }
 
-    /**
-     * Add a product to the cart.
-     */
-    public function store(Request $request)
+    public function store(StoreCartRequest $request)
     {
-        $request->validate([
-            'product_id' => [
-                'required',
-                'exists:products,id',
-            ],
-
-            'quantity' => [
-                'required',
-                'integer',
-                'min:1',
-            ],
-        ]);
-
-        $productId = $request->input('product_id');
-
-        $quantity = (int) $request->input(
-            'quantity',
-            1
+        $productId = (int) $request->input('product_id');
+        $quantity = (int) $request->input('quantity', 1);
+        $this->cartSupervisor->storeItemInCart(
+            Auth::user(),
+            $productId,
+            $quantity
         );
-
-        $user = Auth::user();
-
-        $product = Product::findOrFail(
-            $productId
-        );
-
-        $cartItem = $user
-            ->cartItems()
-            ->where(
-                'product_id',
-                $productId
-            )
-            ->first();
-
-        if ($cartItem) {
-
-            $cartItem->increment(
-                'quantity',
-                $quantity
-            );
-
-        } else {
-
-            $user->cartItems()->create([
-                'product_id' => $productId,
-                'quantity' => $quantity,
-            ]);
-
-        }
+        $product = Product::findOrFail($productId);
 
         return redirect()
-            ->route(
-                'product.show',
-                [
-                    'product' => $product->slug,
-                ]
-            )
+            ->route('products.show', [
+                'product' => $product->slug,
+            ])
             ->with(
                 'success',
                 'Product added to your cart successfully!'
             );
     }
 
-    /**
-     * Update a cart item's quantity.
-     */
     public function update(
-        Request $request,
+        UpdateCartRequest $request,
         CartItem $cartItem
     ) {
-        if ($cartItem->user_id !== Auth::id()) {
-
-            return response()->json([
-                'error' => 'Unauthorized action.',
-            ], 403);
-
-        }
-
-        $cartItem->load('product');
-
-        $request->validate([
-            'quantity' => [
-                'required',
-                'integer',
-                'min:1',
-                'max:'.$cartItem->product->stock,
-            ],
-        ]);
-
-        $quantity = (int) $request->input(
-            'quantity'
+        $user = Auth::user();
+        $quantity = (int) $request->validated('quantity');
+        $this->cartSupervisor->updateItem(
+            $user,
+            $cartItem,
+            $quantity
         );
-
-        $cartItem->update([
-            'quantity' => $quantity,
-        ]);
-
-        $freshCartItems = Auth::user()
-            ->cartItems()
-            ->with('product')
-            ->get();
-
-        $grandTotal = $freshCartItems->sum(
-            function ($item) {
-
-                $activePrice =
-                    $item->product->sale_price
-                    ?? $item->product->price;
-
-                return $activePrice * $item->quantity;
-            }
-        );
-
-        $activePrice =
-            $cartItem->product->sale_price
-            ?? $cartItem->product->price;
+        $summary = $this->cartSupervisor->getCartSummary($user);
 
         return response()->json([
-
             'success' => true,
-
             'itemSubtotal' => number_format(
-                $activePrice * $cartItem->quantity,
+                $this->cartSupervisor->calculateItemSubtotal($cartItem),
                 2
             ),
-
             'grandTotal' => number_format(
-                $grandTotal,
+                $summary['grandTotal'],
                 2
             ),
-
-            // Number of cart rows/products
-            'cartItemCount' => $freshCartItems->count(),
-
-            // Total quantity of everything
-            'cartQuantity' => $freshCartItems->sum('quantity'),
-
-            'cartIsEmpty' => $freshCartItems->isEmpty(),
+            'cartItemCount' => $summary['cartItemCount'],
+            'cartQuantity' => $summary['cartQuantity'],
+            'cartIsEmpty' => $summary['cartIsEmpty'],
         ]);
     }
 
-    /**
-     * Remove a cart item.
-     */
-    public function destroy(
-        CartItem $cartItem
-    ) {
-        if ($cartItem->user_id !== Auth::id()) {
-
-            return response()->json([
-                'error' => 'Unauthorized action.',
-            ], 403);
-
-        }
-
-        $cartItem->delete();
-
-        $freshCartItems = Auth::user()
-            ->cartItems()
-            ->with('product')
-            ->get();
-
-        $grandTotal = $freshCartItems->sum(
-            function ($item) {
-
-                $activePrice =
-                    $item->product->sale_price
-                    ?? $item->product->price;
-
-                return $activePrice * $item->quantity;
-            }
+    public function destroy(CartItem $cartItem)
+    {
+        $user = Auth::user();
+        $this->cartSupervisor->removeItem(
+            $user,
+            $cartItem
         );
+        $summary = $this->cartSupervisor->getCartSummary($user);
 
         return response()->json([
-
             'success' => true,
-
             'grandTotal' => number_format(
-                $grandTotal,
+                $summary['grandTotal'],
                 2
             ),
-
-            // Number of remaining cart rows
-            'cartItemCount' => $freshCartItems->count(),
-
-            // Total quantity remaining
-            'cartQuantity' => $freshCartItems->sum('quantity'),
-
-            'cartIsEmpty' => $freshCartItems->isEmpty(),
+            'cartItemCount' => $summary['cartItemCount'],
+            'cartQuantity' => $summary['cartQuantity'],
+            'cartIsEmpty' => $summary['cartIsEmpty'],
         ]);
     }
 }

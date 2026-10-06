@@ -84,3 +84,36 @@
 [x-cloak] {
     display: none !important;
 }
+
+
+.no-number-spinner {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.no-number-spinner::-webkit-inner-spin-button,
+.no-number-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media (min-width: 424px) and (max-width: 424px) {
+    .on-sale-carousel .hs-carousel-prev,
+    .on-sale-carousel .hs-carousel-next {
+        display: none !important;
+    }
+}
+
+@media (min-width: 424px) and (max-width: 424px) {
+    .new-arrivals-carousel .hs-carousel-prev,
+    .new-arrivals-carousel .hs-carousel-next {
+        display: none !important;
+    }
+}
+
+@media (min-width: 424px) and (max-width: 424px) {
+    .top-sellers-carousel .hs-carousel-prev,
+    .top-sellers-carousel .hs-carousel-next {
+        display: none !important;
+    }
+}

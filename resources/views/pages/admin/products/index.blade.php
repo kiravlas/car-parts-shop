@@ -1,8 +1,7 @@
 <x-layouts.admin-layout>
-
     {{-- Page Header --}}
     <div class="mb-6">
-        {{--Bread Crumbs--}}
+        {{-- Breadcrumbs --}}
         <div class="breadcrumbs mb-2 text-sm">
             <ul>
                 <li>
@@ -11,14 +10,12 @@
                     </a>
                 </li>
 
-                <li>
-                    Products
-                </li>
+                <li>Products</li>
             </ul>
         </div>
 
         <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            {{--Section Header --}}
+            {{-- Header --}}
             <div>
                 <h1 class="text-2xl font-bold">
                     Products
@@ -28,7 +25,8 @@
                     Manage the products in your store.
                 </p>
             </div>
-            {{--Add Product button--}}
+
+            {{-- Add Product --}}
             <a
                 href="{{ route('admin.products.create') }}"
                 class="btn btn-primary"
@@ -50,19 +48,13 @@
 
                 Add Product
             </a>
-
         </div>
-
     </div>
 
     {{-- Products Table --}}
     <div class="rounded-box border border-base-content/10 bg-base-100 shadow-sm">
-
-        {{-- Mobile horizontal scrolling --}}
         <div class="overflow-x-auto">
-
             <table class="table">
-
                 {{-- Table Header --}}
                 <thead>
                 <tr>
@@ -74,24 +66,16 @@
                 </tr>
                 </thead>
 
-
                 {{-- Table Body --}}
                 <tbody>
-
-                @forelse ($products as $product)
-
+                @forelse($products as $product)
                     <tr class="hover">
-
                         {{-- Product --}}
                         <td>
-
                             <div class="flex items-center gap-4">
-
                                 {{-- Thumbnail --}}
                                 <div class="shrink-0">
-
-                                    @if ($product->primaryImage)
-
+                                    @if($product->primaryImage)
                                         <div class="avatar">
                                             <div class="size-14 rounded-lg">
                                                 <img
@@ -100,12 +84,9 @@
                                                 >
                                             </div>
                                         </div>
-
                                     @else
-
                                         <div
-                                            class="flex size-14 items-center justify-center rounded-lg bg-base-200 text-base-content/40"
-                                        >
+                                            class="flex size-14 items-center justify-center rounded-lg bg-base-200 text-base-content/40">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 class="size-7"
@@ -121,109 +102,78 @@
                                                 />
                                             </svg>
                                         </div>
-
                                     @endif
-
                                 </div>
-
 
                                 {{-- Name + Badges --}}
                                 <div>
-
                                     <div class="font-semibold">
                                         {{ $product->name }}
                                     </div>
 
                                     <div class="mt-1 flex flex-wrap gap-1">
-
-                                        @if ($product->sale_price)
+                                        @if($product->sale_price)
                                             <span class="badge badge-error badge-sm">
-                                                    SALE
-                                                </span>
+                                                SALE
+                                            </span>
                                         @endif
 
-                                        @if ($product->is_new_arrival)
+                                        @if($product->is_new_arrival)
                                             <span class="badge badge-success badge-sm">
-                                                    NEW
-                                                </span>
+                                                NEW
+                                            </span>
                                         @endif
-
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </td>
-
 
                         {{-- Category --}}
                         <td>
-
-                                <span class="badge badge-ghost">
-                                    {{ $product->category->name }}
-                                </span>
-
+                            <span class="badge badge-ghost">
+                                {{ $product->category->name }}
+                            </span>
                         </td>
-
 
                         {{-- Price --}}
                         <td>
-
-                            @if ($product->sale_price)
-
+                            @if($product->sale_price)
                                 <div class="font-semibold text-error">
-                                    {{$product->formatted_sale_price}}
+                                    {{ $product->formatted_sale_price }}
                                 </div>
 
                                 <div class="text-xs text-base-content/50 line-through">
-                                    {{$product->formatted_price}}
+                                    {{ $product->formatted_price }}
                                 </div>
-
                             @else
-
                                 <span class="font-semibold">
-                                    {{$product->formatted_price}}
-                                    </span>
-
+                                    {{ $product->formatted_price }}
+                                </span>
                             @endif
-
                         </td>
-
 
                         {{-- Stock --}}
                         <td>
-
-                            @if ($product->stock > 0)
-
+                            @if($product->stock > 0)
                                 <div class="flex items-center gap-2">
-
-                                        <span class="badge badge-success badge-sm">
-                                            In Stock
-                                        </span>
-
-                                    <span class="text-sm text-base-content/70">
-                                            {{ $product->stock }}
-                                        </span>
-
-                                </div>
-
-                            @else
-
-                                <span class="badge badge-error badge-sm">
-                                        Out of Stock
+                                    <span class="badge badge-success badge-sm">
+                                        In Stock
                                     </span>
 
+                                    <span class="text-sm text-base-content/70">
+                                        {{ $product->stock }}
+                                    </span>
+                                </div>
+                            @else
+                                <span class="badge badge-error badge-sm">
+                                    Out of Stock
+                                </span>
                             @endif
-
                         </td>
-
 
                         {{-- Actions --}}
                         <td>
-
                             <div class="flex justify-end gap-2">
-
                                 {{-- Edit --}}
                                 <a
                                     href="{{ route('admin.products.edit', $product) }}"
@@ -253,14 +203,12 @@
                                     Edit
                                 </a>
 
-
                                 {{-- Delete --}}
                                 <form
                                     action="{{ route('admin.products.destroy', $product) }}"
                                     method="POST"
                                     onsubmit="return confirm('Delete this product and all its images permanently?');"
                                 >
-
                                     @csrf
                                     @method('DELETE')
 
@@ -285,25 +233,16 @@
 
                                         Delete
                                     </button>
-
                                 </form>
-
                             </div>
-
                         </td>
-
                     </tr>
-                    {{--Empty State--}}
                 @empty
-
                     {{-- Empty State --}}
                     <tr>
                         <td colspan="5">
-
                             <div class="flex flex-col items-center justify-center py-16 text-center">
-
                                 <div class="mb-4 rounded-full bg-base-200 p-4">
-
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         class="size-10 text-base-content/40"
@@ -318,7 +257,6 @@
                                             d="m20.25 7.5-.625 10.25a2.25 2.25 0 0 1-2.245 2.113H6.62a2.25 2.25 0 0 1-2.245-2.113L3.75 7.5m16.5 0-2.06-3.183A2.25 2.25 0 0 0 16.31 3H7.69a2.25 2.25 0 0 0-1.88 1.317L3.75 7.5m16.5 0v.75A2.25 2.25 0 0 1 18 10.5H6a2.25 2.25 0 0 1-2.25-2.25V7.5m4.5 3v6m3-6v6m3-6v6"
                                         />
                                     </svg>
-
                                 </div>
 
                                 <h3 class="text-lg font-semibold">
@@ -329,28 +267,19 @@
                                     Your store doesn't have any products yet.
                                     Add your first product to start building your catalog.
                                 </p>
-
                             </div>
-
                         </td>
                     </tr>
-
                 @endforelse
-
                 </tbody>
-
             </table>
-
         </div>
-
     </div>
 
-
     {{-- Pagination --}}
-    @if ($products->hasPages())
+    @if($products->hasPages())
         <div class="mt-6">
             {{ $products->links() }}
         </div>
     @endif
-
 </x-layouts.admin-layout>

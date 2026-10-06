@@ -7,9 +7,7 @@ use App\Supervisors\UserSupervisor;
 
 class AvatarController
 {
-    public function __construct(protected UserSupervisor $supervisor)
-    {
-    }
+    public function __construct(protected UserSupervisor $supervisor) {}
 
     public function destroy()
     {

@@ -1,13 +1,8 @@
 <x-layouts.app>
-
     <section class="min-h-[70vh] bg-base-300 px-4 py-16 sm:py-20">
-
         <div class="mx-auto flex max-w-2xl items-center justify-center">
-
             <div class="card w-full border border-base-300 bg-base-100 shadow-xl">
-
-                <div class="card-body items-center text-center p-8 sm:p-12">
-
+                <div class="card-body items-center p-8 text-center sm:p-12">
                     {{-- Success Icon --}}
                     <div class="mb-6 flex size-20 items-center justify-center rounded-full bg-success/10">
                         <div
@@ -32,7 +27,6 @@
 
                     {{-- Order Status --}}
                     <div class="mt-8 w-full rounded-xl border border-base-300 bg-base-200 p-5">
-
                         <div class="flex items-center justify-center gap-2 text-success">
                             <i
                                 data-lucide="circle-check"
@@ -47,14 +41,12 @@
                         <p class="mt-2 text-sm text-base-content/60">
                             A confirmation will be available in your order history.
                         </p>
-
                     </div>
 
                     {{-- Actions --}}
                     <div class="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
-
                         <a
-                            href="{{ route('home.index') }}"
+                            href="{{ route('products.index') }}"
                             class="btn btn-primary gap-2"
                         >
                             <i
@@ -76,15 +68,9 @@
 
                             My Orders
                         </a>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
 </x-layouts.app>

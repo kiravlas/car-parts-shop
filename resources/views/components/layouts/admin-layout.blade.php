@@ -7,21 +7,20 @@
 
     <title>{{ config('app.name') }}</title>
 </head>
+
 <body>
 <div class="drawer lg:drawer-open">
-    <input id="my-drawer-4" type="checkbox" class="drawer-toggle inline"/>
+    <input
+        id="my-drawer-4"
+        type="checkbox"
+        class="drawer-toggle inline"
+    >
 
-    {{-- =========================================================
-        DRAWER CONTENT
-    ========================================================== --}}
+    {{-- Drawer Content --}}
     <div class="drawer-content">
-
-        {{-- =====================================================
-            NAVBAR
-        ====================================================== --}}
-        <nav class="navbar w-full bg-base-300 border-b border-base-content/10">
-
-            {{-- Sidebar toggle --}}
+        {{-- Navbar --}}
+        <nav class="navbar w-full border-b border-base-content/10 bg-base-300">
+            {{-- Sidebar Toggle --}}
             <label
                 for="my-drawer-4"
                 aria-label="open sidebar"
@@ -43,29 +42,23 @@
                 </svg>
             </label>
 
-            {{-- Page title --}}
+            {{-- Page Title --}}
             <div class="px-4 font-semibold">
                 Dashboard
             </div>
 
-            {{-- Navbar right --}}
+            {{-- Admin Dropdown --}}
             <div class="ml-auto flex items-center gap-2">
-
-                {{-- Admin dropdown --}}
                 <div class="dropdown dropdown-end">
-
                     <div
                         tabindex="0"
                         role="button"
                         class="btn btn-ghost gap-2"
                     >
-
                         <div class="avatar placeholder">
-
-                            <div class="bg-primary text-primary-content w-8 rounded-full">
+                            <div class="w-8 rounded-full bg-primary text-primary-content">
                                 <span>A</span>
                             </div>
-
                         </div>
 
                         <span class="hidden sm:inline">
@@ -82,17 +75,14 @@
                         >
                             <path d="m6 9 6 6 6-6"/>
                         </svg>
-
                     </div>
-
 
                     <ul
                         tabindex="0"
-                        class="menu dropdown-content bg-base-200 rounded-box z-50 mt-3 w-52 p-2 shadow"
+                        class="menu dropdown-content z-50 mt-3 w-52 rounded-box bg-base-200 p-2 shadow"
                     >
-
                         <li>
-                            <a>
+                            <a href="{{ route('profile.show') }}">
                                 Profile
                             </a>
                         </li>
@@ -100,26 +90,32 @@
                         <div class="divider my-1"></div>
 
                         <li>
-                            <a class="text-error">
-                                Logout
-                            </a>
+                            <form
+                                method="POST"
+                                action="{{ route('logout') }}"
+                            >
+                                @csrf
+
+                                <button
+                                    type="submit"
+                                    class="w-full text-error"
+                                >
+                                    Logout
+                                </button>
+                            </form>
                         </li>
-
                     </ul>
-
                 </div>
-
             </div>
-
         </nav>
 
-
-        {{-- =====================================================
-            MAIN DASHBOARD
-        ====================================================== --}}
-        <main class="p-4 md:p-6 lg:p-8 space-y-6">
-            @if (session('success'))
-                <div role="alert" class="alert alert-success mb-4">
+        {{-- Main Dashboard --}}
+        <main class="space-y-6 p-4 md:p-6 lg:p-8">
+            @if(session('success'))
+                <div
+                    role="alert"
+                    class="alert alert-success mb-4"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6 shrink-0"
@@ -139,8 +135,11 @@
                 </div>
             @endif
 
-            @if (session('error'))
-                <div role="alert" class="alert alert-error mb-4">
+            @if(session('error'))
+                <div
+                    role="alert"
+                    class="alert alert-error mb-4"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6 shrink-0"
@@ -159,43 +158,32 @@
                     <span>{{ session('error') }}</span>
                 </div>
             @endif
-            {{$slot}}
-        </main>
 
+            {{ $slot }}
+        </main>
     </div>
 
-
-    {{-- =========================================================
-        SIDEBAR
-    ========================================================== --}}
+    {{-- Sidebar --}}
     <div class="drawer-side is-drawer-close:overflow-visible">
-
         <label
             for="my-drawer-4"
             aria-label="close sidebar"
             class="drawer-overlay"
         ></label>
 
-
         <div
             class="flex min-h-full flex-col items-start bg-base-200
                    is-drawer-close:w-14
                    is-drawer-open:w-64"
         >
-
             <ul class="menu w-full grow">
-
-
-                {{-- =================================================
-                    DASHBOARD
-                ================================================== --}}
+                {{-- Dashboard --}}
                 <li>
-
-                    <button
+                    <a
+                        href="{{ route('admin.dashboard') }}"
                         class="is-drawer-close:tooltip is-drawer-close:tooltip-right active"
                         data-tip="Dashboard"
                     >
-
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -214,22 +202,16 @@
                         <span class="is-drawer-close:hidden">
                             Dashboard
                         </span>
-
-                    </button>
-
+                    </a>
                 </li>
 
-
-                {{-- =================================================
-                    PRODUCTS
-                ================================================== --}}
+                {{-- Products --}}
                 <li>
-
-                    <button
+                    <a
+                        href="{{ route('admin.products.index') }}"
                         class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                         data-tip="Products"
                     >
-
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -250,22 +232,16 @@
                         <span class="is-drawer-close:hidden">
                             Products
                         </span>
-
-                    </button>
-
+                    </a>
                 </li>
 
-
-                {{-- =================================================
-                    CATEGORIES
-                ================================================== --}}
+                {{-- Categories --}}
                 <li>
-
-                    <button
+                    <a
+                        href="{{ route('admin.categories.index') }}"
                         class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                         data-tip="Categories"
                     >
-
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -284,22 +260,15 @@
                         <span class="is-drawer-close:hidden">
                             Categories
                         </span>
-
-                    </button>
-
+                    </a>
                 </li>
 
-
-                {{-- =================================================
-                    ORDERS
-                ================================================== --}}
+                {{-- Orders --}}
                 <li>
-
                     <button
                         class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                         data-tip="Orders"
                     >
-
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -318,22 +287,15 @@
                         <span class="is-drawer-close:hidden">
                             Orders
                         </span>
-
                     </button>
-
                 </li>
 
-
-                {{-- =================================================
-                    USERS & ROLES
-                ================================================== --}}
+                {{-- Users & Roles --}}
                 <li>
-
                     <button
                         class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                         data-tip="Users & Roles"
                     >
-
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -353,58 +315,42 @@
                         <span class="is-drawer-close:hidden">
                             Users & Roles
                         </span>
-
                     </button>
-
                 </li>
 
-
-                {{-- =================================================
-                    STORE
-                ================================================== --}}
+                {{-- Store --}}
                 <li class="menu-title mt-4 is-drawer-close:hidden">
                     Store
                 </li>
 
-
-                {{-- View Store --}}
                 <li>
-                    <a href="{{route('home.index')}}">
-                        <button
-                            class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                            data-tip="View Store"
+                    <a
+                        href="{{ route('home.index') }}"
+                        class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="View Store"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2"
+                            fill="none"
+                            stroke="currentColor"
+                            class="my-1.5 inline-block size-4"
                         >
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
 
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                stroke-linejoin="round"
-                                stroke-linecap="round"
-                                stroke-width="2"
-                                fill="none"
-                                stroke="currentColor"
-                                class="my-1.5 inline-block size-4"
-                            >
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-
-                            <span class="is-drawer-close:hidden">
+                        <span class="is-drawer-close:hidden">
                             View Store
                         </span>
-
-                        </button>
                     </a>
                 </li>
-
-
             </ul>
-
         </div>
-
     </div>
-
 </div>
-
 </body>
 </html>

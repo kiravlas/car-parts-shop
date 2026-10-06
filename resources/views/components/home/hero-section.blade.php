@@ -93,7 +93,7 @@
 
                     </div>
 
-                    <button class="btn btn-primary w-full mt-6">
+                    <button class="btn btn-primary btn-disabled w-full mt-6">
                         Search Compatible Parts
                     </button>
 
@@ -114,7 +114,7 @@
                     class="input input-bordered join-item flex-1"
                     placeholder="Enter part number (e.g. 06A115561B)">
 
-                <button class="btn btn-primary join-item">
+                <button class="btn btn-primary btn-disabled join-item" aria-label="Search by part number">
                     <i data-lucide="search" class="size-4"></i>
                 </button>
             </div>
@@ -123,7 +123,7 @@
                     class="input input-bordered join-item flex-1"
                     placeholder="Enter VIN number (17-character code)">
 
-                <button class="btn btn-primary join-item">
+                <button class="btn btn-primary btn-disabled join-item" aria-label="Search by VIN number">
                     <i data-lucide="car-front" class="size-4"></i>
                 </button>
             </div>

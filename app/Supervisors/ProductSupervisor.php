@@ -2,8 +2,11 @@
 
 namespace App\Supervisors;
 
+use App\Filters\ProductFilter;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\User;
+use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -138,6 +141,15 @@ class ProductSupervisor
         }
     }
 
+    public function listProducts(ProductFilter $filter, $perPage): _IH_Product_C|LengthAwarePaginator|array|AbstractPaginator
+    {
+        return Product::query()
+            ->with('primaryImage', 'category')
+            ->filter($filter)
+            ->paginate($perPage)
+            ->withQueryString();
+    }
+
     public function loadProductWithSortedImages(Product $product): Product
     {
         return $product->load([
@@ -146,5 +158,22 @@ class ProductSupervisor
                     ->orderBy('id', 'asc');
             },
         ]);
+    }
+
+    public function toggleLike(User $user, Product $product): array
+    {
+        $result = $user->likedProducts()->toggle($product->id);
+        $isLiked = in_array($product->id, $result['attached']);
+
+        return [
+            'is_liked' => $isLiked,
+            'likes_count' => $product->likedByUsers()->count(),
+            'total_wishlist_count' => $user->likedProducts()->count(),
+        ];
+    }
+
+    public function loadSingleProductImage(Product $product): Product
+    {
+        return $product->load('images');
     }
 }

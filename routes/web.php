@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminCategoryController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Store\Cart\CartController;
 use App\Http\Controllers\Store\Categories\CategoryController;
 use App\Http\Controllers\Store\Checkout\CheckoutController;
 use App\Http\Controllers\Store\HomeController;
+use App\Http\Controllers\Store\Orders\Assignment\AssignmentOrderController;
+use App\Http\Controllers\Store\Orders\OrderController;
 use App\Http\Controllers\Store\Products\ProductController;
 use App\Http\Controllers\Store\Products\ProductLikeController;
 use App\Http\Controllers\Store\Products\WishlistController;
@@ -14,30 +13,35 @@ use App\Http\Controllers\Store\Profile\AvatarController;
 use App\Http\Controllers\Store\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Store
+// Assignment
+Route::post('/assignment/orders', [AssignmentOrderController::class, 'store'])
+    ->middleware('log.order.ip')
+    ->name('assignment.orders.store');
 
+// Store
 Route::get('/', [HomeController::class, 'index'])
     ->name('home.index');
 
 Route::get('/categories', [CategoryController::class, 'index'])
     ->name('categories.index');
 
-Route::get('/products', [ProductController::class, 'index'])
-    ->name('products.index');
-
-Route::get('/products/{product}', [ProductController::class, 'show'])
-    ->name('product.show');
-
-Route::post('/products/{product}/toggle-like', [ProductLikeController::class, 'toggle'])
-    ->name('products.toggle-like')->middleware('auth');
-
 Route::get('/wishlist', [WishlistController::class, 'index'])
     ->name('wishlist.index')->middleware('auth');
 
+Route::prefix('products')
+    ->name('products.')
+    ->group(function () {
+        Route::get('/', [ProductController::class, 'index'])
+            ->name('index');
+        Route::get('/{product}', [ProductController::class, 'show'])
+            ->name('show');
+        Route::post('/{product}/toggle-like', [ProductLikeController::class, 'toggle'])
+            ->middleware('auth')
+            ->name('toggle-like');
+    });
+
 // Cart
-
 Route::middleware('auth')->prefix('cart')->name('cart.')->group(function () {
-
     Route::get('/', [CartController::class, 'index'])
         ->name('index');
 
@@ -53,7 +57,6 @@ Route::middleware('auth')->prefix('cart')->name('cart.')->group(function () {
 });
 
 // Checkout
-
 Route::middleware(['auth', 'verified'])->prefix('checkout')->name('checkout.')->group(function () {
 
     Route::post('/', [CheckoutController::class, 'checkout'])
@@ -68,7 +71,6 @@ Route::middleware(['auth', 'verified'])->prefix('checkout')->name('checkout.')->
 });
 
 // Profile
-
 Route::middleware('auth')->prefix('profile')->name('profile.')->group(function () {
 
     Route::get('/', [ProfileController::class, 'show'])
@@ -86,38 +88,10 @@ Route::middleware('auth')->prefix('profile')->name('profile.')->group(function (
     Route::get('/security', [ProfileController::class, 'security'])
         ->name('security');
 
+    Route::get('/orders', [OrderController::class, 'index'])
+        ->name('orders.index');
+
+    Route::get('/orders/{order}', [OrderController::class, 'show'])
+        ->name('orders.show');
+
 });
-
-// Admin Dashboard
-
-Route::middleware(['auth', 'can:access-admin-dashboard'])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
-
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])
-            ->name('dashboard');
-
-        Route::resource('categories', AdminCategoryController::class)
-            ->except('show');
-
-        Route::resource('products', AdminProductController::class);
-
-        Route::patch(
-            '/product-images/{image}/set-primary',
-            [AdminProductController::class, 'setPrimaryImage']
-        )->name('product-images.set-primary');
-
-        Route::delete(
-            '/product-images/{image}',
-            [AdminProductController::class, 'destroyImage']
-        )->name('product-images.destroy');
-    });
-
-// Assignment
-
-// Route::post(
-//     '/assignment/orders',
-//     [AssignmentOrderController::class, 'store']
-// )->middleware('log.order.ip')
-// ->name('assignment.orders.store');

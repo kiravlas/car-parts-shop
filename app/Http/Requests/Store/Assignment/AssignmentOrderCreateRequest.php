@@ -28,7 +28,7 @@ class AssignmentOrderCreateRequest extends FormRequest
                 'email:rfc',
                 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/',
             ],
-            'product_name' => ['required'],
+            'product_name' => ['required', 'string', 'max:255'],
         ];
     }
 }
